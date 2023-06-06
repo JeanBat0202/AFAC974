@@ -1,14 +1,15 @@
-import ArtDisplay from "../components/ArtDisplay";
+// import ArtDisplay from "../components/ArtDisplay";
+import "./Gallery.scss";
 
 function Gallery() {
   return (
     <div className="grid-container">
       <section className="art-display">
-        <ArtDisplay className="one" />
-        <ArtDisplay className="two" />
-        <ArtDisplay className="three" />
-        <ArtDisplay className="fourth" />
-        <ArtDisplay className="five" />
+        <div className="one" />
+        <div className="two" />
+        <div className="three" />
+        <div className="fourth" />
+        <div className="five" />
       </section>
     </div>
   );

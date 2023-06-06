@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../pages/Gallery.scss";
+// import "../pages/Gallery.scss";
 
 export default function ArtDisplay() {
   return (
