@@ -1,0 +1,85 @@
+.header-container {
+  border-bottom: 2px solid #000000;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .header-logo {
+    max-width: 36%;
+    object-fit: contain;
+  }
+
+  .logo-AFAC {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .burger-menu {
+    cursor: pointer;
+    margin-top: 3%;
+    margin-right: 3%;
+    width: auto;
+    height: auto;
+  }
+
+  .icone-burger {
+    max-height: 100%;
+    max-width: 100%;
+    font-size: 5vh;
+  }
+
+  .ruby {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background: #7f253e;
+    clip-path: polygon(
+      23.41% 31.28%,
+      50.42% 15.84%,
+      77.02% 31.37%,
+      77.02% 63.79%,
+      50.42% 79.56%,
+      23.6% 64.1%
+    );
+    box-shadow: 0px 20px 0px #ffffff, 0px 26px 0px #000000;
+  }
+}
+
+.nav-menu {
+  position: relative;
+  background-color: rgb(234, 234, 234);
+  width: 250px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  right: -100%;
+  transition: 850ms;
+}
+
+.nav-menu.active {
+  right: 0;
+  transition: 350ms;
+}
+
+.nav-text {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 24px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 8px 8px 8px 16px;
+  list-style: none;
+  height: 60px;
+}
+
+.nav-menu-items {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+}
