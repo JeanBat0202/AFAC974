@@ -24,18 +24,18 @@ DROP TABLE IF EXISTS `art`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `art` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `image_ref` varchar(80) NOT NULL,
   `title` varchar(255) NOT NULL DEFAULT 'Sans titre',
-  `short_title` varchar(255) DEFAULT NULL,
   `image` varchar(255) NOT NULL,
   `creation_date` date DEFAULT NULL,
   `width` float NOT NULL,
   `height` float NOT NULL,
   `about` text,
+  `image_ref` varchar(80) NOT NULL,
+  `short_title` varchar(255) DEFAULT NULL,
   `article` varchar(255) DEFAULT NULL,
-  `category_id` int DEFAULT NULL,
-  `art_type_id` int DEFAULT NULL,
-  `author_id` int DEFAULT NULL,
+  `category_id` int NOT NULL,
+  `art_type_id` int NOT NULL,
+  `author_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_art_category` (`category_id`),
   KEY `fk_art_art_type` (`art_type_id`),
@@ -242,4 +242,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-05 14:57:06
+-- Dump completed on 2023-06-06 10:15:26
