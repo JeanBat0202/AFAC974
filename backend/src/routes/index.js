@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const itemsRouter = require("./items.routes");
+const artsRouter = require("./arts.routes");
 
-router.use("/items", itemsRouter);
+router.use("/arts", artsRouter);
 
 module.exports = router;
