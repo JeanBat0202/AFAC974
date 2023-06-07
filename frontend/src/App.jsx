@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import User from "./pages/User";
 
 import "./App.css";
 
@@ -12,7 +13,7 @@ function App() {
         <Route path="/galerie/:id" element={<Home />} />
         <Route path="/a-propos" element={<Home />} />
         <Route path="/auteur" element={<Home />} />
-        <Route path="/utilisateur" element={<Home />} />
+        <Route path="/utilisateur" element={<User />} />
         <Route path="/connexion" element={<Home />} />
       </Routes>
     </Router>
