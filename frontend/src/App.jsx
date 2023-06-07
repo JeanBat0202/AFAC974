@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
 import Gallery from "./pages/Gallery";
+import HomePage from "./pages/HomePage";
 import Header from "./components/Header";
-import "./App.css";
+import "./App.scss";
 
 function App() {
   return (
@@ -10,13 +10,13 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/galerie" element={<Gallery />} />
-          <Route path="/galerie/:id" element={<Home />} />
-          <Route path="/a-propos" element={<Home />} />
-          <Route path="/auteur" element={<Home />} />
-          <Route path="/utilisateur" element={<Home />} />
-          <Route path="/connexion" element={<Home />} />
+          <Route path="/galerie/:id" element={<HomePage />} />
+          <Route path="/a-propos" element={<HomePage />} />
+          <Route path="/auteur" element={<HomePage />} />
+          <Route path="/utilisateur" element={<HomePage />} />
+          <Route path="/connexion" element={<HomePage />} />
         </Routes>
       </Router>
     </main>

@@ -1,0 +1,35 @@
+.main {
+  hr {
+    width: 80%;
+    border: none;
+    border-radius: 5px;
+    padding: 1px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: -10px;
+    background-color: #bc7c61;
+  }
+
+  .synopsis {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 40px;
+
+    h1 {
+      margin-bottom: 30px;
+    }
+
+    p {
+      font-size: 20px;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    hr {
+      margin-top: -60px;
+    }
+  }
+}
