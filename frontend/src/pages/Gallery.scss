@@ -1,0 +1,64 @@
+figcaption {
+  visibility: hidden;
+}
+figcaption:hover {
+    display: flex;
+    visibility: visible;
+    opacity: ;
+    justify-content: space-between;
+    color: white;
+    background-color: #74658A;
+    width: 100%;
+    margin: 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+figure {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  margin-bottom: 30px;
+  break-inside: avoid;
+}
+
+figure > img {
+  grid-row: 1 / -1;
+  grid-column: 1;
+}
+
+.container {
+  max-width: 90%;
+  margin-top: 5%;
+  column-count: 1;
+  column-gap: 30px;
+}
+.parent {
+  display: flex;
+  justify-content: center;
+}
+@media screen and (min-width: 768px) {
+  .container {
+    column-count: 2;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .container {
+    column-count: 3;
+  }
+}
+@media screen and (min-width: 1224px) {
+  .container {
+    column-count: 4;
+  }
+}
+@media screen and (min-width: 1824px) {
+  .container {
+    column-count: 5;
+  }
+}
+  
+  
+  
