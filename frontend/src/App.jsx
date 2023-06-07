@@ -3,6 +3,7 @@ import Gallery from "./pages/Gallery";
 import HomePage from "./pages/HomePage";
 import Header from "./components/Header";
 import "./App.scss";
+import User from "./pages/User";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
           <Route path="/galerie/:id" element={<HomePage />} />
           <Route path="/a-propos" element={<HomePage />} />
           <Route path="/auteur" element={<HomePage />} />
-          <Route path="/utilisateur" element={<HomePage />} />
+          <Route path="/utilisateur" element={<User />} />
           <Route path="/connexion" element={<HomePage />} />
         </Routes>
       </Router>
