@@ -7,7 +7,7 @@ class AuthorManager extends AbstractManager {
 
   insert(author) {
     return this.database.query(
-      `INSERT INTO ${this.table} (firstname, lastname, author_alias, biography, birth_date, death_date) VALUES (?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO ${this.table} (firstname, lastname, author_alias, biography, birth_date, death_date) VALUES (?, ?, ?, ?, ?, NULL)`,
       [
         author.firstname,
         author.lastname,
