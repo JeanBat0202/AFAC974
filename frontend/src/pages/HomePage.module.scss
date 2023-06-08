@@ -5,8 +5,6 @@
     border-radius: 5px;
     padding: 1px;
     margin: auto;
-    margin-top: 20px;
-    margin-bottom: -10px;
     background-color: #bc7c61;
   }
 
@@ -20,16 +18,19 @@
 
     h1 {
       margin-bottom: 30px;
+      font-family: "Bebas Neue";
     }
 
     p {
       font-size: 20px;
+      font-family: "Bebas Neue";
     }
   }
+}
 
-  @media screen and (min-width: 768px) {
-    hr {
-      margin-top: -60px;
-    }
-  }
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("./assets/fonts/bebas_neue/BebasNeue-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
