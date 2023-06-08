@@ -31,12 +31,16 @@ const models = {};
 
 const ArtManager = require("./ArtManager");
 const AuthorManager = require("./AuthorManager");
+const UserManager = require("./UserManager");
 
 models.art = new ArtManager();
 models.art.setDatabase(pool);
 
 models.author = new AuthorManager();
 models.author.setDatabase(pool);
+
+models.user = new UserManager();
+models.user.setDatabase(pool);
 
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
