@@ -33,6 +33,7 @@ const ArtManager = require("./ArtManager");
 const AuthorManager = require("./AuthorManager");
 const RoleManager = require("./RoleManager");
 const UserManager = require("./UserManager");
+const ArtTypeManager = require("./ArtTypeManager");
 const CategoryManager = require("./CategoryManager");
 
 models.art = new ArtManager();
@@ -46,6 +47,9 @@ models.role.setDatabase(pool);
 
 models.user = new UserManager();
 models.user.setDatabase(pool);
+
+models.artType = new ArtTypeManager();
+models.artType.setDatabase(pool);
 
 models.category = new CategoryManager();
 models.category.setDatabase(pool);
