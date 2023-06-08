@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import AboutPage from "./pages/AboutPage";
 import "./App.scss";
 import User from "./pages/User";
+import Connection from "./pages/Connection";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
           <Route path="/a-propos" element={<AboutPage />} />
           <Route path="/auteur" element={<HomePage />} />
           <Route path="/utilisateur" element={<User />} />
-          <Route path="/connexion" element={<HomePage />} />
+          <Route path="/connexion" element={<Connection />} />
         </Routes>
       </Router>
     </main>
