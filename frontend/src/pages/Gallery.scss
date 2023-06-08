@@ -1,0 +1,84 @@
+.image-container {
+  position: relative;
+  display: inline-block;
+  margin-top: 10%;
+  margin-left: 5%;
+  margin-right: 5%;
+  box-shadow: 4px 1px 4px rgba($color: #000000, $alpha: 0.5);
+}
+.image-container figcaption {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: absolute;
+  background-color: #74658ad5;
+  color: white;
+  padding: 5px 10px;
+  transition: visibility 0s, opacity 0.5s;
+  box-shadow: 4px 4px 4px rgba($color: #000000, $alpha: 0.5);
+}
+.image-container figcaption .link {
+  color: #ffffff;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+figure {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  margin-bottom: 30px;
+  break-inside: avoid;
+}
+
+figure > img {
+  grid-row: 1 / -1;
+  grid-column: 1;
+}
+
+.container {
+  max-width: 90%;
+  margin-top: 5%;
+  column-count: 1;
+  column-gap: 30px;
+}
+.parent {
+  display: flex;
+  justify-content: center;
+}
+@media screen and (min-width: 768px) {
+  .container {
+    column-count: 2;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .image-container {
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .image-container figcaption {
+    visibility: hidden;
+    opacity: 0;
+  }
+  .image-container:hover figcaption {
+    display: flex;
+    justify-content: space-between;
+    visibility: visible;
+    opacity: 1;
+    bottom: 0;
+  }
+  .container {
+    column-count: 3;
+  }
+}
+@media screen and (min-width: 1224px) {
+  .container {
+    column-count: 4;
+  }
+}
+@media screen and (min-width: 1824px) {
+  .container {
+    column-count: 5;
+  }
+}
