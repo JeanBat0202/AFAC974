@@ -33,6 +33,7 @@ const ArtManager = require("./ArtManager");
 const AuthorManager = require("./AuthorManager");
 const RoleManager = require("./RoleManager");
 const UserManager = require("./UserManager");
+const CategoryManager = require("./CategoryManager");
 
 models.art = new ArtManager();
 models.art.setDatabase(pool);
@@ -46,6 +47,8 @@ models.role.setDatabase(pool);
 models.user = new UserManager();
 models.user.setDatabase(pool);
 
+models.category = new CategoryManager();
+models.category.setDatabase(pool);
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
 
