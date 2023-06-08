@@ -10,26 +10,26 @@ export default function Header() {
 
   return (
     <>
-      <header className="header-container">
-        <div className="header-logo">
-          <img
-            className="logo-AFAC"
-            src="/src/assets/logoAFAC.png"
-            alt="logoAFAC"
-          />
+      <header className="header-big-container">
+        <div className="header-background">
+          <div className="ruby" />
         </div>
-        <img
-          src="/src/assets/hexagon-svgrepo-com.svg"
-          className="ruby"
-          alt="ruby"
-        />
-        <div className="burger-menu">
-          <FaBars
-            className="icone-burger"
-            onClick={() => {
-              showSidebar();
-            }}
-          />
+        <div className="header-container">
+          <Link to="/">
+            <img
+              className="logo-AFAC"
+              src="/src/assets/logoAFAC.png"
+              alt="logoAFAC"
+            />
+          </Link>
+          <div className="burger-menu">
+            <FaBars
+              className="icone-burger"
+              onClick={() => {
+                showSidebar();
+              }}
+            />
+          </div>
         </div>
       </header>
       <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
@@ -42,7 +42,7 @@ export default function Header() {
                 showSidebar();
               }}
             >
-              Acceuil
+              Accueil
             </Link>{" "}
           </li>
           <li className="nav-text">
