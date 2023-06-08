@@ -30,10 +30,29 @@ pool.getConnection().catch(() => {
 const models = {};
 
 const ArtManager = require("./ArtManager");
+const AuthorManager = require("./AuthorManager");
+const RoleManager = require("./RoleManager");
+const UserManager = require("./UserManager");
+const ArtTypeManager = require("./ArtTypeManager");
+const CategoryManager = require("./CategoryManager");
 
 models.art = new ArtManager();
 models.art.setDatabase(pool);
 
+models.author = new AuthorManager();
+models.author.setDatabase(pool);
+
+models.role = new RoleManager();
+models.role.setDatabase(pool);
+
+models.user = new UserManager();
+models.user.setDatabase(pool);
+
+models.artType = new ArtTypeManager();
+models.artType.setDatabase(pool);
+
+models.category = new CategoryManager();
+models.category.setDatabase(pool);
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
 
