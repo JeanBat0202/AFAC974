@@ -1,8 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/HomePage";
+import Gallery from "./pages/Gallery";
+import HomePage from "./pages/HomePage";
 import Header from "./components/Header";
+import AboutPage from "./pages/AboutPage";
 import "./App.scss";
 import User from "./pages/User";
+import Connection from "./pages/Connection";
 
 function App() {
   return (
@@ -10,13 +13,13 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/galerie" element={<Home />} />
-          <Route path="/galerie/:id" element={<Home />} />
-          <Route path="/a-propos" element={<Home />} />
-          <Route path="/auteur" element={<Home />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/galerie" element={<Gallery />} />
+          <Route path="/galerie/:id" element={<HomePage />} />
+          <Route path="/a-propos" element={<AboutPage />} />
+          <Route path="/auteur" element={<HomePage />} />
           <Route path="/utilisateur" element={<User />} />
-          <Route path="/connexion" element={<Home />} />
+          <Route path="/connexion" element={<Connection />} />
         </Routes>
       </Router>
     </main>

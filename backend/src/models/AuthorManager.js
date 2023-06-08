@@ -26,7 +26,8 @@ class AuthorManager extends AbstractManager {
       author_alias = ?,
       biography = ?,
       birth_date = ?,
-      death_date = ?`,
+      death_date = ?
+      where id = ?`,
       [
         author.firstname,
         author.lastname,
@@ -34,6 +35,7 @@ class AuthorManager extends AbstractManager {
         author.biography,
         author.birthDate,
         author.deathDate,
+        author.id,
       ]
     );
   }
