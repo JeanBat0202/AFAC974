@@ -1,0 +1,9 @@
+
+{
+  "json.schemas": [
+
+],
+"editor.cursorBlinking": "smooth",
+"editor.cursorSmoothCaretAnimation": "on"
+}
+
