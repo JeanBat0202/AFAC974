@@ -1,7 +1,7 @@
 import LogIn from "../components/LogIn";
 import SignUp from "../components/SignUp";
 
-function Connexion() {
+function Connection() {
   return (
     <>
       <SignUp />
@@ -10,4 +10,4 @@ function Connexion() {
   );
 }
 
-export default Connexion;
+export default Connection;
