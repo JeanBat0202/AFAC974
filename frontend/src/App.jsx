@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import Header from "./components/Header";
 import "./App.scss";
 import User from "./pages/User";
+import Connexion from "./pages/Connexion";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           <Route path="/a-propos" element={<HomePage />} />
           <Route path="/auteur" element={<HomePage />} />
           <Route path="/utilisateur" element={<User />} />
-          <Route path="/connexion" element={<HomePage />} />
+          <Route path="/connexion" element={<Connexion />} />
         </Routes>
       </Router>
     </main>
