@@ -57,7 +57,7 @@ figure > img {
     margin-left: 0;
     margin-right: 0;
   }
-  .image-container figcaption { 
+  .image-container figcaption {
     visibility: hidden;
     opacity: 0;
   }
@@ -71,7 +71,6 @@ figure > img {
   .container {
     column-count: 3;
   }
-
 }
 @media screen and (min-width: 1224px) {
   .container {
@@ -83,7 +82,3 @@ figure > img {
     column-count: 5;
   }
 }
-
-  
-  
-  
