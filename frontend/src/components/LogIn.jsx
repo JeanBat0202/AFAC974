@@ -72,6 +72,9 @@ function LogIn() {
           <Link to="/">
             <input type="submit" />
           </Link>
+          <Link to="/s'inscrire" className="sign-up">
+            S'inscrire
+          </Link>
         </div>
       </form>
     </div>
