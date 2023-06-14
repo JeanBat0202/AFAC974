@@ -14,18 +14,16 @@ input[type="password"] {
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-input[type="submit"] {
-  margin-top: 10px;
+button[type="submit"] {
   cursor: pointer;
-  font-size: 15px;
-  background: #01d28e;
-  border: 1px solid #01d28e;
-  color: #fff;
-  padding: 10px 20px;
-}
-
-input[type="submit"]:hover {
-  background: #6cf0c2;
+  padding: 2px;
+  margin-bottom: 30px;
+  border: 5px double #bc7c61;
+  text-decoration: none;
+  font-size: 2rem;
+  font-family: "Bebas Neue";
+  background: none;
+  color: #bc7c61;
 }
 
 .button-container {
@@ -36,7 +34,6 @@ input[type="submit"]:hover {
 .login-form {
   background-color: white;
   padding: 2rem;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .list-container {
@@ -60,12 +57,14 @@ input[type="submit"]:hover {
   margin: 10px;
 }
 .sign-up {
-  margin-left: 5%;
-  margin-top: 10px;
   cursor: pointer;
+  padding: 2px;
+  margin-bottom: 30px;
+  border: 5px double #bc7c61;
+  text-decoration: none;
   font-size: 2rem;
-  background: #74658ad5;
-  border: 1px solid #74658ad5;
-  color: #fff;
-  padding: 10px 20px;
+  font-family: "Bebas Neue";
+  background: none;
+  color: #bc7c61;
+  margin-left: 5%;
 }

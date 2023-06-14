@@ -86,12 +86,12 @@ function SignUp() {
           {handleChangeEmail("email")}
         </div>
         <div className="input-container">
-          <label htmlFor="password">Password </label>
+          <label htmlFor="password">Mot de passe </label>
           <input type="password" name="pass" required />
           {handleChangeMessage("pass")}
         </div>
         <div className="button-container">
-          <input type="submit" />
+          <button type="submit"> Enregistrer </button>
         </div>
       </form>
     </div>
@@ -99,8 +99,8 @@ function SignUp() {
   return (
     <div className="app">
       <div className="login-form">
-        <div className="title">Sign Up</div>
-        {isSubmit ? <div>User is successfully signed in</div> : renderForm}
+        <div className="title">S'inscrire</div>
+        {isSubmit ? <div>Votre compte a bien été enregistrer</div> : renderForm}
       </div>
     </div>
   );

@@ -59,18 +59,18 @@ function LogIn() {
     <div className="form">
       <form onSubmit={handleSubmit}>
         <div className="input-container">
-          <label htmlFor="email">Email </label>
+          <label htmlFor="email"> Email </label>
           <input type="email" name="email" required />
           {handleChangeEmail("email")}
         </div>
         <div className="input-container">
-          <label htmlFor="password">Password </label>
+          <label htmlFor="password"> Mot de passe </label>
           <input type="password" name="pass" required />
           {handleChangeMessage("pass")}
         </div>
         <div className="button-container">
           <Link to="/">
-            <input type="submit" />
+            <button type="submit">Se connecter </button>
           </Link>
           <Link to="/s'inscrire" className="sign-up">
             S'inscrire
@@ -82,8 +82,8 @@ function LogIn() {
   return (
     <div className="app">
       <div className="login-form">
-        <div className="title">Sign In</div>
-        {isSubmit ? <div>User is successfully logged in</div> : renderForm}
+        <div className="title"> Connexion </div>
+        {isSubmit ? <div>Vous êtes bien connecté</div> : renderForm}
       </div>
     </div>
   );
