@@ -77,8 +77,9 @@
     }
 
     .hexa2 {
-      min-width: 220px;
-      margin: 0 auto;
+      max-width: 150px;
+      min-height: 230px;
+      margin: 0 calc(50% - 75px);
       display: grid;
       grid-template-columns: repeat(6, 1fr);
       grid-template-rows: repeat(10, 1fr);
@@ -130,10 +131,10 @@
 @media screen and (min-width: 1024px) {
   .about {
     .hexa1 {
-      min-width: 330px;
+      max-width: 300px;
+      max-height: 240px;
       min-height: 240px;
-      margin: auto;
-      margin-top: 24%;
+      margin: calc(50% - 120px) calc(50% - 150px);
       display: grid;
       grid-template-columns: repeat(8, 1fr);
       grid-template-rows: repeat(7, 1fr);
