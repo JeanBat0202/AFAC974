@@ -6,6 +6,7 @@ import AboutPage from "./pages/AboutPage";
 import "./App.scss";
 import User from "./pages/User";
 import Connection from "./pages/Connection";
+import SignUp from "./components/SignUp";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/auteur" element={<HomePage />} />
           <Route path="/utilisateur" element={<User />} />
           <Route path="/connexion" element={<Connection />} />
+          <Route path="/s'inscrire" element={<SignUp />} />
         </Routes>
       </Router>
     </main>
