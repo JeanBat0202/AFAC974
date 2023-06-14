@@ -5,19 +5,19 @@ export default function ArtDisplay() {
   return (
     <div className="parent">
       <div className="container">
-        <figure>
-          <div className="image-container">
-            <img
-              src="https://assets.codepen.io/12005/windmill.jpg"
-              alt="A windmill"
-            />
-            <figcaption>
-              Moulin
-              <Link to="/galerie/:id" className="link">
-                + D'INFOS
-              </Link>
-            </figcaption>
-          </div>
+        <figure className="image-container">
+          {/* <div className="image-container"> */}
+          <img
+            src="https://assets.codepen.io/12005/windmill.jpg"
+            alt="A windmill"
+          />
+          <figcaption>
+            Moulin
+            <Link to="/galerie/:id" className="link">
+              + D'INFOS
+            </Link>
+          </figcaption>
+          {/* </div> */}
         </figure>
         <figure>
           <div className="image-container">

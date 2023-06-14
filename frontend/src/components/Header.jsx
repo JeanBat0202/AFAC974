@@ -11,9 +11,12 @@ export default function Header() {
   return (
     <>
       <header className="header-big-container">
-        <div className="header-background">
-          <div className="ruby" />
-        </div>
+        <div className="ruby-background" />
+        <img
+          className="ruby"
+          src="./src/assets/hexagon-svgrepo-com.svg"
+          alt="header hexagon"
+        />
         <div className="header-container">
           <Link to="/">
             <img
@@ -22,29 +25,26 @@ export default function Header() {
               alt="logoAFAC"
             />
           </Link>
-          <div className="burger-menu">
-            <FaBars
-              className="icone-burger"
-              onClick={() => {
-                showSidebar();
-              }}
-            />
-          </div>
+          {/* <div className="burger-menu"> */}
+          <FaBars
+            className="icone-burger"
+            onClick={() => {
+              showSidebar();
+            }}
+          />
+          {/* </div> */}
         </div>
       </header>
       <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
         <ul className="nav-menu-items">
-          <li className="nav-text">
-            {" "}
-            <Link
-              to="/"
-              onClick={() => {
-                showSidebar();
-              }}
-            >
-              Accueil
-            </Link>{" "}
-          </li>
+          <Link
+            to="/"
+            onClick={() => {
+              showSidebar();
+            }}
+          >
+            <li className="nav-text">Accueil</li>
+          </Link>
           <li className="nav-text">
             {" "}
             <Link
