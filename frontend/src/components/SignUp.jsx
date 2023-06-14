@@ -72,22 +72,22 @@ function SignUp() {
       <form onSubmit={handleSubmit}>
         <div className="input-container">
           <label htmlFor="firstname">Prénom</label>
-          <input type="text" name="firstname" required />
+          <input className="border2" type="text" name="firstname" required />
           {handleChangeFirstName("firstname")}
         </div>
         <div className="input-container">
           <label htmlFor="lastname">Nom </label>
-          <input type="text" name="lastname" required />
+          <input className="border2" type="text" name="lastname" required />
           {handleChangeLastName("lastname")}
         </div>
         <div className="input-container">
           <label htmlFor="email">Email </label>
-          <input type="email" name="email" required />
+          <input className="border2" type="email" name="email" required />
           {handleChangeEmail("email")}
         </div>
         <div className="input-container">
           <label htmlFor="password">Mot de passe </label>
-          <input type="password" name="pass" required />
+          <input className="border2" type="password" name="pass" required />
           {handleChangeMessage("pass")}
         </div>
         <div className="button-container">

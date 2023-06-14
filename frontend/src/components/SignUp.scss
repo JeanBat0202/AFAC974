@@ -7,12 +7,11 @@
   margin-bottom: 5%;
   height: auto;
 }
-input[type="email"],
-input[type="password"],
-input[type="firstname"],
-input[type="lastname"] {
+input.border2[type="text"],
+input.border2[type="email"],
+input.border2[type="password"] {
   height: 25px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 2px solid #74658A;
 }
 
 input[type="submit"] {
