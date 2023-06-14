@@ -5,6 +5,14 @@
 .about {
   position: relative;
   flex: 1 1 0%;
+  padding: 1.5%;
+
+  .hexa1 {
+    display: none;
+  }
+  .hexa2 {
+    display: none;
+  }
 
   h2,
   p {
@@ -50,5 +58,110 @@
       rgba(127, 37, 62, 0.3505996148459384) 100%
     );
     z-index: -1;
+  }
+}
+@media screen and (min-width: 768px) {
+  .about {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 20px;
+
+    hr {
+      display: none;
+    }
+
+    .text1 {
+      grid-area: 1 / 1 / 2 / 2;
+    }
+
+    .hexa2 {
+      min-width: 220px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: repeat(10, 1fr);
+      grid-area: 1 / 2 / 2 / 3;
+      filter: drop-shadow(6px 4px 2px rgba(50, 50, 0, 0.6));
+
+      div {
+        clip-path: polygon(
+          5% 27.5%,
+          5% 72.5%,
+          50% 97.5%,
+          95% 72.5%,
+          95% 27.5%,
+          50% 2.5%
+        );
+        &:nth-child(1) {
+          grid-area: 1 / 3 / span 4 / span 4;
+          background-color: #7f253e;
+        }
+        &:nth-child(2) {
+          grid-area: 4 / 1 / span 4 / span 4;
+          background: linear-gradient(180deg, #7f253e 0%, #b89898 100%);
+        }
+        &:nth-child(3) {
+          grid-area: 7 / 3 / span 4 / span 4;
+          background-color: #b89898;
+        }
+      }
+    }
+
+    .text2 {
+      grid-area: 2 / 2 / 3 / 3;
+    }
+
+    .text3 {
+      grid-area: 1 / 3 / 2 / 4;
+    }
+
+    .objetTemoin {
+      position: absolute;
+      bottom: 0;
+      width: 12rem;
+      display: block;
+      margin: 1rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .about {
+    .hexa1 {
+      min-width: 330px;
+      min-height: 240px;
+      margin: auto;
+      margin-top: 24%;
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      grid-template-rows: repeat(7, 1fr);
+      grid-area: 2 / 1 / 3 / 2;
+      filter: drop-shadow(6px 4px 2px rgba(50, 50, 0, 0.6));
+
+      div {
+        clip-path: polygon(
+          5% 27.5%,
+          5% 72.5%,
+          50% 97.5%,
+          95% 72.5%,
+          95% 27.5%,
+          50% 2.5%
+        );
+        &:nth-child(1) {
+          grid-area: 1 / 1 / span 4 / span 4;
+          background: linear-gradient(180deg, #b89898 0%, #7f253e 100%);
+        }
+        &:nth-child(2) {
+          grid-area: 1 / 5 / span 4 / span 4;
+          background: linear-gradient(180deg, #b89898 0%, #7f253e 100%);
+        }
+        &:nth-child(3) {
+          grid-area: 4 / 3 / span 4 / span 4;
+          background-color: #7f253e;
+        }
+      }
+    }
   }
 }
