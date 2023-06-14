@@ -11,13 +11,12 @@ export default function Header() {
   return (
     <>
       <header className="header-big-container">
-        <div className="header-background">
-          <img
-            className="ruby"
-            src="./src/assets/hexagon-svgrepo-com.svg"
-            alt="header hexagon"
-          />
-        </div>
+        <div className="ruby-background" />
+        <img
+          className="ruby"
+          src="./src/assets/hexagon-svgrepo-com.svg"
+          alt="header hexagon"
+        />
         <div className="header-container">
           <Link to="/">
             <img
