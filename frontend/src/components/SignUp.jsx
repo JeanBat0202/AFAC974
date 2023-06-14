@@ -100,7 +100,7 @@ function SignUp() {
     <div className="app">
       <div className="login-form">
         <div className="title">S'inscrire</div>
-        {isSubmit ? <div>Votre compte a bien été enregistrer </div> : renderForm}
+        {isSubmit ? <div>Votre compte a bien été enregistré </div> : renderForm}
       </div>
     </div>
   );
