@@ -1,56 +1,53 @@
 .header-big-container {
-  height: 72px;
-  filter: drop-shadow(0px 2px #000000);
+  height: 48px;
+  border-bottom: 2px solid #000000;
+  margin-bottom: 24px;
   position: relative;
+  display: flex;
+  align-items: center;
   z-index: 2;
 
-  .header-background {
-    width: 100%;
-    height: 72px;
-    background: #ffffff;
-    display: flex;
-    justify-content: center;
+  .ruby-background {
+    filter: drop-shadow(0px 2px #000000);
+    height: 24px;
+    width: 80px;
     position: absolute;
-    z-index: -1;
-    clip-path: polygon(
-      0 0,
-      0 62%,
-      calc(50vw - 40px) 62%,
-      50% 100%,
-      calc(50vw + 40px) 62%,
-      100% 62%,
-      100% 0
-    );
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    bottom: 0;
 
-    .ruby {
-      width: 42px;
-      height: 50px;
-      margin-top: 6px;
-      background: #7f253e;
-      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    &::after {
+      content: "";
+      display: block;
+      height: 100%;
+      clip-path: polygon(0 0, 50% 100%, 100% 0);
+      background-color: white;
     }
+  }
+
+  .ruby {
+    height: 50px;
+    position: absolute;
+    left: 50%;
+    top: 6px;
+    transform: translateX(-50%);
   }
 
   .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 45px;
+    width: 100%;
 
     .logo-AFAC {
       max-height: 42px;
     }
 
-    .burger-menu {
-      cursor: pointer;
-      margin-right: 1%;
-      width: auto;
-      height: auto;
-    }
-
     .icone-burger {
-      max-height: 42px;
-      max-width: 42px;
+      cursor: pointer;
+      margin-right: 3%;
+      max-height: 10vw;
+      max-width: 10vw;
       font-size: 5vh;
     }
   }
@@ -58,7 +55,7 @@
 
 .nav-menu {
   position: relative;
-  margin-top: calc(-72px + 47px);
+  margin-top: 46px;
   z-index: 1;
   background-color: rgba(234, 234, 234, 0.7);
   width: 250px;
@@ -96,7 +93,35 @@ a {
 }
 
 @media screen and (min-width: 768px) {
-  .header-container {
-    height: 120px;
+  .header-big-container {
+    height: 117px;
+    margin-bottom: 28px;
+
+    .ruby-background {
+      height: 28px;
+      width: 120px;
+    }
+
+    .ruby {
+      height: 98px;
+      top: 18px;
+    }
+
+    .header-container {
+      height: 78%;
+
+      .logo-AFAC {
+        max-height: 109px;
+      }
+
+      .icone-burger {
+        max-height: 15vw;
+        max-width: 15vw;
+      }
+    }
+  }
+
+  .nav-menu {
+    margin-top: 115px;
   }
 }

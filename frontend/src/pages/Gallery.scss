@@ -1,14 +1,12 @@
 .image-container {
   position: relative;
-  display: inline-block;
+  // display: inline-block;
   margin-top: 10%;
   margin-left: 5%;
   margin-right: 5%;
   box-shadow: 4px 1px 4px rgba($color: #000000, $alpha: 0.5);
 }
 .image-container figcaption {
-  display: flex;
-  justify-content: space-between;
   width: 100%;
   position: absolute;
   background-color: #74658ad5;
@@ -37,15 +35,13 @@ figure > img {
 }
 
 .container {
-  max-width: 90%;
+  margin-right: 5%;
+  margin-left: 5%;
   margin-top: 5%;
   column-count: 1;
   column-gap: 30px;
 }
-.parent {
-  display: flex;
-  justify-content: center;
-}
+
 @media screen and (min-width: 768px) {
   .container {
     column-count: 2;
