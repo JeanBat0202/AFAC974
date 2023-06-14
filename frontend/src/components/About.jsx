@@ -1,8 +1,8 @@
-import "./About.scss";
+import style from "./About.module.scss";
 
 export default function Header() {
   return (
-    <>
+    <section className={style.about}>
       <br />
       <h2>Presentation de l'association AFAC974</h2>
       <br />
@@ -16,7 +16,7 @@ export default function Header() {
       <img
         src="/src/assets/ObjetTemoin.png"
         alt="logo Objet Temoin"
-        className="logo-objetTemoin"
+        className={style.objetTemoin}
       />
       <hr />
       <br />
@@ -53,6 +53,7 @@ export default function Header() {
         avez le droit d'accéder, de rectifier, de supprimer ou de limiter leur
         traitement.
       </p>
-    </>
+      <div className={style.hexagone} />
+    </section>
   );
 }

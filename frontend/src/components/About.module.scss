@@ -1,0 +1,54 @@
+* {
+  font-family: "Bebas Neue", sans-serif;
+}
+
+.about {
+  position: relative;
+  flex: 1 1 0%;
+
+  h2,
+  p {
+    text-align: center;
+  }
+
+  p {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .logo-objetTemoinContainer {
+    align-items: center;
+  }
+
+  .objetTemoin {
+    width: 7rem;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+
+  hr {
+    width: 80%;
+    height: 2px;
+    margin: 0 auto;
+    border: none;
+    border-radius: 5px;
+    background-color: #7f253e;
+  }
+
+  .hexagone {
+    position: absolute;
+    bottom: -90px;
+    right: -54px;
+    width: 200px;
+    height: 200px;
+    transform: rotate(43deg);
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    background: linear-gradient(
+      90deg,
+      rgba(127, 37, 62, 1) 0%,
+      rgba(127, 37, 62, 0.3505996148459384) 100%
+    );
+    z-index: -1;
+  }
+}
