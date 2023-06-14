@@ -72,26 +72,26 @@ function SignUp() {
       <form onSubmit={handleSubmit}>
         <div className="input-container">
           <label htmlFor="firstname">Prénom</label>
-          <input type="text" name="firstname" required />
+          <input className="border2" type="text" name="firstname" required />
           {handleChangeFirstName("firstname")}
         </div>
         <div className="input-container">
           <label htmlFor="lastname">Nom </label>
-          <input type="text" name="lastname" required />
+          <input className="border2" type="text" name="lastname" required />
           {handleChangeLastName("lastname")}
         </div>
         <div className="input-container">
           <label htmlFor="email">Email </label>
-          <input type="email" name="email" required />
+          <input className="border2" type="email" name="email" required />
           {handleChangeEmail("email")}
         </div>
         <div className="input-container">
-          <label htmlFor="password">Password </label>
-          <input type="password" name="pass" required />
+          <label htmlFor="password">Mot de passe </label>
+          <input className="border2" type="password" name="pass" required />
           {handleChangeMessage("pass")}
         </div>
         <div className="button-container">
-          <input type="submit" />
+          <button type="submit"> Enregistrer </button>
         </div>
       </form>
     </div>
@@ -99,8 +99,8 @@ function SignUp() {
   return (
     <div className="app">
       <div className="login-form">
-        <div className="title">Sign Up</div>
-        {isSubmit ? <div>User is successfully signed in</div> : renderForm}
+        <div className="title">S'inscrire</div>
+        {isSubmit ? <div>Votre compte a bien été enregistré </div> : renderForm}
       </div>
     </div>
   );
