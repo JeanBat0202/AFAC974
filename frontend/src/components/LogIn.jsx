@@ -60,22 +60,25 @@ function LogIn() {
       <form onSubmit={handleSubmit}>
         <div className="input-container">
           <label htmlFor="email"> Email </label>
-          <input type="email" name="email" required />
+          <input className="border" type="email" name="email" required />
           {handleChangeEmail("email")}
         </div>
         <div className="input-container">
           <label htmlFor="password"> Mot de passe </label>
-          <input type="password" name="pass" required />
+          <input className="border" type="password" name="pass" required />
           {handleChangeMessage("pass")}
         </div>
         <div className="button-container">
           <Link to="/">
             <button type="submit">Se connecter </button>
           </Link>
-          <Link to="/s'inscrire" className="sign-up">
-            S'inscrire
-          </Link>
         </div>
+        <p className="text">
+          Pas encore inscrit ?
+          <Link to="/s'inscrire" className="sign-up">
+            Créer un compte
+          </Link>
+        </p>
       </form>
     </div>
   );
@@ -85,6 +88,7 @@ function LogIn() {
         <div className="title"> Connexion </div>
         {isSubmit ? <div>Vous êtes bien connecté</div> : renderForm}
       </div>
+      <div className="hexagone" />
     </div>
   );
 }
