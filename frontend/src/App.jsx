@@ -5,6 +5,8 @@ import AboutPage from "./pages/AboutPage";
 import GalleryDisplay from "./pages/GalleryDisplay";
 import "./App.scss";
 import User from "./pages/User";
+import Connection from "./pages/Connection";
+import SignUp from "./components/SignUp";
 
 function App() {
   return (
@@ -18,7 +20,8 @@ function App() {
           <Route path="/a-propos" element={<AboutPage />} />
           <Route path="/auteur" element={<HomePage />} />
           <Route path="/utilisateur" element={<User />} />
-          <Route path="/connexion" element={<HomePage />} />
+          <Route path="/connexion" element={<Connection />} />
+          <Route path="/s'inscrire" element={<SignUp />} />
         </Routes>
       </Router>
     </main>
