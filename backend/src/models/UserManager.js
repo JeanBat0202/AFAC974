@@ -7,8 +7,14 @@ class UserManager extends AbstractManager {
 
   insert(user) {
     return this.database.query(
-      `INSERT INTO ${this.table} (firstname, lastname, email, password, role_id) VALUES (?, ?, ?, ?, ?)`,
-      [user.firstname, user.lastname, user.email, user.password, user.role_id]
+      `INSERT INTO ${this.table} (firstname, lastname, email, hashedPassword, role_id) VALUES (?, ?, ?, ?, ?)`,
+      [
+        user.firstname,
+        user.lastname,
+        user.email,
+        user.hashedPassword,
+        user.role_id,
+      ]
     );
   }
 
@@ -20,14 +26,33 @@ class UserManager extends AbstractManager {
       password = ?,
       role_id = ?`,
 
-      [user.firstname, user.lastname, user.email, user.password, user.role_id]
+      [
+        user.firstname,
+        user.lastname,
+        user.email,
+        user.hashedPassword,
+        user.role_id,
+      ]
+    );
+  }
+
+  find(id) {
+    return this.database.query(
+      `select firstname, lastname, email, role_id from  ${this.table} where id = ?`,
+      [id]
     );
   }
 
   findAll() {
     return this.database.query(
-      `SELECT u.id, u.firstname, u.lastname, u.email, u.password, u.role_id AS role_id, r.name FROM ${this.table} AS u JOIN role AS r ON r.id = u.role_id `
+      `SELECT u.id, u.firstname, u.lastname, u.email, u.hashedPassword, u.role_id AS role_id, r.name FROM ${this.table} AS u JOIN role AS r ON r.id = u.role_id `
     );
+  }
+
+  findByEmail(email) {
+    return this.database.query(`SELECT * FROM  ${this.table} WHERE email=?`, [
+      email,
+    ]);
   }
 }
 
