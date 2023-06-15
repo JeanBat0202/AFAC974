@@ -7,26 +7,23 @@
   margin-bottom: 5%;
   height: auto;
 }
-input[type="email"],
-input[type="password"],
-input[type="firstname"],
-input[type="lastname"] {
+input.border2[type="text"],
+input.border2[type="email"],
+input.border2[type="password"] {
   height: 25px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 2px solid #74658a;
 }
 
 input[type="submit"] {
-  margin-top: 10px;
   cursor: pointer;
+  padding: 2px;
+  margin-bottom: 30px;
+  border: 5px double #bc7c61;
+  text-decoration: none;
   font-size: 2rem;
-  background: #74658ad5;
-  border: 1px solid #74658ad5;
-  color: #fff;
-  padding: 10px 20px;
-}
-
-input[type="submit"]:hover {
-  background: #74658ad5;
+  font-family: "Bebas Neue";
+  background: none;
+  color: #bc7c61;
 }
 
 .button-container {
@@ -35,11 +32,11 @@ input[type="submit"]:hover {
 }
 
 .login-form {
+  margin-top: 5%;
+  border: 2px solid black;
   font-size: 2rem;
-  color: white;
-  background-color: #7f253e;
+  color: black;
   width: 80%;
-  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
 }
 
 .list-container {
@@ -64,6 +61,7 @@ input[type="submit"]:hover {
 }
 @media screen and (min-width: 768px) {
   .login-form {
+    margin-top: 0;
     width: 70%;
   }
   input[type="email"],
