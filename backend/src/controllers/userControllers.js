@@ -1,5 +1,5 @@
-const models = require("../models");
 const argon2 = require("@node-rs/argon2");
+const models = require("../models");
 
 const hashingOptions = {
   type: argon2.argon2id,
