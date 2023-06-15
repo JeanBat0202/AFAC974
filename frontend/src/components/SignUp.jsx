@@ -43,6 +43,7 @@ function SignUp() {
           lastname,
           email,
           password,
+          role_id: 2,
         }),
       })
         .then((res) => res.json())
