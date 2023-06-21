@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import AboutPage from "./pages/AboutPage";
 import "./App.scss";
 import User from "./pages/User";
+import Admin from "./pages/Admin";
 import Connection from "./pages/Connection";
 import SignUp from "./components/SignUp";
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/a-propos" element={<AboutPage />} />
           <Route path="/auteur" element={<HomePage />} />
           <Route path="/utilisateur" element={<User />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="/connexion" element={<Connection />} />
           <Route path="/s'inscrire" element={<SignUp />} />
         </Routes>
