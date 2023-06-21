@@ -63,7 +63,8 @@ section {
       display: flex;
       justify-content: center;
       flex-direction: column;
-      max-width: 25rem;
+      max-width: 33%;
+
       gap: 1rem;
 
       input {
@@ -72,19 +73,19 @@ section {
       }
 
       button {
-        background-color: #3f7090;
+        color: #bc7c61;
         border-radius: 0.5rem;
+        min-height: 2rem;
+        font-size: 1.5rem;
+        border: 5px double #bc7c61;
       }
     }
 
     .Logout {
-      background-color: grey;
+      color: #bc7c61;
       width: 10rem;
-      margin-left: 8rem;
-
-      @media (max-width: 768px) {
-        margin-left: 6rem;
-      }
+      margin: auto;
+      border: 5px double #bc7c61;
     }
 
     hr {

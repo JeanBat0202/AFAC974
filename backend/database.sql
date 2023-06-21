@@ -96,81 +96,86 @@ VALUES
     1,
     3
   ),
-  (
-    2,
-    '40FI78',
-    'Arrivée à l\'établissement du Tampon',
-    'L\'Établissement',
-    '/src/assets/Images/Oeuvres/UsineBelAir_40FI78.jpg',
-    '1866-01-01',
-    13.5,
-    15,
-    'Le chemin de l\'Etablissement existe toujours aujourd\'hui, à 400 mètres d\'altitude. Les deux cavaliers sont sans doute Ch. H. N; Mortier de Trévise lui-même, et son beau-frère (Denis-André de K/véguen)? En avant, 3 autres personnages cheminent à pied. La route traverse le lit desseché de la Rivière d\'Abord, et remonte légèrement vers l\'Etablissement (c\'est-à-dire l\'ensemble du fonds avec usine, bâtiments annexes, et camp des travailleurs engagés, non représenté ici. L\'usine elle-même est composée de deux corps parallèles de bâtiments, flanqués chacun d\'une cheminée: l\'une pour évacuer les fumées de combustion pour la batterie Gimart, l\'autre la fumée de la machine à vapeur. En quinconce, un autre bâtiment à l\'avant, abritant les tables pour le séchage du sucre? ',
-    '',
-    1,
-    1,
-    3
-  ),
-  (
-    3,
-    '40FI80',
-    'Tampon- Une usine',
-    'Usine du Tampon',
-    '/src/assets/Images/Oeuvres/FRAD974_40FI80.jpg',
-    '1866-02-10',
-    20.5,
-    11.5,
-    'Une autre vue de l\'usine de Bel Air, au Tampon: on retrouve le bâtiment en quinconce accolé au corps de l\'usine, avec ses deux cheminées. Au premier plan, sur le chemin de l\'Etablissement (400 m. d\'altitude), on distingue un groupe de travailleurs engagés, près d\'un point d\'eau: un homme, une femme avec un bébé qui porte une jarre sur la tête, et un autre personnage. L\'auteur note le nom des arbres et plantes (aloés divers, vacoas, palmiers) ',
-    'https://view.genial.ly/5fb636d03636f40d7f883f24',
-    1,
-    3,
-    3
-  ),
-  (
-    4,
-    '40FI106',
-    'Quartier St Pierre. Etablissement de la Rivière, montagnes de l\'Entre Deux',
-    'Établissement de la Rivière',
-    '/src/assets/Images/Oeuvres/AD974_40FI106.jpg',
-    '1866-01-01',
-    16.5,
-    19.5,
-    'L\'usine (Etablissement) est installée rive gauche de la Rivière Saint-Etienne, au débouché du lieu-dit l\'Entre-Deux. Elle semble présenter la même physionomie que les autres établissements achetés ou construits par Gabriel de K/Véguen: 2 corps principaux de bâtiments, ici décalés l\'un par rapport à l\'autre, avec des ouvertures en arc de cercle pou évacuer la chaleur, la cheminée qui évacue les fumées de la batterie Gimart, et, à l\'arrière, un ou deux bâtiments pour le séchage du sucre. Au Premier plan, une escouade (une \'bande\') de travailleurs engagés effectue la \'trouaison\', pour la replantation de cannes à sucre, sous la direction d\'un Commandeur, vêtu d\'un pantalon de toile bleue. Un vacoa est ici le témoin indispensable de l\'usage de ses feuilles pour le tressage de sacs, destinés ensuite à transporter le sucre produit. ',
-    '',
-    1,
-    1,
-    3
-  ),
-  (
-    5,
-    '40FI91',
-    'Boutchiana- Casernes',
-    '-',
-    '/src/assets/Images/Oeuvres/FRAD974_40FI91.jpg',
-    '1865-01-01',
-    11,
-    19.5,
-    'Travailleur engagé depuis l\'Inde à l\'Etablissement des Casernes, il tient une lance, peut-être a-t-il une fonction de gardien? Sur sa fiche d\'engagement, il était recensé comme tailleur ',
-    '',
-    2,
-    2,
-    3
-  ),
-  (
-    6,
-    '40FI90',
-    'Boutchiana-Casernes, de face',
-    '-',
-    '/src/assets/Images/Oeuvres/FRAD974_40FI90.jpg',
-    '1865-01-01',
-    8.5,
-    19.5,
-    'Complète la précédente aquarelle. On devine la jeunesse de Boutchiana, engagé à l\'adolescence. Arrivé à bord de Yanaon, en Inde, à bord du navire de la famille Kerveguen, Le Canova, on le dit âgé de 17 ans',
-    '',
-    2,
-    2,
-    3
-  );
+  < < < < < < < HEAD (
+    == == == = (
+      > > > > > > > dev 2,
+      '40FI78',
+      'Arrivée à l\'établissement du Tampon',
+      'L\'Établissement',
+      '/src/assets/Images/Oeuvres/UsineBelAir_40FI78.jpg',
+      '1866-01-01',
+      13.5,
+      15,
+      'Le chemin de l\'Etablissement existe toujours aujourd\'hui, à 400 mètres d\'altitude. Les deux cavaliers sont sans doute Ch. H. N; Mortier de Trévise lui-même, et son beau-frère (Denis-André de K/véguen)? En avant, 3 autres personnages cheminent à pied. La route traverse le lit desseché de la Rivière d\'Abord, et remonte légèrement vers l\'Etablissement (c\'est-à-dire l\'ensemble du fonds avec usine, bâtiments annexes, et camp des travailleurs engagés, non représenté ici. L\'usine elle-même est composée de deux corps parallèles de bâtiments, flanqués chacun d\'une cheminée: l\'une pour évacuer les fumées de combustion pour la batterie Gimart, l\'autre la fumée de la machine à vapeur. En quinconce, un autre bâtiment à l\'avant, abritant les tables pour le séchage du sucre? ',
+      '',
+      1,
+      1,
+      3
+    ),
+    < < < < < < < HEAD (
+      == == == = (
+        > > > > > > > dev 3,
+        '40FI80',
+        'Tampon- Une usine',
+        'Usine du Tampon',
+        '/src/assets/Images/Oeuvres/FRAD974_40FI80.jpg',
+        '1866-02-10',
+        20.5,
+        11.5,
+        'Une autre vue de l\'usine de Bel Air, au Tampon: on retrouve le bâtiment en quinconce accolé au corps de l\'usine, avec ses deux cheminées. Au premier plan, sur le chemin de l\'Etablissement (400 m. d\'altitude), on distingue un groupe de travailleurs engagés, près d\'un point d\'eau: un homme, une femme avec un bébé qui porte une jarre sur la tête, et un autre personnage. L\'auteur note le nom des arbres et plantes (aloés divers, vacoas, palmiers) ',
+        'https://view.genial.ly/5fb636d03636f40d7f883f24',
+        1,
+        3,
+        3
+      ),
+      < < < < < < < HEAD (
+        == == == = (
+          > > > > > > > dev 4,
+          '40FI106',
+          'Quartier St Pierre. Etablissement de la Rivière, montagnes de l\'Entre Deux',
+          'Établissement de la Rivière',
+          '/src/assets/Images/Oeuvres/AD974_40FI106.jpg',
+          '1866-01-01',
+          16.5,
+          19.5,
+          'L\'usine (Etablissement) est installée rive gauche de la Rivière Saint-Etienne, au débouché du lieu-dit l\'Entre-Deux. Elle semble présenter la même physionomie que les autres établissements achetés ou construits par Gabriel de K/Véguen: 2 corps principaux de bâtiments, ici décalés l\'un par rapport à l\'autre, avec des ouvertures en arc de cercle pou évacuer la chaleur, la cheminée qui évacue les fumées de la batterie Gimart, et, à l\'arrière, un ou deux bâtiments pour le séchage du sucre. Au Premier plan, une escouade (une \'bande\') de travailleurs engagés effectue la \'trouaison\', pour la replantation de cannes à sucre, sous la direction d\'un Commandeur, vêtu d\'un pantalon de toile bleue. Un vacoa est ici le témoin indispensable de l\'usage de ses feuilles pour le tressage de sacs, destinés ensuite à transporter le sucre produit. ',
+          '',
+          1,
+          1,
+          3
+        ),
+        < < < < < < < HEAD (
+          == == == = (
+            > > > > > > > dev 5,
+            '40FI91',
+            'Boutchiana- Casernes',
+            '-',
+            '/src/assets/Images/Oeuvres/FRAD974_40FI91.jpg',
+            '1865-01-01',
+            11,
+            19.5,
+            'Travailleur engagé depuis l\'Inde à l\'Etablissement des Casernes, il tient une lance, peut-être a-t-il une fonction de gardien? Sur sa fiche d\'engagement, il était recensé comme tailleur ',
+            '',
+            2,
+            2,
+            3
+          ),
+          < < < < < < < HEAD (
+            == == == = (
+              > > > > > > > dev 6,
+              '40FI90',
+              'Boutchiana-Casernes, de face',
+              '-',
+              '/src/assets/Images/Oeuvres/FRAD974_40FI90.jpg',
+              '1865-01-01',
+              8.5,
+              19.5,
+              'Complète la précédente aquarelle. On devine la jeunesse de Boutchiana, engagé à l\'adolescence. Arrivé à bord de Yanaon, en Inde, à bord du navire de la famille Kerveguen, Le Canova, on le dit âgé de 17 ans',
+              '',
+              2,
+              2,
+              3
+            );
 
 /*!40000 ALTER TABLE `art` ENABLE KEYS */
 ;
@@ -209,9 +214,13 @@ INSERT INTO
   `art_type`
 VALUES
   (1, 'Aquarelle'),
-  (2, 'Dessin'),
+  < < < < < < < HEAD (2, 'Dessin'),
   (3, 'Dessin à la mine de plomb');
 
+== == == = (2, 'Dessin'),
+(3, 'Dessin à la mine de plomb');
+
+> > > > > > > dev
 /*!40000 ALTER TABLE `art_type` ENABLE KEYS */
 ;
 
@@ -300,10 +309,15 @@ INSERT INTO
   `category`
 VALUES
   (1, 'Usines'),
-  (2, 'Travailleurs'),
+  < < < < < < < HEAD (2, 'Travailleurs'),
   (3, 'Lieux'),
   (4, 'Animaux');
 
+== == == = (2, 'Travailleurs'),
+(3, 'Lieux'),
+(4, 'Animaux');
+
+> > > > > > > dev
 /*!40000 ALTER TABLE `category` ENABLE KEYS */
 ;
 
@@ -376,9 +390,12 @@ LOCK TABLES `role` WRITE;
 INSERT INTO
   `role`
 VALUES
-  (1, 'ADMIN'),
+  < < < < < < < HEAD (1, 'ADMIN'),
   (2, 'USER');
 
+== == == = (1, 'ADMIN', 2, 'USER');
+
+> > > > > > > dev
 /*!40000 ALTER TABLE `role` ENABLE KEYS */
 ;
 
