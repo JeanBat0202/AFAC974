@@ -96,9 +96,8 @@ VALUES
     1,
     3
   ),
-  < < < < < < < HEAD (
-    == == == = (
-      > > > > > > > dev 2,
+ (
+ 2,
       '40FI78',
       'Arrivée à l\'établissement du Tampon',
       'L\'Établissement',
@@ -112,9 +111,8 @@ VALUES
       1,
       3
     ),
-    < < < < < < < HEAD (
-      == == == = (
-        > > > > > > > dev 3,
+ (
+3,
         '40FI80',
         'Tampon- Une usine',
         'Usine du Tampon',
@@ -128,9 +126,8 @@ VALUES
         3,
         3
       ),
-      < < < < < < < HEAD (
-        == == == = (
-          > > > > > > > dev 4,
+  (
+4,
           '40FI106',
           'Quartier St Pierre. Etablissement de la Rivière, montagnes de l\'Entre Deux',
           'Établissement de la Rivière',
@@ -144,9 +141,8 @@ VALUES
           1,
           3
         ),
-        < < < < < < < HEAD (
-          == == == = (
-            > > > > > > > dev 5,
+        (
+    5,
             '40FI91',
             'Boutchiana- Casernes',
             '-',
@@ -160,9 +156,8 @@ VALUES
             2,
             3
           ),
-          < < < < < < < HEAD (
-            == == == = (
-              > > > > > > > dev 6,
+      (
+     6,
               '40FI90',
               'Boutchiana-Casernes, de face',
               '-',
@@ -214,13 +209,10 @@ INSERT INTO
   `art_type`
 VALUES
   (1, 'Aquarelle'),
-  < < < < < < < HEAD (2, 'Dessin'),
+  (2, 'Dessin'),
   (3, 'Dessin à la mine de plomb');
 
-== == == = (2, 'Dessin'),
-(3, 'Dessin à la mine de plomb');
 
-> > > > > > > dev
 /*!40000 ALTER TABLE `art_type` ENABLE KEYS */
 ;
 
@@ -309,15 +301,10 @@ INSERT INTO
   `category`
 VALUES
   (1, 'Usines'),
-  < < < < < < < HEAD (2, 'Travailleurs'),
+ (2, 'Travailleurs'),
   (3, 'Lieux'),
   (4, 'Animaux');
 
-== == == = (2, 'Travailleurs'),
-(3, 'Lieux'),
-(4, 'Animaux');
-
-> > > > > > > dev
 /*!40000 ALTER TABLE `category` ENABLE KEYS */
 ;
 
@@ -390,12 +377,10 @@ LOCK TABLES `role` WRITE;
 INSERT INTO
   `role`
 VALUES
-  < < < < < < < HEAD (1, 'ADMIN'),
+ (1, 'ADMIN'),
   (2, 'USER');
 
-== == == = (1, 'ADMIN', 2, 'USER');
 
-> > > > > > > dev
 /*!40000 ALTER TABLE `role` ENABLE KEYS */
 ;
 
