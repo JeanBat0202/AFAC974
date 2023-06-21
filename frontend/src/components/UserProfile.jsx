@@ -146,7 +146,7 @@ export default function Profile() {
           )}
 
           <button className="Logout" type="button">
-            Log Out
+            Se déconnecter
           </button>
         </div>
       </div>
