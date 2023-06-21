@@ -1,106 +1,116 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./SignUp.scss";
 
 function SignUp() {
-  const [errorMessages, setErrorMessages] = useState({});
-  const [isSubmit, setIsSubmitted] = useState(false);
+  const navigate = useNavigate();
+  const [firstname, setFirstName] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  // User Login info
-  const database = [
-    {
-      firstname: "Test",
-      lastnae: "2",
-      email: "test2@gmail.com",
-      password: "pass1",
-    },
-    {
-      firstname: "Test",
-      lastnae: "61",
-      email: "test.61@gmail.com",
-      password: "pass2",
-    },
-  ];
+  const handleChangeFirstName = (e) => {
+    setFirstName(e.target.value);
+  };
 
-  const errors = {
-    firstname: "invalid firstname",
-    lastname: "invalid lastname",
-    email: "invalid emil",
-    pass: "invalid password",
+  const handleChangeLastName = (e) => {
+    setLastName(e.target.value);
+  };
+
+  const handleChangeEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleChangePassword = (e) => {
+    setPassword(e.target.value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const { email, pass } = document.forms[0];
-
-    // Find user login info
-    const userData = database.find((user) => user.email === email.value);
-
-    // Compare user info
-    if (userData) {
-      if (userData.password !== pass.value) {
-        // Invalid password
-        setErrorMessages({ name: "pass", message: errors.pass });
-      } else {
-        setIsSubmitted(true);
-      }
+    if (!firstname || !lastname || !email || !password) {
+      alert(
+        "You must provide firstname, lastname, an email and a password!!!!"
+      );
     } else {
-      // Username not found
-      setErrorMessages({ name: "email", message: errors.email });
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstname,
+          lastname,
+          email,
+          password,
+          role_id: 2,
+        }),
+      })
+        .then((res) => res.json())
+        .then(() => {
+          navigate(`/`);
+        })
+        .catch(() => {
+          alert("Error to create your account, please try again!!!");
+        });
     }
   };
 
-  // Generate JSX code for error message
-  const handleChangeMessage = (name) =>
-    name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    );
-  const handleChangeEmail = (name) =>
-    name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    );
-  const handleChangeFirstName = (name) =>
-    name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    );
-  const handleChangeLastName = (name) =>
-    name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    );
   const renderForm = (
     <div className="form">
       <form onSubmit={handleSubmit}>
         <div className="input-container">
           <label htmlFor="firstname">Prénom</label>
-          <input type="text" name="firstname" required />
-          {handleChangeFirstName("firstname")}
+          <input
+            className="border2"
+            type="text"
+            name="firstname"
+            required
+            onChange={handleChangeFirstName}
+          />
         </div>
         <div className="input-container">
           <label htmlFor="lastname">Nom </label>
-          <input type="text" name="lastname" required />
-          {handleChangeLastName("lastname")}
+          <input
+            className="border2"
+            type="text"
+            name="lastname"
+            required
+            onChange={handleChangeLastName}
+          />
         </div>
         <div className="input-container">
           <label htmlFor="email">Email </label>
-          <input type="email" name="email" required />
-          {handleChangeEmail("email")}
+          <input
+            className="border2"
+            type="email"
+            name="email"
+            required
+            onChange={handleChangeEmail}
+          />
         </div>
         <div className="input-container">
-          <label htmlFor="password">Password </label>
-          <input type="password" name="pass" required />
-          {handleChangeMessage("pass")}
+          <label htmlFor="password">Mot de passe </label>
+          <input
+            className="border2"
+            type="password"
+            name="pass"
+            required
+            onChange={handleChangePassword}
+          />
         </div>
         <div className="button-container">
-          <input type="submit" />
+          <button type="submit"> Enregistrer </button>
         </div>
       </form>
     </div>
   );
+
   return (
     <div className="app">
       <div className="login-form">
-        <div className="title">Sign Up</div>
-        {isSubmit ? <div>User is successfully signed in</div> : renderForm}
+        <div className="title">S'inscrire</div>
+        {renderForm}
       </div>
     </div>
   );

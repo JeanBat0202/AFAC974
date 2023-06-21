@@ -1,90 +1,94 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useUserContext } from "../context/UserContext";
 import "./LogIn.scss";
-import { Link } from "react-router-dom";
 
 function LogIn() {
-  const [errorMessages, setErrorMessages] = useState({});
-  const [isSubmit, setIsSubmitted] = useState(false);
+  const dispatch = useUserContext()[1];
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  // const [isSubmit] = useState("");
 
-  // User Login info
-  const database = [
-    {
-      email: "test2@gmail.com",
-      password: "pass1",
-    },
-    {
-      email: "test.61@gmail.com",
-      password: "pass2",
-    },
-  ];
-
-  const errors = {
-    email: "invalid emil",
-    pass: "invalid password",
+  const handleChangeEmail = (e) => {
+    setEmail(e.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleChangePassword = (e) => {
+    setPassword(e.target.value);
+  };
 
-    const { email, pass } = document.forms[0];
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    // Find user login info
-    const userData = database.find((user) => user.email === email.value);
-
-    // Compare user info
-    if (userData) {
-      if (userData.password !== pass.value) {
-        // Invalid password
-        setErrorMessages({ name: "pass", message: errors.pass });
-      } else {
-        setIsSubmitted(true);
-      }
+    if (!email || !password) {
+      alert("You must provide an email and a password!!!!");
     } else {
-      // Username not found
-      setErrorMessages({ name: "email", message: errors.email });
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/login`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.warn(data);
+          dispatch({ type: "SET_USER", payload: data });
+          navigate(`/`);
+        })
+        .catch(() => {
+          alert("Error to login, please try again!!!");
+        });
     }
   };
-
-  // Generate JSX code for error message
-  const handleChangeMessage = (name) =>
-    name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    );
-  const handleChangeEmail = (name) =>
-    name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    );
 
   const renderForm = (
     <div className="form">
       <form onSubmit={handleSubmit}>
         <div className="input-container">
-          <label htmlFor="email">Email </label>
-          <input type="email" name="email" required />
-          {handleChangeEmail("email")}
+          <label htmlFor="email"> Email </label>
+          <input
+            className="border"
+            type="email"
+            name="email"
+            required
+            onChange={handleChangeEmail}
+          />
         </div>
         <div className="input-container">
-          <label htmlFor="password">Password </label>
-          <input type="password" name="pass" required />
-          {handleChangeMessage("pass")}
+          <label htmlFor="password"> Mot de passe </label>
+          <input
+            className="border"
+            type="password"
+            name="pass"
+            required
+            onChange={handleChangePassword}
+          />
         </div>
         <div className="button-container">
-          <Link to="/">
-            <input type="submit" />
-          </Link>
-          <Link to="/s'inscrire" className="sign-up">
-            S'inscrire
-          </Link>
+          <button type="submit">Se connecter </button>
         </div>
+        <p className="text">
+          Pas encore inscrit ?
+          <Link to="/s'inscrire" className="sign-up">
+            Créer un compte
+          </Link>
+        </p>
       </form>
     </div>
   );
   return (
     <div className="app">
       <div className="login-form">
-        <div className="title">Sign In</div>
-        {isSubmit ? <div>User is successfully logged in</div> : renderForm}
+        <div className="title"> Connexion </div>
+        {renderForm}
       </div>
+      <div className="hexagone" />
     </div>
   );
 }
