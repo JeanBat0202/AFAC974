@@ -4,11 +4,12 @@ import Header from "./components/Header";
 import AboutPage from "./pages/AboutPage";
 import GalleryDisplay from "./pages/GalleryDisplay";
 import ArtDetails from "./pages/ArtDetails";
-import "./App.scss";
 import User from "./pages/User";
+import Admin from "./pages/Admin";
 import Author from "./components/Author";
 import Connection from "./pages/Connection";
 import SignUp from "./components/SignUp";
+import "./App.scss";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/a-propos" element={<AboutPage />} />
           <Route path="/auteur" element={<Author />} />
           <Route path="/utilisateur" element={<User />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="/connexion" element={<Connection />} />
           <Route path="/s'inscrire" element={<SignUp />} />
         </Routes>
