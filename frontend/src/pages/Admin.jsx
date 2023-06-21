@@ -199,7 +199,6 @@ export default function Admin() {
               type="text"
               id="title"
               placeholder="Sans titre"
-              // required
               value={title}
               onChange={handleChangeTitle}
             />
@@ -218,7 +217,6 @@ export default function Admin() {
             <input
               type="text"
               id="authorId"
-              // required
               value={authorId}
               onChange={handleChangeAuthorId}
             />
@@ -230,7 +228,6 @@ export default function Admin() {
             <input
               type="text"
               id="image"
-              // required
               value={image}
               onChange={handleChangeImage}
             />
@@ -273,7 +270,6 @@ export default function Admin() {
             <input
               type="text"
               id="artTypeId"
-              // required
               value={artTypeId}
               onChange={handleChangeArtTypeId}
             />
@@ -289,7 +285,6 @@ export default function Admin() {
               step="0.01"
               id="width"
               placeholder="largeur"
-              // required
               value={width}
               onChange={handleChangeWidth}
             />
@@ -300,7 +295,6 @@ export default function Admin() {
               step="0.01"
               id="height"
               placeholder="hauteur"
-              // required
               value={height}
               onChange={handleChangeHeight}
             />
@@ -310,7 +304,6 @@ export default function Admin() {
             <input
               type="text"
               id="categoryId"
-              // required
               value={categoryId}
               onChange={handleChangeCategoryId}
             />
