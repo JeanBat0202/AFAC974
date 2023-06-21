@@ -164,7 +164,7 @@ export default function Admin() {
       })
         .then((res) => res.json())
         .then((data) => {
-          navigate(`/arts/${data.id}`);
+          navigate(`/galerie/${data.id}`);
         })
         .catch((err) => {
           console.error(err);
