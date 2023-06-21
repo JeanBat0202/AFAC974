@@ -43,11 +43,12 @@ function SignUp() {
           lastname,
           email,
           password,
+          role_id: 2,
         }),
       })
         .then((res) => res.json())
-        .then((data) => {
-          navigate(`/users/${data.id}`);
+        .then(() => {
+          navigate(`/`);
         })
         .catch(() => {
           alert("Error to create your account, please try again!!!");
