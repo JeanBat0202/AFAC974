@@ -2,6 +2,9 @@ import "./header.scss";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
+import headerHexagon from "../assets/hexagon-svgrepo-com.svg";
+import logoAFAC from "../assets/logoAFAC.png";
+import accountIcon from "../assets/account-icon.svg";
 
 export default function Header() {
   const [sidebar, setSideBar] = useState(false);
@@ -12,25 +15,14 @@ export default function Header() {
     <>
       <header className="header-big-container">
         <div className="ruby-background" />
-        <img
-          className="ruby"
-          src="./src/assets/hexagon-svgrepo-com.svg"
-          alt="header hexagon"
-        />
+        <img className="ruby" src={headerHexagon} alt="header hexagon" />
         <div className="header-container">
           <Link to="/">
-            <img
-              className="logo-AFAC"
-              src="/src/assets/logoAFAC.png"
-              alt="logoAFAC"
-            />
+            <img className="logo-AFAC" src={logoAFAC} alt="logoAFAC" />
           </Link>
           <div className="account">
             <Link to="/connexion">
-              <img
-                src="../src/assets/account-icon.svg"
-                alt="Icon de connexion d'un utilisateur"
-              />
+              <img src={accountIcon} alt="Icon de connexion d'un utilisateur" />
             </Link>
           </div>
           {/* <div className="burger-menu"> */}
