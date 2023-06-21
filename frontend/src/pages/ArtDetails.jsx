@@ -33,7 +33,9 @@ export default function ArtDetails() {
           <img className="Art" src={art.image} alt={art.shortTitle} />
         </div>
         <div className="ArtAbout">
-          <h1 className="ArtAuthor">{`${art.firstname} ${art.lastname}`}</h1>
+          <Link className="LinkToAuthor" to={`/auteur/${art.author_id}`}>
+            <h1 className="ArtAuthor">{`${art.firstname} ${art.lastname}`}</h1>
+          </Link>
           <h1 className="ArtTitle"> {art.title} </h1>
           <h2 className="ArtDimension">
             ({art.width}x{art.height}cm) - {art.type}

@@ -21,7 +21,7 @@ function App() {
           <Route path="/galerie" element={<GalleryDisplay />} />
           <Route path="/galerie/:id" element={<ArtDetails />} />
           <Route path="/a-propos" element={<AboutPage />} />
-          <Route path="/auteur" element={<Author />} />
+          <Route path="/auteur/:id" element={<Author />} />
           <Route path="/utilisateur" element={<User />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/connexion" element={<Connection />} />
