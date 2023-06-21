@@ -65,10 +65,10 @@ const add = (req, res) => {
   models.user
     .insert(user)
     .then(([result]) => {
-      res.location(`/users/${result.insertId}`).sendStatus(201);
+      res.status(201).json({ id: result.insertId });
     })
     .catch((err) => {
-      console.error("1", err);
+      console.error(err);
       res.sendStatus(500);
     });
 };

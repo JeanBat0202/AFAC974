@@ -25,6 +25,14 @@ export default function Header() {
               alt="logoAFAC"
             />
           </Link>
+          <div className="account">
+            <Link to="/connexion">
+              <img
+                src="../src/assets/account-icon.svg"
+                alt="Icon de connexion d'un utilisateur"
+              />
+            </Link>
+          </div>
           {/* <div className="burger-menu"> */}
           <FaBars
             className="icone-burger"
