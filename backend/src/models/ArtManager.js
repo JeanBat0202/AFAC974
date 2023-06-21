@@ -7,13 +7,16 @@ class ArtManager extends AbstractManager {
 
   insert(art) {
     return this.database.query(
-      `INSERT INTO ${this.table} (image_ref, title, short_title, image, creation_date, width, height, about, article, category_id, art_type_id, author_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO ${this.table} (image_ref, title, short_title, image, day, month, year, width, height, about, article, category_id, art_type_id, author_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         art.imageRef,
         art.title,
         art.shortTitle,
         art.image,
-        art.creationDate,
+        art.day,
+        art.month,
+        art.year,
+        // art.creationDate,
         art.width,
         art.height,
         art.about,
@@ -31,7 +34,9 @@ class ArtManager extends AbstractManager {
       title =?,
       short_title = ?,
       image = ?,
-      creation_date = ?,
+      day = ?,
+      month = ?,
+      year = ?,
       width = ?,
       height = ?,
       about = ?,
@@ -45,7 +50,10 @@ class ArtManager extends AbstractManager {
         art.title,
         art.shortTitle,
         art.image,
-        art.creationDate,
+        art.day,
+        art.month,
+        art.year,
+        // art.creationDate,
         art.width,
         art.height,
         art.about,
@@ -60,7 +68,7 @@ class ArtManager extends AbstractManager {
 
   findAll() {
     return this.database.query(
-      `SELECT a.id, a.image_ref AS imageRef, a.title, a.short_title AS shortTitle, a.image, a.creation_date AS creationDate, a.width, a.height, a.about, a.article, c.cat_name AS catName, at.type, au.firstname, au.lastname, au.author_alias AS authorAlias FROM ${this.table} AS a JOIN category AS c ON c.id = a.category_id JOIN art_type AS at ON at.id = a.art_type_id JOIN author AS au ON au.id = a.author_id`
+      `SELECT a.id, a.image_ref AS imageRef, a.title, a.short_title AS shortTitle, a.image, a.day, a.month, a.year, a.width, a.height, a.about, a.article, c.cat_name AS catName, at.type, au.firstname, au.lastname, au.author_alias AS authorAlias FROM ${this.table} AS a JOIN category AS c ON c.id = a.category_id JOIN art_type AS at ON at.id = a.art_type_id JOIN author AS au ON au.id = a.author_id ORDER BY a.id `
     );
   }
 
