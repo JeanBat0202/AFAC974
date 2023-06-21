@@ -28,6 +28,17 @@ export default function Header() {
       >
         <img src="/src/assets/ObjetTemoin.png" alt="logo Objet Temoin" />
       </a>
+      <a
+        href="https://ihoi.org/app/photopro.sk/ihoi_icono/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={style.ihoi}
+      >
+        <img
+          src="/src/assets/logo_iconotheque-de-l-ocean-indien.jpeg"
+          alt="logo IHOI"
+        />
+      </a>
       <div className={style.hexa2}>
         <div />
         <div />
