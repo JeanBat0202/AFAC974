@@ -74,10 +74,12 @@
     span {
       .hexa1 {
         max-width: 400px;
+        width: 50%;
       }
 
       .hexa2 {
         max-width: 400px;
+        width: 50%;
         display: grid;
         grid-template-columns: repeat(6, 1fr);
         grid-template-rows: repeat(10, 1fr);
@@ -99,7 +101,7 @@
 
           &:nth-child(2) {
             position: relative;
-            left: 10px;
+            left: -10px;
           }
 
           img {
@@ -173,8 +175,8 @@
         .hexa2 {
           max-width: 780px;
           max-height: 780px;
-          padding-left: 3%;
           display: grid;
+          padding-left: 3%;
           grid-template-columns: repeat(7, 1fr);
           grid-template-rows: repeat(8, 1fr);
           filter: drop-shadow(6px 4px 2px rgba(50, 50, 0, 0.6));
