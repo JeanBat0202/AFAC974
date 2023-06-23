@@ -2,6 +2,8 @@ import "./header.scss";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
+import { useUserContext } from "../context/UserContext";
+import PrivateLink from "./PrivateLink";
 import headerHexagon from "../assets/hexagon-svgrepo-com.svg";
 import logoAFAC from "../assets/logoAFAC.png";
 import accountIcon from "../assets/account-icon.svg";
@@ -10,6 +12,11 @@ export default function Header() {
   const [sidebar, setSideBar] = useState(false);
 
   const showSidebar = () => setSideBar(!sidebar);
+
+  const [{ user }, dispatch] = useUserContext();
+  const handleLogout = () => {
+    dispatch({ type: "RESET_USER" });
+  };
 
   return (
     <>
@@ -22,17 +29,18 @@ export default function Header() {
           </Link>
           <div className="account">
             <Link to="/connexion">
-              <img src={accountIcon} alt="Icon de connexion d'un utilisateur" />
+              <img
+                src={accountIcon}
+                alt="Icône de connexion d'un utilisateur"
+              />
             </Link>
           </div>
-          {/* <div className="burger-menu"> */}
           <FaBars
             className="icone-burger"
             onClick={() => {
               showSidebar();
             }}
           />
-          {/* </div> */}
         </div>
       </header>
       <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
@@ -67,17 +75,46 @@ export default function Header() {
               A propos
             </Link>{" "}
           </li>
-          <li className="nav-text">
-            {" "}
-            <Link
-              to="/connexion"
-              onClick={() => {
-                showSidebar();
-              }}
-            >
-              Connexion
-            </Link>{" "}
-          </li>
+          <PrivateLink
+            to="/utilisateur"
+            text="Mon compte"
+            authorizedRoles={[1, 2]}
+            onClick={() => {
+              showSidebar();
+            }}
+          />
+          <PrivateLink
+            to="/admin"
+            text="Admin"
+            authorizedRoles={[1]}
+            onClick={() => {
+              showSidebar();
+            }}
+          />
+          {!user ? (
+            <li className="nav-text">
+              <Link
+                to="/connexion"
+                onClick={() => {
+                  showSidebar();
+                }}
+              >
+                Connexion
+              </Link>
+            </li>
+          ) : (
+            <li className="nav-text">
+              <Link
+                to="/"
+                onClick={() => {
+                  showSidebar();
+                  handleLogout();
+                }}
+              >
+                Déconnexion
+              </Link>
+            </li>
+          )}
         </ul>
       </nav>
     </>
