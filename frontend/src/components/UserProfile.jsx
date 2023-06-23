@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+
 import "./UserProfile.scss";
 import profilPic from "../assets/account-icon.svg";
 import testPic from "../assets/ARKniversary.avif";
@@ -12,6 +14,7 @@ export default function Profile() {
   const [isEditingPassword, setIsEditingPassword] = useState(false);
   const [mail, setMail] = useState("");
   const [isEditingMail, setIsEditingMail] = useState(false);
+  const [userProfil, setUserProfil] = useState();
 
   const handleEditFirstName = () => {
     setIsEditingFirstName(true);
@@ -49,12 +52,24 @@ export default function Profile() {
     setMail(mail);
   };
 
+  const { id } = useParams();
+
+  const getOneUser = () => {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/${id}`)
+      .then((resp) => resp.json())
+      .then((data) => setUserProfil(data));
+  };
+
+  useEffect(() => {
+    getOneUser();
+  }, [id]);
+
   return (
     <section>
       <div className="profile-container">
         <img src={profilPic} alt="profile pic" className="profile-pic" />
         <h2 className="profile-name">
-          {firstName} {lastName}
+          {userProfil.firstName} {userProfil.lastName}
         </h2>
         <hr />
 
