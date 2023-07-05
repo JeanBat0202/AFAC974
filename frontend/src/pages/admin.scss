@@ -1,112 +1,61 @@
-.form-container {
-  padding: 20px 0;
-  width: 75%;
-  margin: 0 auto;
-  position: relative;
+.admin-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 1rem;
 
-  h2 {
-    font-size: 23px;
-    text-align: left;
+  .link-big-container {
+    padding: 20px 0;
+    width: 75%;
+    height: 100%;
+    margin: 0 auto;
 
-    @media screen and (min-width: 768px) {
-      font-size: 28px;
+    h2.form-h2 {
+      font-size: 23px;
+      text-align: left;
+      margin-bottom: 0;
     }
-  }
 
-  p.required-fields {
-    text-align: left;
-    font-size: 12px;
-    color: #747474;
-    margin: 0;
-    letter-spacing: 0.1rem;
-  }
-
-  section.form {
-    display: flex;
-    justify-content: center;
-    padding: 1.5rem;
-    border: 1px solid #000000;
-
-    form {
+    section.link-container {
       display: flex;
       flex-direction: column;
+      justify-content: center;
+      padding: 1.5rem;
+      border: 1px solid #000000;
 
-      strong {
-        color: #bc7c61;
-      }
-
-      label {
-        width: 100%;
-
-        input,
-        textarea {
-          border: 2px solid #74658a;
-          height: 35px;
-          width: 100%;
-          margin-bottom: 1rem;
-          padding: 0 0.5rem;
-        }
-
-        textarea {
-          height: 90px;
-          resize: none;
-          padding: 0.5rem;
-        }
-      }
-
-      .dimensions-label,
-      .date-label {
-        display: flex;
-
-        input {
-          width: 100%;
-          margin-right: 0.5rem;
-
-          &:last-child {
-            margin: 0;
-          }
-        }
-      }
-
-      button {
+      a.link-looks-like-button {
         padding: 2px;
         padding-top: 4px;
         border: 5px double #bc7c61;
-        text-decoration: none;
         font-size: 17px;
         font-family: "Bebas Neue";
-        background: none;
         color: #bc7c61;
-        width: 70%;
-        margin: auto;
-        cursor: pointer;
-        grid-area: 12 / 1 / 12 / span 2;
+        width: 80%;
+        margin: 0.5rem auto;
+        text-align: center;
       }
     }
+  }
 
-    @media screen and (min-width: 768px) {
-      form {
-        width: 90%;
-        display: grid;
-        grid-template-columns: 40% 60%;
-        gap: 0.5rem;
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 3rem;
 
-        p {
-          text-align: right;
-          margin: 0;
-          padding-top: 2px;
-          font-size: 20px;
-        }
+    .link-big-container {
+      width: 45%;
+      margin: 0;
 
-        label {
-          input {
-            height: 45px;
-          }
-        }
+      h2.form-h2 {
+        font-size: 28px;
+      }
 
-        button {
+      section.link-container {
+        min-height: 17rem;
+
+        a.link-looks-like-button {
           font-size: 24px;
-          width: 40%;
         }
       }
     }

@@ -14,7 +14,7 @@
   }
 
   .hexa1 {
-    min-width: 12rem;
+    min-width: 15rem;
     min-height: 10rem;
     display: grid;
     grid-template-columns: repeat(11, 1fr);
@@ -80,7 +80,6 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
     overflow: hidden;
   }
 }
@@ -133,12 +132,16 @@ h2 {
     overflow: hidden;
   }
 
+  .description {
+    min-height: 100vh;
+  }
+
   .author-image {
     min-width: 35%;
     margin-left: 3rem;
 
     .hexa1 {
-      min-width: 12rem;
+      min-width: 15rem;
       min-height: 10rem;
       display: grid;
       grid-template-columns: repeat(11, 1fr);

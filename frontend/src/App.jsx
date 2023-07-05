@@ -7,6 +7,7 @@ import GalleryDisplay from "./pages/GalleryDisplay";
 import ArtDetails from "./pages/ArtDetails";
 import User from "./pages/User";
 import Admin from "./pages/Admin";
+import AdminCreateArt from "./pages/AdminCreateArt";
 import Author from "./components/Author";
 import Connection from "./pages/Connection";
 import SignUp from "./components/SignUp";
@@ -23,12 +24,13 @@ function App() {
           <Route path="/galerie" element={<GalleryDisplay />} />
           <Route path="/galerie/:id" element={<ArtDetails />} />
           <Route path="/a-propos" element={<AboutPage />} />
-          <Route path="/auteur" element={<Author />} />
+          <Route path="/auteur/:id" element={<Author />} />
           <Route path="/" element={<PrivateRoutes authorizedRoles={[1, 2]} />}>
             <Route path="/utilisateur" element={<User />} />
           </Route>
           <Route path="/" element={<PrivateRoutes authorizedRoles={[1]} />}>
             <Route path="/admin" element={<Admin />} />
+            <Route path="/admin-create-art" element={<AdminCreateArt />} />
           </Route>
           <Route path="/" element={<PrivateRoutes authorizedRoles={[1]} />}>
             <Route path="/alluser" element={<AllUser />} />
