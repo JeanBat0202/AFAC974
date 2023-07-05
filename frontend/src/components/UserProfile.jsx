@@ -1,18 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./UserProfile.scss";
-import profilPic from "../assets/account-icon.svg";
+import FavArtAPI from "./FavArtAPI";
 
 export default function Profile() {
-  const [firstName, setFirstName] = useState("");
-  const [isEditingFirstName, setIsEditingFirstName] = useState(false);
-  const [lastName, setLastName] = useState("");
-  const [isEditingLastName, setIsEditingLastName] = useState(false);
-  const [password, setPassword] = useState("");
-  const [isEditingPassword, setIsEditingPassword] = useState(false);
-  const [mail, setMail] = useState("");
-  const [isEditingMail, setIsEditingMail] = useState(false);
-
   const [userConnected, setUserConnected] = useState();
   const [favorites, setFavorites] = useState();
 
@@ -35,42 +26,6 @@ export default function Profile() {
     getFavorites();
   }, [id]);
 
-  const handleEditFirstName = () => {
-    setIsEditingFirstName(true);
-  };
-
-  const handleSaveFirstName = () => {
-    setIsEditingFirstName(false);
-    setFirstName(firstName);
-  };
-
-  const handleEditLastName = () => {
-    setIsEditingLastName(true);
-  };
-
-  const handleSaveLastName = () => {
-    setIsEditingLastName(false);
-    setLastName(lastName);
-  };
-
-  const handleEditPassword = () => {
-    setIsEditingPassword(true);
-  };
-
-  const handleSavePassword = () => {
-    setIsEditingPassword(false);
-    setPassword(password);
-  };
-
-  const handleEditMail = () => {
-    setIsEditingMail(true);
-  };
-
-  const handleSaveMail = () => {
-    setIsEditingMail(false);
-    setMail(mail);
-  };
-
   if (!userConnected) {
     return <p>Loading</p>;
   }
@@ -82,97 +37,13 @@ export default function Profile() {
   return (
     <section>
       <div className="profile-container">
-        <img src={profilPic} alt="profile pic" className="profile-pic" />
-        <h2>
-          {userConnected.firstname} {userConnected.lastname}
-        </h2>
+        <h2 className="profile-name">Périf Eric</h2>
+        <button type="button">Modifier mes informations</button>
         <hr />
-
-        <h4>MES ŒUVRES FAVORITES</h4>
-        <div className="favorites">
-          {favorites.map((favorite) => (
-            <img src={favorite.image} alt={favorite.title} />
-          ))}
-        </div>
-        <hr />
-        <div className="profile-settings">
-          <h4>Gérer mon compte</h4>
-          {!isEditingFirstName && (
-            <button type="button" onClick={handleEditFirstName}>
-              Modifier mon prénom
-            </button>
-          )}
-          {isEditingFirstName && (
-            <div>
-              <input
-                type="text"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-              />
-              <button type="button" onClick={handleSaveFirstName}>
-                Enregistrer
-              </button>
-            </div>
-          )}
-
-          {!isEditingLastName && (
-            <button type="button" onClick={handleEditLastName}>
-              Modifier mon nom
-            </button>
-          )}
-          {isEditingLastName && (
-            <div>
-              <input
-                type="text"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-              />
-              <button type="button" onClick={handleSaveLastName}>
-                Enregistrer
-              </button>
-            </div>
-          )}
-
-          {!isEditingPassword && (
-            <button type="button" onClick={handleEditPassword}>
-              Modifier mon mot de passe
-            </button>
-          )}
-          {isEditingPassword && (
-            <div>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <button type="button" onClick={handleSavePassword}>
-                Enregistrer
-              </button>
-            </div>
-          )}
-
-          {!isEditingMail && (
-            <button type="button" onClick={handleEditMail}>
-              Modifier mon adresse mail
-            </button>
-          )}
-          {isEditingMail && (
-            <div>
-              <input
-                type="email"
-                value={mail}
-                onChange={(e) => setMail(e.target.value)}
-              />
-              <button type="button" onClick={handleSaveMail}>
-                Enregistrer
-              </button>
-            </div>
-          )}
-
-          <button className="Logout" type="button">
-            Se déconnecter
-          </button>
-        </div>
+      </div>
+      <h2>galerie personelle</h2>
+      <div className="fav-art-container">
+        <FavArtAPI />
       </div>
     </section>
   );
