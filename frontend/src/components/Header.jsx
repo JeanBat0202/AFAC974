@@ -91,14 +91,6 @@ export default function Header() {
               showSidebar();
             }}
           />
-          <PrivateLink
-            to="/alluser"
-            text="Tous les utilisateurs"
-            authorizedRoles={[1]}
-            onClick={() => {
-              showSidebar();
-            }}
-          />
           {!user ? (
             <li className="nav-text">
               <Link

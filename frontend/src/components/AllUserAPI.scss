@@ -54,6 +54,21 @@ div.user-container {
                 background: none;
                 color: #bc7c61;
             }
+            a.btn p.pen {
+                font-size: 40px;
+            }
+            a.btn {
+                border: none;
+                display: flex;
+                cursor: pointer;
+                padding: 2px;
+                margin-bottom: 30px;
+                text-decoration: none;
+                font-size: 1.25rem;
+                font-family: "Bebas Neue";
+                background: none;
+                color: #bc7c61;
+            }
             button.btn img {
                 width: 30px;
             }

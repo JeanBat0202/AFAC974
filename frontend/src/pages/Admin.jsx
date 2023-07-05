@@ -36,21 +36,21 @@ export default function Admin() {
         <h2 className="form-h2">Gérer les utilisateurs</h2>
         <section className="link-container">
           <Link
-            to="/"
+            to="/s'inscrire"
             // element={<ICI_LE_NOM_DU_COMPOSANT />}
             className="link-looks-like-button"
           >
             Ajouter un utilisateur
           </Link>
           <Link
-            to="/"
+            to="/alluser"
             // element={<ICI_LE_NOM_DU_COMPOSANT />}
             className="link-looks-like-button"
           >
             Modifier un utilisateur
           </Link>
           <Link
-            to="/"
+            to="/alluser"
             // element={<ICI_LE_NOM_DU_COMPOSANT />}
             className="link-looks-like-button"
           >
