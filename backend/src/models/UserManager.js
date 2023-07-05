@@ -23,16 +23,10 @@ class UserManager extends AbstractManager {
       `UPDATE ${this.table} SET firstname = ?,
       lastname =?,
       email = ?,
-      password = ?,
-      role_id = ?`,
+      role_id = ?
+      WHERE id = ?`,
 
-      [
-        user.firstname,
-        user.lastname,
-        user.email,
-        user.hashedPassword,
-        user.role_id,
-      ]
+      [user.firstname, user.lastname, user.email, user.role_id, user.id]
     );
   }
 
