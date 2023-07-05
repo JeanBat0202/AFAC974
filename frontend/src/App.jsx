@@ -22,7 +22,7 @@ function App() {
           <Route path="/galerie" element={<GalleryDisplay />} />
           <Route path="/galerie/:id" element={<ArtDetails />} />
           <Route path="/a-propos" element={<AboutPage />} />
-          <Route path="/auteur" element={<Author />} />
+          <Route path="/auteur/:id" element={<Author />} />
           <Route path="/" element={<PrivateRoutes authorizedRoles={[1, 2]} />}>
             <Route path="/utilisateur/:id" element={<User />} />
           </Route>
