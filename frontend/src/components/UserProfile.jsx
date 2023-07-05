@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./UserProfile.scss";
 import profilPic from "../assets/account-icon.svg";
-import testPic from "../assets/ARKniversary.avif";
 
 export default function Profile() {
   const [firstName, setFirstName] = useState("");
@@ -15,6 +14,7 @@ export default function Profile() {
   const [isEditingMail, setIsEditingMail] = useState(false);
 
   const [userConnected, setUserConnected] = useState();
+  const [favorites, setFavorites] = useState();
 
   const { id } = useParams();
 
@@ -24,8 +24,15 @@ export default function Profile() {
       .then((data) => setUserConnected(data));
   };
 
+  const getFavorites = () => {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/favorites/${id}`)
+      .then((resp) => resp.json())
+      .then((data) => setFavorites(data));
+  };
+
   useEffect(() => {
     getOneUserConnected();
+    getFavorites();
   }, [id]);
 
   const handleEditFirstName = () => {
@@ -68,6 +75,10 @@ export default function Profile() {
     return <p>Loading</p>;
   }
 
+  if (!favorites) {
+    return <p>Loading</p>;
+  }
+
   return (
     <section>
       <div className="profile-container">
@@ -79,15 +90,9 @@ export default function Profile() {
 
         <h4>MES ŒUVRES FAVORITES</h4>
         <div className="favorites">
-          <img src={testPic} alt="test1" />
-          <img src={testPic} alt="test2" />
-          <img src={testPic} alt="test3" />
-          <img src={testPic} alt="test4" />
-          <img src={testPic} alt="test5" />
-          <img src={testPic} alt="test6" />
-          <img src={testPic} alt="test7" />
-          <img src={testPic} alt="test8" />
-          <img src={testPic} alt="test9" />
+          {favorites.map((favorite) => (
+            <img src={favorite.image} alt={favorite.title} />
+          ))}
         </div>
         <hr />
         <div className="profile-settings">

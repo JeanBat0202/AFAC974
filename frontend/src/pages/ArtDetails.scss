@@ -63,6 +63,16 @@
   background: none;
   color: #bc7c61;
 }
+.starbutton {
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+#my-tooltip {
+  font-size: 24px;
+  background-color: black;
+}
 
 @media screen and (min-width: 768px) {
   .parentArtDetails {
