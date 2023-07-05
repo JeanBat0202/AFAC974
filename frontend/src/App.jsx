@@ -24,7 +24,7 @@ function App() {
           <Route path="/a-propos" element={<AboutPage />} />
           <Route path="/auteur" element={<Author />} />
           <Route path="/" element={<PrivateRoutes authorizedRoles={[1, 2]} />}>
-            <Route path="/utilisateur" element={<User />} />
+            <Route path="/utilisateur/:id" element={<User />} />
           </Route>
           <Route path="/" element={<PrivateRoutes authorizedRoles={[1]} />}>
             <Route path="/admin" element={<Admin />} />

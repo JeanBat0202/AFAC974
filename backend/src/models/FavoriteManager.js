@@ -22,7 +22,14 @@ class FavoriteManager extends AbstractManager {
 
   findAll() {
     return this.database.query(
-      `SELECT fav.user_id AS userId fav.art_id AS artId FROM ${this.table} AS fav JOIN art ON art.id = fav.art_id JOIN user ON user.id = fav.user_id`
+      `SELECT fav.user_id AS userId, fav.art_id AS artId, user.firstname, user.lastname, art.image, art.title FROM ${this.table} AS fav JOIN art ON art.id = fav.art_id JOIN user ON user.id = fav.user_id`
+    );
+  }
+
+  findByUser(userId) {
+    return this.database.query(
+      `SELECT fav.user_id AS userId, fav.art_id AS artId, art.image, art.title FROM ${this.table} AS fav JOIN art ON art.id = fav.art_id JOIN user ON user.id = fav.user_id WHERE userId = ?`,
+      [userId]
     );
   }
 }

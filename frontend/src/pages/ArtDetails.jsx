@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import { useUserContext } from "../context/UserContext";
 import "./ArtDetails.scss";
 
 export default function ArtDetails() {
   const [art, setArt] = useState();
-
+  const [{ user }] = useUserContext();
   const { id } = useParams();
 
   const getOneArt = () => {
@@ -16,6 +17,29 @@ export default function ArtDetails() {
   useEffect(() => {
     getOneArt();
   }, [id]);
+
+  const addToFavorites = () => {
+    const userId = user.id;
+    const artId = id;
+
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/favorites`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId,
+        artId,
+      }),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.info(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   if (!art) {
     return <p>Loading</p>;
@@ -37,6 +61,11 @@ export default function ArtDetails() {
             <h1 className="ArtAuthor">{`${art.firstname} ${art.lastname}`}</h1>
           </Link>
           <h1 className="ArtTitle"> {art.title} </h1>
+          {user ? (
+            <button className="favorite" onClick={addToFavorites} type="button">
+              Ajouter à mes favoris
+            </button>
+          ) : null}
           <h2 className="ArtDimension">
             ({art.width}x{art.height}cm) - {art.type}
           </h2>
