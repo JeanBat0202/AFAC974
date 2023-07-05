@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+/* import React, { useState } from "react"; */
 import "./UserProfile.scss";
 import FavArtAPI from "./FavArtAPI";
 

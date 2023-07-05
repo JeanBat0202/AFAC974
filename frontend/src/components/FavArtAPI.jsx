@@ -8,6 +8,7 @@ import test4Pic from "../assets/Images/Oeuvres/FRAD974_98FI22.jpg";
 import test5Pic from "../assets/Images/Oeuvres/FRM1069_2009.00.42.jpg";
 import test6Pic from "../assets/Images/Oeuvres/FRAD974_40FI91.jpg";
 
+// eslint-disable-next-line no-unused-vars
 export default function FavArtAPI({ id, shortTitle, image }) {
   return (
     <div className="fav-parent">
