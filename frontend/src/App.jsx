@@ -10,6 +10,7 @@ import Admin from "./pages/Admin";
 import Author from "./components/Author";
 import Connection from "./pages/Connection";
 import SignUp from "./components/SignUp";
+import AllUser from "./pages/AllUser";
 import "./App.scss";
 
 function App() {
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path="/" element={<PrivateRoutes authorizedRoles={[1]} />}>
             <Route path="/admin" element={<Admin />} />
+          </Route>
+          <Route path="/" element={<PrivateRoutes authorizedRoles={[1]} />}>
+            <Route path="/alluser" element={<AllUser />} />
           </Route>
           <Route path="/connexion" element={<Connection />} />
           <Route path="/s'inscrire" element={<SignUp />} />
