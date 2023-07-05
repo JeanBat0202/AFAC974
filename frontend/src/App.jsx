@@ -11,6 +11,7 @@ import AdminCreateArt from "./pages/AdminCreateArt";
 import Author from "./components/Author";
 import Connection from "./pages/Connection";
 import SignUp from "./components/SignUp";
+import ProfileUpdater from "./components/ProfileUpdater";
 import "./App.scss";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/auteur/:id" element={<Author />} />
           <Route path="/" element={<PrivateRoutes authorizedRoles={[1, 2]} />}>
             <Route path="/utilisateur" element={<User />} />
+            <Route path="/modification" element={<ProfileUpdater />} />
           </Route>
           <Route path="/" element={<PrivateRoutes authorizedRoles={[1]} />}>
             <Route path="/admin" element={<Admin />} />
