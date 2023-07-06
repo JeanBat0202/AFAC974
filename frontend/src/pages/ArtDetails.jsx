@@ -103,7 +103,6 @@ export default function ArtDetails() {
                 </button>
               ))}{" "}
           </h1>
-
           <h2 className="ArtDimension">
             ({art.width}x{art.height}cm) - {art.type}
           </h2>

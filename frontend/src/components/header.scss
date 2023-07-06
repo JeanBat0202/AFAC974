@@ -86,6 +86,10 @@
   height: 60px;
 }
 
+.nav-text:hover {
+  text-decoration: underline;
+}
+
 .nav-menu-items {
   width: 100%;
 }
@@ -132,7 +136,7 @@ a {
     }
   }
   .useraccountconnected {
-    font-size: x-large;
+    font-size: large;
     margin-right: 1em;
   }
 

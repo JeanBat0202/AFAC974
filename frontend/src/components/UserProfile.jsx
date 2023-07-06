@@ -37,13 +37,17 @@ export default function Profile() {
   return (
     <section>
       <div className="profile-container">
-        <h2 className="profile-name">Périf Eric</h2>
+        <h2 className="profile-name">
+          {userConnected.firstname} {userConnected.lastname}
+        </h2>
         <button type="button">Modifier mes informations</button>
         <hr />
       </div>
-      <h2>galerie personelle</h2>
+      <h2>galerie personnelle</h2>
       <div className="fav-art-container">
-        <FavArtAPI />
+        {favorites.map((favorite) => (
+          <FavArtAPI {...favorite} />
+        ))}
       </div>
     </section>
   );
