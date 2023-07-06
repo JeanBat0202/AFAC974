@@ -17,6 +17,7 @@
 }
 
 .ArtAuthor {
+  font-family: "Bebas Neue";
   margin-top: 1em;
   text-align: start;
   // margin-right: 1em;
@@ -78,6 +79,10 @@
 #my-tooltip {
   font-size: 24px;
   background-color: black;
+}
+
+strong.back-to-gallery {
+  font-family: "Bebas Neue";
 }
 
 @media screen and (min-width: 768px) {

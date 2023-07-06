@@ -61,14 +61,16 @@ export default function Header() {
       </header>
       <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
         <ul className="nav-menu-items">
-          <Link
-            to="/"
-            onClick={() => {
-              showSidebar();
-            }}
-          >
-            <li className="nav-text">Accueil</li>
-          </Link>
+          <li className="nav-text">
+            <Link
+              to="/"
+              onClick={() => {
+                showSidebar();
+              }}
+            >
+              Accueil
+            </Link>
+          </li>
           <li className="nav-text">
             {" "}
             <Link
