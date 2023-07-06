@@ -2,6 +2,7 @@ import { Tooltip } from "react-tooltip";
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useUserContext } from "../context/UserContext";
+import { disableRightClick, removeDisableRightClick } from "../services/utils";
 import "./ArtDetails.scss";
 import star from "../assets/star.png";
 import starlike from "../assets/starlike.png";
@@ -17,6 +18,11 @@ export default function ArtDetails() {
       .then((resp) => resp.json())
       .then((data) => setArt(data));
   };
+
+  useEffect(() => {
+    disableRightClick();
+    return () => removeDisableRightClick();
+  }, [art]);
 
   const addToFavorites = () => {
     const userId = user.id;
