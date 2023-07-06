@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ArtDisplayAPI from "../components/ArtDisplayAPI";
+import { disableRightClick, removeDisableRightClick } from "../services/utils";
 
 export default function GalleryDisplay() {
   const [artList, setArtList] = useState([]);
@@ -14,6 +15,11 @@ export default function GalleryDisplay() {
   useEffect(() => {
     getArts();
   }, []);
+
+  useEffect(() => {
+    disableRightClick();
+    return () => removeDisableRightClick();
+  }, [artList]);
 
   return (
     <div className="container">
