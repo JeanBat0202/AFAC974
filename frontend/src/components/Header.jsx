@@ -99,17 +99,13 @@ export default function Header() {
                 to={`/utilisateur/${user.id}`}
                 text="Mon compte"
                 authorizedRoles={[1, 2]}
-                onClick={() => {
-                  showSidebar();
-                }}
+                handleClick={showSidebar}
               />
               <PrivateLink
                 to="/admin"
                 text="Admin"
                 authorizedRoles={[1]}
-                onClick={() => {
-                  showSidebar();
-                }}
+                handleClick={showSidebar}
               />
             </>
           ) : null}
