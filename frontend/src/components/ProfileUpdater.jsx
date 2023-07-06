@@ -24,10 +24,12 @@ export default function profileUpdater() {
             <input type="password" id="password" /* value={} onChange={} */ />
           </label>
         </form>
-        <button type="button">Valider</button>
-        <Link className="cancel" to="/utilisateur">
-          Annuler
-        </Link>
+        <span>
+          <Link className="cancel" to="/utilisateur/:id">
+            Annuler
+          </Link>
+          <button type="button">Valider</button>
+        </span>
       </section>
     </div>
   );

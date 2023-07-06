@@ -15,7 +15,9 @@
 
   .form-updater {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+   
     padding: 1.5rem;
     border: 1px solid #000000;
 
@@ -75,6 +77,13 @@
     }
   }
 
+  span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
   button {
     padding: 2px;
     padding-top: 4px;
@@ -84,7 +93,7 @@
     font-family: "Bebas Neue";
     background: none;
     color: #bc7c61;
-    width: 35%;
+    width: 30%;
     margin: auto;
     cursor: pointer;
   }
@@ -97,10 +106,10 @@
     font-family: "Bebas Neue";
     background: none;
     color: #bc7c61;
-    width: 35%;
+    width: 30%;
     margin: auto;
     cursor: pointer;
     text-align: center;
-    margin-top: 0.5rem;
+   
   }
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+
 import style from "./UserProfile.module.scss";
 import FavArtAPI from "./FavArtAPI";
 
@@ -40,7 +41,10 @@ export default function Profile() {
         <h2>
           {userConnected.firstname} {userConnected.lastname}
         </h2>
-        <button type="button">Modifier mes informations</button>
+
+        <Link className={style.modification} to="/modification">
+          Modifier mes informations
+        </Link>
         <hr />
       </span>
       <h2>galerie personnelle</h2>
