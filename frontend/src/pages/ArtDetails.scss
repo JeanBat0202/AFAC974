@@ -17,6 +17,7 @@
 }
 
 .ArtAuthor {
+  font-family: "Bebas Neue";
   margin-top: 1em;
   text-align: start;
   // margin-right: 1em;
@@ -59,6 +60,10 @@
   font-family: "Bebas Neue";
   background: none;
   color: #bc7c61;
+}
+
+strong.back-to-gallery {
+  font-family: "Bebas Neue";
 }
 
 @media screen and (min-width: 768px) {

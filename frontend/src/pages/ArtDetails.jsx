@@ -25,7 +25,10 @@ export default function ArtDetails() {
     <>
       <div className="linkbutton">
         <Link className="returnbutton" to="/galerie">
-          <strong> &#60; RETOUR A LA GALERIE </strong>
+          <strong className="back-to-gallery">
+            {" "}
+            &#60; RETOUR A LA GALERIE{" "}
+          </strong>
         </Link>
       </div>
       <div className="parentArtDetails">

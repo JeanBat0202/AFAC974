@@ -35,7 +35,7 @@ export default function Author() {
       </span>
       <div className="description">
         <div className="author-biography">
-          <h2>
+          <h2 className="author-font-family">
             {author.firstname} {author.lastname}
           </h2>
           <p className="author-bio-p">{author.biography}</p>
