@@ -31,6 +31,14 @@
   // margin-left: 1em;
 }
 
+.favorite {
+  margin-top: 0.2em;
+  text-align: start;
+  margin-right: 1em;
+  margin-left: 1.2em;
+  font-size: x-large;
+}
+
 .ArtDimension {
   color: #bc7c61;
   text-align: start;
@@ -60,6 +68,17 @@
   font-family: "Bebas Neue";
   background: none;
   color: #bc7c61;
+}
+.starbutton {
+  width: 32px;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+#my-tooltip {
+  font-size: 24px;
+  background-color: black;
 }
 
 strong.back-to-gallery {

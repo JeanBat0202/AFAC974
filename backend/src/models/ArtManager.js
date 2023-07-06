@@ -72,7 +72,7 @@ class ArtManager extends AbstractManager {
 
   find(id) {
     return this.database.query(
-      `SELECT a.image_ref AS imageRef, a.title, a.short_title AS shortTitle, a.image, a.day, a.month, a.year, a.width, a.height, a.about, a.article, a.author_id, c.cat_name AS catName, at.type, au.firstname, au.lastname, au.author_alias AS authorAlias FROM ${this.table} AS a JOIN category AS c ON c.id = a.category_id JOIN art_type AS at ON at.id = a.art_type_id JOIN author AS au ON au.id = a.author_id WHERE a.id = ?`,
+      `SELECT a.id , a.image_ref AS imageRef, a.title, a.short_title AS shortTitle, a.image, a.day, a.month, a.year, a.width, a.height, a.about, a.article, a.author_id, c.cat_name AS catName, at.type, au.firstname, au.lastname, au.author_alias AS authorAlias FROM ${this.table} AS a JOIN category AS c ON c.id = a.category_id JOIN art_type AS at ON at.id = a.art_type_id JOIN author AS au ON au.id = a.author_id WHERE a.id = ?`,
       [id]
     );
   }
