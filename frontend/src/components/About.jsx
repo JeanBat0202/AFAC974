@@ -58,7 +58,8 @@ export default function Header() {
           images présentes sur notre site internet sont soumises à des droits
           d'auteur et ne sont pas libres de droit. Ces droits sont protégés par
           la législation en vigueur sur la propriété intellectuelle et sont
-          détenus par leurs auteurs respectifs.
+          détenus par le Département de La Réunion, Iconothèque historique de
+          l'océan Indien et Archives départementales de La Réunion.
           <br />
           <br /> En tant qu'utilisateur de notre site, vous êtes invité à
           consulter, partager et apprécier les images qui vous sont présentées.

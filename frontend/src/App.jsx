@@ -30,6 +30,7 @@ function App() {
           <Route path="/" element={<PrivateRoutes authorizedRoles={[1, 2]} />}>
             <Route path="/utilisateur" element={<User />} />
             <Route path="/modification" element={<ProfileUpdater />} />
+            <Route path="/utilisateur/:id" element={<User />} />
           </Route>
           <Route path="/" element={<PrivateRoutes authorizedRoles={[1]} />}>
             <Route path="/admin" element={<Admin />} />
