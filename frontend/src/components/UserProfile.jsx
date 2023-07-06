@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import "./UserProfile.scss";
+import style from "./UserProfile.module.scss";
 import FavArtAPI from "./FavArtAPI";
 
 export default function Profile() {
@@ -35,20 +35,20 @@ export default function Profile() {
   }
 
   return (
-    <section>
-      <div className="profile-container">
-        <h2 className="profile-name">
+    <section className={style.section}>
+      <span>
+        <h2>
           {userConnected.firstname} {userConnected.lastname}
         </h2>
         <button type="button">Modifier mes informations</button>
         <hr />
-      </div>
+      </span>
       <h2>galerie personnelle</h2>
-      <div className="fav-art-container">
+      <span className={style.span}>
         {favorites.map((favorite) => (
           <FavArtAPI {...favorite} />
         ))}
-      </div>
+      </span>
     </section>
   );
 }
