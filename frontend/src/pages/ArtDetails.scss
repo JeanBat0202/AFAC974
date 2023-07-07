@@ -81,6 +81,25 @@
   background-color: black;
 }
 
+.isFavorite {
+  width: 40px;
+  height: 40px;
+  background-image: url("../assets/starlike.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  align-self: flex-start;
+  cursor: pointer;
+}
+
+.notFavorite {
+  width: 40px;
+  height: 40px;
+  background-image: url("../assets/star.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  align-self: flex-start;
+  cursor: pointer;
+}
 strong.back-to-gallery {
   font-family: "Bebas Neue";
 }

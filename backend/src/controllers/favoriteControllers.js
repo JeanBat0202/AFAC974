@@ -69,8 +69,9 @@ const add = (req, res) => {
 };
 
 const destroy = (req, res) => {
+  const { userId, artId } = req.body;
   models.favorite
-    .delete(req.params.id)
+    .delete(userId, artId)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
