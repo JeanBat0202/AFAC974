@@ -2,6 +2,7 @@ import { Tooltip } from "react-tooltip";
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useUserContext } from "../context/UserContext";
+import { disableRightClick, removeDisableRightClick } from "../services/utils";
 import "./ArtDetails.scss";
 
 export default function ArtDetails() {
@@ -28,6 +29,10 @@ export default function ArtDetails() {
         .then((data) => setFavorites(data));
     }
   };
+  useEffect(() => {
+    disableRightClick();
+    return () => removeDisableRightClick();
+  }, [art]);
 
   const addToFavorites = () => {
     const userId = user.id;
@@ -96,7 +101,10 @@ export default function ArtDetails() {
     <>
       <div className="linkbutton">
         <Link className="returnbutton" to="/galerie">
-          <strong> &#60; RETOUR A LA GALERIE </strong>
+          <strong className="back-to-gallery">
+            {" "}
+            &#60; RETOUR A LA GALERIE{" "}
+          </strong>
         </Link>
       </div>
       <div className="parentArtDetails">

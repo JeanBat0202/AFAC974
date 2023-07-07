@@ -1,7 +1,7 @@
 import "./Author.scss";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import AuthorPic from "../assets/Napoléon_Mortier_de_Trévise.png";
+import AuthorPic from "../assets/Hypolite_fichiers/Hipolyte.jpeg";
 
 export default function Author() {
   const [author, setAuthor] = useState();
@@ -35,7 +35,7 @@ export default function Author() {
       </span>
       <div className="description">
         <div className="author-biography">
-          <h2>
+          <h2 className="author-font-family">
             {author.firstname} {author.lastname}
           </h2>
           <p className="author-bio-p">{author.biography}</p>
