@@ -1,0 +1,115 @@
+.profile-form {
+  padding: 20px 0;
+  width: 75%;
+  margin: 0 auto;
+  position: relative;
+
+  h2 {
+    font-size: 23px;
+    text-align: left;
+
+    @media screen and (min-width: 768px) {
+      font-size: 28px;
+    }
+  }
+
+  .form-updater {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 1.5rem;
+    border: 1px solid #000000;
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      strong {
+        color: #bc7c61;
+      }
+
+      label {
+        width: 100%;
+
+        input,
+        textarea {
+          border: 2px solid #74658a;
+          height: 35px;
+          width: 100%;
+          margin-bottom: 1rem;
+          padding: 0 0.5rem;
+        }
+
+        textarea {
+          height: 90px;
+          resize: none;
+          padding: 0.5rem;
+        }
+      }
+    }
+
+    @media screen and (min-width: 768px) {
+      form {
+        width: 90%;
+        display: grid;
+        grid-template-columns: 40% 60%;
+        gap: 0.5rem;
+
+        p {
+          text-align: right;
+          margin: 0;
+          padding-top: 2px;
+          font-size: 20px;
+        }
+
+        label {
+          input {
+            height: 45px;
+          }
+        }
+
+        button {
+          font-size: 24px;
+          width: 40%;
+        }
+      }
+    }
+  }
+
+  span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    grid-area: 4 / 2;
+  }
+
+  button {
+    padding: 2px;
+    padding-top: 4px;
+    border: 5px double #bc7c61;
+    text-decoration: none;
+    font-size: 17px;
+    font-family: "Bebas Neue";
+    background: none;
+    color: #bc7c61;
+    width: 30%;
+    margin: auto;
+    cursor: pointer;
+  }
+  .cancel {
+    padding: 2px;
+    padding-top: 4px;
+    border: 5px double #bc7c61;
+    text-decoration: none;
+    font-size: 24px;
+    font-family: "Bebas Neue";
+    background: none;
+    color: #bc7c61;
+    width: 30%;
+    margin: auto;
+    cursor: pointer;
+    text-align: center;
+  }
+}

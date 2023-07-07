@@ -17,6 +17,7 @@
 }
 
 .ArtAuthor {
+  font-family: "Bebas Neue";
   margin-top: 1em;
   text-align: start;
   // margin-right: 1em;
@@ -28,6 +29,14 @@
   text-align: start;
   // margin-right: 1em;
   // margin-left: 1em;
+}
+
+.favorite {
+  margin-top: 0.2em;
+  text-align: start;
+  margin-right: 1em;
+  margin-left: 1.2em;
+  font-size: x-large;
 }
 
 .ArtDimension {
@@ -59,6 +68,40 @@
   font-family: "Bebas Neue";
   background: none;
   color: #bc7c61;
+}
+.starbutton {
+  width: 32px;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+#my-tooltip {
+  font-size: 24px;
+  background-color: black;
+}
+
+.isFavorite {
+  width: 40px;
+  height: 40px;
+  background-image: url("../assets/starlike.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  align-self: flex-start;
+  cursor: pointer;
+}
+
+.notFavorite {
+  width: 40px;
+  height: 40px;
+  background-image: url("../assets/star.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  align-self: flex-start;
+  cursor: pointer;
+}
+strong.back-to-gallery {
+  font-family: "Bebas Neue";
 }
 
 @media screen and (min-width: 768px) {

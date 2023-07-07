@@ -12,7 +12,10 @@ import AdminEditArt from "./pages/AdminEditArt";
 import Author from "./components/Author";
 import Connection from "./pages/Connection";
 import SignUp from "./components/SignUp";
+import ProfileUpdater from "./components/ProfileUpdater";
+import AllUser from "./pages/AllUser";
 import "./App.scss";
+import EditUser from "./components/EditUser";
 
 function App() {
   return (
@@ -27,11 +30,15 @@ function App() {
           <Route path="/auteur/:id" element={<Author />} />
           <Route path="/" element={<PrivateRoutes authorizedRoles={[1, 2]} />}>
             <Route path="/utilisateur" element={<User />} />
+            <Route path="/modification/:id" element={<ProfileUpdater />} />
+            <Route path="/utilisateur/:id" element={<User />} />
           </Route>
           <Route path="/" element={<PrivateRoutes authorizedRoles={[1]} />}>
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin-create-art" element={<AdminCreateArt />} />
             <Route path="/admin-edit-art/:id" element={<AdminEditArt />} />
+            <Route path="/alluser" element={<AllUser />} />
+            <Route path="/admin-edit-user/:id" element={<EditUser />} />
           </Route>
           <Route path="/connexion" element={<Connection />} />
           <Route path="/s'inscrire" element={<SignUp />} />

@@ -28,13 +28,29 @@ export default function Header() {
             <img className="logo-AFAC" src={logoAFAC} alt="logoAFAC" />
           </Link>
           <div className="account">
-            <Link to="/connexion">
-              <img
-                src={accountIcon}
-                alt="Icône de connexion d'un utilisateur"
-              />
-            </Link>
+            {!user ? (
+              <Link to="/connexion">
+                <img
+                  src={accountIcon}
+                  alt="Icône de connexion d'un utilisateur"
+                />
+              </Link>
+            ) : (
+              <Link to={`/utilisateur/${user.id}`}>
+                <img
+                  src={accountIcon}
+                  alt="Icône de connexion d'un utilisateur"
+                />
+              </Link>
+            )}
           </div>
+          {user ? (
+            <Link to={`/utilisateur/${user.id}`}>
+              <div className="useraccountconnected">
+                Bonjour {user.firstname} {user.lastname}
+              </div>
+            </Link>
+          ) : null}
           <FaBars
             className="icone-burger"
             onClick={() => {
@@ -45,14 +61,16 @@ export default function Header() {
       </header>
       <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
         <ul className="nav-menu-items">
-          <Link
-            to="/"
-            onClick={() => {
-              showSidebar();
-            }}
-          >
-            <li className="nav-text">Accueil</li>
-          </Link>
+          <li className="nav-text">
+            <Link
+              to="/"
+              onClick={() => {
+                showSidebar();
+              }}
+            >
+              Accueil
+            </Link>
+          </li>
           <li className="nav-text">
             {" "}
             <Link
@@ -75,22 +93,22 @@ export default function Header() {
               A propos
             </Link>{" "}
           </li>
-          <PrivateLink
-            to="/utilisateur"
-            text="Mon compte"
-            authorizedRoles={[1, 2]}
-            onClick={() => {
-              showSidebar();
-            }}
-          />
-          <PrivateLink
-            to="/admin"
-            text="Admin"
-            authorizedRoles={[1]}
-            onClick={() => {
-              showSidebar();
-            }}
-          />
+          {user ? (
+            <>
+              <PrivateLink
+                to={`/utilisateur/${user.id}`}
+                text="Mon compte"
+                authorizedRoles={[1, 2]}
+                handleClick={showSidebar}
+              />
+              <PrivateLink
+                to="/admin"
+                text="Admin"
+                authorizedRoles={[1]}
+                handleClick={showSidebar}
+              />
+            </>
+          ) : null}
           {!user ? (
             <li className="nav-text">
               <Link

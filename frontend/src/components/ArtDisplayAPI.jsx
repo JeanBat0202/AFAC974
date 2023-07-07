@@ -7,7 +7,7 @@ export default function ArtDisplayAPI({ id, shortTitle, image }) {
   return (
     <div className="parent">
       <div>
-        <figure>
+        <figure className="visage">
           <PrivatePartForGallery authorizedRoles={[1]} artId={id} />
           <div className="image-container">
             <img src={image} alt={shortTitle} />

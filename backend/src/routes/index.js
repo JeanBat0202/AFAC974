@@ -5,6 +5,7 @@ const rolesRouter = require("./roles.routes");
 const userRouter = require("./users.routes");
 const artTypesRouter = require("./artTypes.routes");
 const categoryRouter = require("./categories.routes");
+const favoriteRouter = require("./favorites.routes");
 
 router.use("/arts", artsRouter);
 router.use("/authors", authorsRouter);
@@ -12,5 +13,6 @@ router.use("/roles", rolesRouter);
 router.use("/users", userRouter);
 router.use("/artTypes", artTypesRouter);
 router.use("/categories", categoryRouter);
+router.use("/favorites", favoriteRouter);
 
 module.exports = router;

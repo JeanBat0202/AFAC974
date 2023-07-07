@@ -35,6 +35,7 @@ const RoleManager = require("./RoleManager");
 const UserManager = require("./UserManager");
 const ArtTypeManager = require("./ArtTypeManager");
 const CategoryManager = require("./CategoryManager");
+const FavoriteManager = require("./FavoriteManager");
 
 models.art = new ArtManager();
 models.art.setDatabase(pool);
@@ -53,6 +54,9 @@ models.artType.setDatabase(pool);
 
 models.category = new CategoryManager();
 models.category.setDatabase(pool);
+
+models.favorite = new FavoriteManager();
+models.favorite.setDatabase(pool);
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
 

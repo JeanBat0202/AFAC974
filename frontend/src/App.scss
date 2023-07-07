@@ -2,11 +2,20 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Pill Gothic;
 }
 
 @font-face {
   font-family: "Bebas Neue";
   src: url("./assets/fonts/bebas_neue/BebasNeue-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pill Gothic";
+  src: url("./assets/fonts/pill-gothic-600mg-cufonfonts-webfont/Pill-Gothic-Light.woff")
+    format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -22,5 +31,11 @@ body {
     flex-direction: column;
     min-height: 100vh;
     overflow: hidden;
+  }
+}
+
+@media only print {
+  img {
+    display: none;
   }
 }

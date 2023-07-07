@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { disableRightClick, removeDisableRightClick } from "../services/utils";
 import Art1 from "../assets/Images/Oeuvres/Cheminee_40FI79.jpg";
 import Art2 from "../assets/Images/Oeuvres/UsineBelAir_40FI78.jpg";
 import Art3 from "../assets/Images/Oeuvres/FRAD974_40FI80.jpg";
@@ -8,6 +10,11 @@ import Art6 from "../assets/Images/Oeuvres/FRAD974_40FI90.jpg";
 import style from "./HomeHexagone.module.scss";
 
 function HomeHexagone() {
+  useEffect(() => {
+    disableRightClick();
+    return () => removeDisableRightClick();
+  }, [Art1, Art2, Art3, Art4, Art5, Art6]);
+
   return (
     <section className={style.gallery}>
       <span>
