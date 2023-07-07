@@ -1,35 +1,115 @@
-import { Link } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useUserContext } from "../context/UserContext";
 import "./ProfileUpdater.scss";
 
 export default function profileUpdater() {
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const [firstname, setFirstName] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+
+  const [{ user }] = useUserContext();
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setFirstName(data.firstname);
+        setLastName(data.lastname);
+        setEmail(data.email);
+      })
+      .catch(() => {
+        alert("Error to modify your account, please try again!!!");
+      });
+  }, []);
+
+  const handleChangeFirstName = (e) => {
+    setFirstName(e.target.value);
+  };
+
+  const handleChangeLastName = (e) => {
+    setLastName(e.target.value);
+  };
+
+  const handleChangeEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (firstname && lastname && email) {
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstname,
+          lastname,
+          email,
+          role_id: 2,
+        }),
+      })
+        .then(() => {
+          navigate(`/utilisateur/${user.id}`);
+        })
+        .catch(() => {
+          alert("Error to modify your account, please try again!!!");
+        });
+    } else {
+      alert("Veullez remplir tous les champs !!!!");
+    }
+  };
+
   return (
     <div className="profile-form">
       <h2>Modifier vos informations</h2>
       <section className="form-updater">
-        <form /* onSubmit={handleSubmit} */>
+        <form onSubmit={handleSubmit}>
           <p>Modifier mon prénom</p>
           <label htmlFor="firstName">
-            <input type="text" id="firstName" /* value={} onChange={} */ />
+            <input
+              type="text"
+              name="firstName"
+              value={firstname}
+              onChange={handleChangeFirstName}
+              required
+            />
           </label>
           <p>Modifier mon nom</p>
           <label htmlFor="lastName">
-            <input type="text" id="lastName" /* value={} onChange={} */ />
+            <input
+              type="text"
+              name="lastName"
+              value={lastname}
+              onChange={handleChangeLastName}
+              required
+            />
           </label>
-          <p>Modifier mon mot de passe</p>
+          <p>Modifier mon email</p>
           <label htmlFor="email">
-            <input type="email" id="email" /* value={} onChange={} */ />
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleChangeEmail}
+              required
+            />
           </label>
-          <p>Modifier mon prénom</p>
-          <label htmlFor="password">
-            <input type="password" id="password" /* value={} onChange={} */ />
-          </label>
+          <span>
+            <Link className="cancel" to={`/utilisateur/${user.id}`}>
+              Annuler
+            </Link>
+            <button type="submit">Valider</button>
+          </span>
         </form>
-        <span>
-          <Link className="cancel" to="/utilisateur/:id">
-            Annuler
-          </Link>
-          <button type="button">Valider</button>
-        </span>
       </section>
     </div>
   );
