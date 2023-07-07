@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-
 import { disableRightClick, removeDisableRightClick } from "../services/utils";
 import style from "./UserProfile.module.scss";
 import FavArtAPI from "./FavArtAPI";
