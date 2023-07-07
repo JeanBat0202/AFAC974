@@ -1,7 +1,7 @@
 import "./Author.scss";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import AuthorPic from "../assets/Napoléon_Mortier_de_Trévise.png";
+import AuthorPic from "../assets/Hypolite_fichiers/Hipolyte.jpeg";
 
 export default function Author() {
   const [author, setAuthor] = useState();
