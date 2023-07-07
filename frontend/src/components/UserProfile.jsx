@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import { useUserContext } from "../context/UserContext";
 import { disableRightClick, removeDisableRightClick } from "../services/utils";
 import style from "./UserProfile.module.scss";
 import FavArtAPI from "./FavArtAPI";
@@ -7,6 +8,7 @@ import FavArtAPI from "./FavArtAPI";
 export default function Profile() {
   const [userConnected, setUserConnected] = useState();
   const [favorites, setFavorites] = useState();
+  const [{ user }] = useUserContext();
 
   const { id } = useParams();
 
@@ -47,7 +49,7 @@ export default function Profile() {
           {userConnected.firstname} {userConnected.lastname}
         </h2>
 
-        <Link className={style.modification} to="/modification">
+        <Link className={style.modification} to={`/modification/${user.id}`}>
           Modifier mes informations
         </Link>
         <hr />
