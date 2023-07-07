@@ -2,7 +2,7 @@ const AbstractManager = require("./AbstractManager");
 
 class ArtTypeManager extends AbstractManager {
   constructor() {
-    super({ table: "art_Type" });
+    super({ table: "art_type" });
   }
 
   insert(artType) {

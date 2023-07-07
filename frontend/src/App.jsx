@@ -8,6 +8,7 @@ import ArtDetails from "./pages/ArtDetails";
 import User from "./pages/User";
 import Admin from "./pages/Admin";
 import AdminCreateArt from "./pages/AdminCreateArt";
+import AdminEditArt from "./pages/AdminEditArt";
 import Author from "./components/Author";
 import Connection from "./pages/Connection";
 import SignUp from "./components/SignUp";
@@ -30,6 +31,7 @@ function App() {
           <Route path="/" element={<PrivateRoutes authorizedRoles={[1]} />}>
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin-create-art" element={<AdminCreateArt />} />
+            <Route path="/admin-edit-art/:id" element={<AdminEditArt />} />
           </Route>
           <Route path="/connexion" element={<Connection />} />
           <Route path="/s'inscrire" element={<SignUp />} />
