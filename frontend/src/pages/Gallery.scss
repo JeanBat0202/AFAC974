@@ -27,6 +27,30 @@ img {
   grid-template-rows: 1fr auto;
   margin-bottom: 30px;
   break-inside: avoid;
+
+  .icon-gallery-page-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 20px;
+    margin-bottom: 0.25rem;
+
+    .icon-gallery-page {
+      font-size: 25px;
+      height: 100%;
+      margin-top: 0;
+    }
+
+    .icon-gallery-page:hover {
+      scale: 1.5;
+    }
+
+    a.icon-gallery-page {
+      margin-top: -8px;
+      margin-right: 8px;
+      color: #bc7c61;
+    }
+  }
 }
 
 figure > img {
