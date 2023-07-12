@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./adminCreateArt.scss";
 
-export default function Admin() {
+export default function AdminCreateArt() {
   const navigate = useNavigate();
 
   const [authors, setAuthors] = useState();
@@ -84,7 +84,7 @@ export default function Admin() {
   ];
 
   const allYears = [];
-  for (let i = 1599; i < 2023; i += 1) {
+  for (let i = 1799; i < 2023; i += 1) {
     allYears.push(i + 1);
   }
 
@@ -218,11 +218,11 @@ export default function Admin() {
       modelData.append("year", year || null);
       modelData.append("width", width);
       modelData.append("height", height);
-      modelData.append("author_id", authorId);
-      modelData.append("art_type_id", artTypeId);
-      modelData.append("category_id", categoryId);
+      modelData.append("authorId", authorId);
+      modelData.append("artTypeId", artTypeId);
+      modelData.append("categoryId", categoryId);
       if (shortTitle) {
-        modelData.append("short_title", shortTitle);
+        modelData.append("shortTitle", shortTitle);
       } else if (day) {
         modelData.append("day", day);
       } else if (month) {
@@ -244,6 +244,7 @@ export default function Admin() {
         .then((res) => res.json())
         .then((data) => {
           navigate(`/galerie/${data.id}`);
+          alert("L'œuvre a bien été enregistrée.");
         })
         .catch((err) => {
           console.error(err);
@@ -314,7 +315,7 @@ export default function Admin() {
             <select name="day" onChange={handleChangeDay}>
               <option value="">Jour</option>
               {allDays.map((daySelected) => (
-                <option value={daySelected.id}>{daySelected}</option>
+                <option value={daySelected}>{daySelected}</option>
               ))}
             </select>
             <select name="month" onChange={handleChangeMonth}>
@@ -326,9 +327,9 @@ export default function Admin() {
               ))}
             </select>
             <select name="year" onChange={handleChangeYear}>
-              <option value="">Année</option>
+              <option value="">Année *</option>
               {allYears.map((yearSelected) => (
-                <option value={yearSelected.id}>{yearSelected}</option>
+                <option value={yearSelected}>{yearSelected}</option>
               ))}
             </select>
           </label>
