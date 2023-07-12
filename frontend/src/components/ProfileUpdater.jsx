@@ -1,5 +1,6 @@
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { useUserContext } from "../context/UserContext";
 import "./ProfileUpdater.scss";
 
@@ -26,7 +27,7 @@ export default function profileUpdater() {
         setEmail(data.email);
       })
       .catch(() => {
-        alert("Error to modify your account, please try again!!!");
+        toast.alert("Error to modify your account, please try again!!!");
       });
   }, []);
 
@@ -60,10 +61,10 @@ export default function profileUpdater() {
           navigate(`/utilisateur/${user.id}`);
         })
         .catch(() => {
-          alert("Error to modify your account, please try again!!!");
+          toast.alert("Error to modify your account, please try again!!!");
         });
     } else {
-      alert("Veullez remplir tous les champs !!!!");
+      toast.error("Veullez remplir tous les champs !!!!");
     }
   };
 

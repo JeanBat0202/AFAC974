@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import "./SignUp.scss";
 
@@ -29,8 +30,8 @@ function SignUp() {
     event.preventDefault();
 
     if (!firstname || !lastname || !email || !password) {
-      alert(
-        "You must provide firstname, lastname, an email and a password!!!!"
+      toast.alert(
+        "Vous devez fournir un nom, un prénom, un mail et un mot de passe"
       );
     } else {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users`, {
@@ -48,10 +49,18 @@ function SignUp() {
       })
         .then((res) => res.json())
         .then(() => {
-          navigate(`/`);
+          navigate(`/connexion`);
         })
+        .then(
+          toast.success(
+            "Le compte a été créée avec succes ! Veuillez vous connecter",
+            { duration: 3000 }
+          )
+        )
         .catch(() => {
-          alert("Error to create your account, please try again!!!");
+          toast.error(
+            "Erreur lors de la création du compte. Veuillez réesayer"
+          );
         });
     }
   };
@@ -107,12 +116,17 @@ function SignUp() {
   );
 
   return (
-    <div className="app">
-      <div className="login-form">
-        <div className="title">S'inscrire</div>
-        {renderForm}
+    <>
+      <div>
+        <Toaster position="bottom-center" />
       </div>
-    </div>
+      <div className="app">
+        <div className="login-form">
+          <div className="title">S'inscrire</div>
+          {renderForm}
+        </div>
+      </div>
+    </>
   );
 }
 

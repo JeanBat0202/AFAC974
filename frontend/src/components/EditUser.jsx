@@ -1,4 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
+import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import "./EditUser.scss";
 
@@ -23,7 +24,7 @@ export default function EditUser() {
         setEmail(data.email);
       })
       .catch(() => {
-        alert("Error to modify your account, please try again!!!");
+        toast.alert("Erreur lors des modifications. Veuillez réessayer");
       });
   }, []);
 
@@ -58,11 +59,14 @@ export default function EditUser() {
           navigate(`/alluser`);
         })
         .catch(() => {
-          alert("Error to modify your account, please try again!!!");
+          toast.alert("Erreur lors des modifications. Veuillez réessayer");
         });
     } else {
-      alert("Veullez remplir tous les champs !!!!");
+      toast.alert("Veullez remplir tous les champs !!!!");
     }
+    toast.success("Les modifications ont bien été prise en compte.", {
+      duration: 2000,
+    });
   };
 
   const renderForm = (
