@@ -35,12 +35,13 @@ function AllUserAPI({ id, userFirstname, lastname }) {
 
 AllUserAPI.propTypes = {
   userFirstname: PropTypes.string,
-  lastname: PropTypes.string.isRequired,
+  lastname: PropTypes.string,
   id: PropTypes.number.isRequired,
 };
 
 AllUserAPI.defaultProps = {
   userFirstname: undefined,
+  lastname: undefined,
 };
 
 export default AllUserAPI;
