@@ -14,7 +14,7 @@ export default function AdminEditArt() {
   const [title, setTitle] = useState("");
   const [shortTitle, setShortTitle] = useState("");
   const [authorId, setAuthorId] = useState("");
-  // const [imagePath, setImagePath] = useState("");
+  const [imagePath, setImagePath] = useState("");
   const [imageFile, setImageFile] = useState("");
   const [day, setDay] = useState("");
   const [month, setMonth] = useState("");
@@ -35,7 +35,7 @@ export default function AdminEditArt() {
       .then((res) => res.json())
       .then((data) => {
         console.info(data);
-        // setImagePath(data.image ? data.image : "");
+        setImagePath(data.image ? data.image : "");
         setImageRef(data.imageRef ? data.imageRef : "");
         setTitle(data.title ? data.title : "");
         setShortTitle(data.shortTitle ? data.shortTitle : "");
@@ -96,20 +96,20 @@ export default function AdminEditArt() {
     allDays.push(i + 1);
   }
 
-  // const allMonths = [
-  //   { monthNumber: 1, monthName: "janvier" },
-  //   { monthNumber: 2, monthName: "février" },
-  //   { monthNumber: 3, monthName: "mars" },
-  //   { monthNumber: 4, monthName: "avril" },
-  //   { monthNumber: 5, monthName: "mai" },
-  //   { monthNumber: 6, monthName: "juin" },
-  //   { monthNumber: 7, monthName: "juillet" },
-  //   { monthNumber: 8, monthName: "août" },
-  //   { monthNumber: 9, monthName: "septembre" },
-  //   { monthNumber: 10, monthName: "octobre" },
-  //   { monthNumber: 11, monthName: "novembre" },
-  //   { monthNumber: 12, monthName: "décembre" },
-  // ];
+  const allMonths = [
+    { monthNumber: 1, monthName: "janvier" },
+    { monthNumber: 2, monthName: "février" },
+    { monthNumber: 3, monthName: "mars" },
+    { monthNumber: 4, monthName: "avril" },
+    { monthNumber: 5, monthName: "mai" },
+    { monthNumber: 6, monthName: "juin" },
+    { monthNumber: 7, monthName: "juillet" },
+    { monthNumber: 8, monthName: "août" },
+    { monthNumber: 9, monthName: "septembre" },
+    { monthNumber: 10, monthName: "octobre" },
+    { monthNumber: 11, monthName: "novembre" },
+    { monthNumber: 12, monthName: "décembre" },
+  ];
 
   const allYears = [];
   for (let i = 1799; i < 2023; i += 1) {
@@ -226,16 +226,7 @@ export default function AdminEditArt() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (
-      !imageRef ||
-      !title ||
-      !width ||
-      !height ||
-      !authorId ||
-      !artTypeId ||
-      !categoryId
-    ) {
+    if (!imageRef || !title || !authorId || !artTypeId || !categoryId) {
       toast.alert("Veuillez remplir tous les champs obligatoires.");
     } else if (imageFile) {
       const modelData = new FormData();
@@ -250,13 +241,17 @@ export default function AdminEditArt() {
       modelData.append("categoryId", categoryId);
       if (shortTitle) {
         modelData.append("shortTitle", shortTitle);
-      } else if (day) {
+      }
+      if (day) {
         modelData.append("day", day);
-      } else if (month) {
+      }
+      if (month) {
         modelData.append("month", month);
-      } else if (about) {
+      }
+      if (about) {
         modelData.append("about", about);
-      } else if (article) {
+      }
+      if (article) {
         modelData.append("article", article);
       }
 
@@ -357,67 +352,69 @@ export default function AdminEditArt() {
               Auteur <strong>*</strong>
             </p>
             <label htmlFor="authorId">
-              <input
-                type="text"
-                id="authorId"
+              <select
+                name="authorId"
                 value={authorId}
                 onChange={handleChangeAuthorId}
-              />
+              >
+                <option value="">Veuillez sélectionner un auteur</option>
+                {authors.map((author) => (
+                  <option value={author.id}>
+                    {author.firstname} {author.lastname}
+                  </option>
+                ))}
+              </select>
             </label>
             <p>
               Image <strong>*</strong>
             </p>
             <label htmlFor="image">
-              <input
-                type="text"
-                id="image"
-                // value={image}
-                onChange={handleChangeImage}
+              <img
+                src={
+                  imageFile ||
+                  `${import.meta.env.VITE_ASSETS_IMAGES_URL}/arts/${imagePath}`
+                }
+                alt={imageFile ? `Image modifiée` : imageRef}
               />
+              <input type="file" id="image" onChange={handleChangeImage} />
             </label>
             <p>Date de réalisation</p>
             <label htmlFor="creationDate" className="date-label">
-              <input
-                type="number"
-                min="1"
-                max="31"
-                step="1"
-                id="day"
-                placeholder="jour"
-                value={day}
-                onChange={handleChangeDay}
-              />
-              <input
-                type="number"
-                min="1"
-                max="12"
-                step="1"
-                id="month"
-                placeholder="mois"
-                value={month}
-                onChange={handleChangeMonth}
-              />
-              <input
-                type="number"
-                min="1200"
-                max="2023"
-                step="1"
-                id="year"
-                placeholder="année"
-                value={year}
-                onChange={handleChangeYear}
-              />
+              <select name="day" value={day} onChange={handleChangeDay}>
+                <option value="">Jour</option>
+                {allDays.map((daySelected) => (
+                  <option value={daySelected}>{daySelected}</option>
+                ))}
+              </select>
+              <select name="month" value={month} onChange={handleChangeMonth}>
+                <option value="">Mois</option>
+                {allMonths.map((monthSelected) => (
+                  <option value={monthSelected.monthNumber}>
+                    {monthSelected.monthName}
+                  </option>
+                ))}
+              </select>
+              <select name="year" value={year} onChange={handleChangeYear}>
+                <option value="">Année *</option>
+                {allYears.map((yearSelected) => (
+                  <option value={yearSelected}>{yearSelected}</option>
+                ))}
+              </select>
             </label>
             <p>
               Technique <strong>*</strong>
             </p>
             <label htmlFor="artTypeId">
-              <input
-                type="text"
-                id="artTypeId"
+              <select
+                name="artTypeId"
                 value={artTypeId}
                 onChange={handleChangeArtTypeId}
-              />
+              >
+                <option value="">Veuillez sélectionner une technique</option>
+                {artTypes.map((artType) => (
+                  <option value={artType.id}>{artType.type}</option>
+                ))}
+              </select>
             </label>
             <p>
               Dimensions <strong>*</strong>
@@ -448,12 +445,16 @@ export default function AdminEditArt() {
               Catégorie <strong>*</strong>
             </p>
             <label htmlFor="categoryId">
-              <input
-                type="text"
-                id="categoryId"
+              <select
+                name="categoryId"
                 value={categoryId}
                 onChange={handleChangeCategoryId}
-              />
+              >
+                <option value="">Veuillez sélectionner une catégorie</option>
+                {categories.map((category) => (
+                  <option value={category.id}>{category.catName}</option>
+                ))}
+              </select>
             </label>
             <p>Commentaire</p>
             <label htmlFor="about">
