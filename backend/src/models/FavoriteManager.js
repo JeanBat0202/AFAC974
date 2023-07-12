@@ -28,7 +28,7 @@ class FavoriteManager extends AbstractManager {
 
   findByUser(userId) {
     return this.database.query(
-      `SELECT fav.user_id AS userId, fav.art_id AS artId, art.image, art.title FROM ${this.table} AS fav JOIN art ON art.id = fav.art_id JOIN user ON user.id = fav.user_id WHERE fav.user_id = ?`,
+      `SELECT fav.user_id AS userId, fav.art_id AS artId, art.image, art.title, art.image_ref AS imageRef FROM ${this.table} AS fav JOIN art ON art.id = fav.art_id JOIN user ON user.id = fav.user_id WHERE fav.user_id = ?`,
       [userId]
     );
   }

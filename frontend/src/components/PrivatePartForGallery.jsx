@@ -24,6 +24,6 @@ export default function PrivatePartForGallery({ authorizedRoles, artId }) {
 }
 
 PrivatePartForGallery.propTypes = {
-  authorizedRoles: PropTypes.number.isRequired,
+  authorizedRoles: PropTypes.arrayOf(PropTypes.number).isRequired,
   artId: PropTypes.number.isRequired,
 };

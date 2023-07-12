@@ -22,7 +22,7 @@ export default function PrivateLink({
 }
 
 PrivateLink.propTypes = {
-  authorizedRoles: PropTypes.string.isRequired,
+  authorizedRoles: PropTypes.arrayOf(PropTypes.number).isRequired,
   to: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   handleClick: PropTypes.func.isRequired,
