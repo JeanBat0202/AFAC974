@@ -38,10 +38,6 @@ export default function Profile() {
     return <p>Loading</p>;
   }
 
-  if (!favorites) {
-    return <p>Loading</p>;
-  }
-
   return (
     <section className={style.section}>
       <span>
@@ -55,11 +51,17 @@ export default function Profile() {
         <hr />
       </span>
       <h2>galerie personnelle</h2>
-      <span className={style.span}>
-        {favorites.map((favorite) => (
-          <FavArtAPI {...favorite} />
-        ))}
-      </span>
+      {!favorites ? (
+        <p className="NoFavorites">
+          Vous n'avez pas ajouté d'oeuvres à vos favoris
+        </p>
+      ) : (
+        <span className={style.span}>
+          {favorites.map((favorite) => (
+            <FavArtAPI {...favorite} />
+          ))}
+        </span>
+      )}
     </section>
   );
 }
