@@ -54,7 +54,6 @@ export default function profileUpdater() {
           firstname,
           lastname,
           email,
-          role_id: 2,
         }),
       })
         .then(() => {
