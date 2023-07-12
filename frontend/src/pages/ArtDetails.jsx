@@ -111,7 +111,8 @@ export default function ArtDetails() {
         <div className="ArtContainer">
           <img
             className="Art"
-            src={`${import.meta.env.VITE_ASSETS_IMAGES_URL}/arts/${art.image}`}
+            src={art.image}
+            // src={`${import.meta.env.VITE_ASSETS_IMAGES_URL}/arts/${art.image}`}
             alt={art.shortTitle}
           />
         </div>

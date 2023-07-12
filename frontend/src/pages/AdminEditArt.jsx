@@ -264,14 +264,13 @@ export default function AdminEditArt() {
         // },
         body: modelData,
       })
-        .then((res) => res.json())
         .then(() => {
           navigate(`/galerie/${id}`);
           alert("L'œuvre a bien été modifiée.");
         })
         .catch((err) => {
           console.error(err);
-          alert("WithImg : Une erreur est survenue, veuillez réessayer.");
+          alert("Une erreur est survenue, veuillez réessayer.");
         });
     } else {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/arts/${id}`, {
@@ -295,13 +294,12 @@ export default function AdminEditArt() {
           article: article || null,
         }),
       })
-        // .then((res) => res.json())
         .then(() => {
           navigate(`/galerie/${id}`);
         })
         .catch((err) => {
           console.error(err);
-          alert("Sans img : Une erreur est survenue, veuillez réessayer.");
+          alert("Une erreur est survenue, veuillez réessayer.");
         });
     }
   };
@@ -366,10 +364,8 @@ export default function AdminEditArt() {
           </p>
           <label htmlFor="image" className="img-label">
             <img
-              src={`${
-                import.meta.env.VITE_ASSETS_IMAGES_URL
-              }/arts/${imagePath}`}
-              alt={shortTitle}
+              src={imageFile || imagePath}
+              alt={imageFile ? `Image modifiée` : imageRef}
             />
             <input type="file" id="image" onChange={handleChangeImage} />
           </label>
