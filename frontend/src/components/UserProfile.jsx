@@ -58,7 +58,7 @@ export default function Profile() {
       ) : (
         <span className={style.span}>
           {favorites.map((favorite) => (
-            <FavArtAPI {...favorite} />
+            <FavArtAPI key={favorite.artId} {...favorite} />
           ))}
         </span>
       )}

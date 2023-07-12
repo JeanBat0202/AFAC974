@@ -13,5 +13,5 @@ export default function PrivateRoutes({ authorizedRoles }) {
 }
 
 PrivateRoutes.propTypes = {
-  authorizedRoles: PropTypes.string.isRequired,
+  authorizedRoles: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
