@@ -222,16 +222,7 @@ export default function AdminEditArt() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (
-      !imageRef ||
-      !title ||
-      !width ||
-      !height ||
-      !authorId ||
-      !artTypeId ||
-      !categoryId
-    ) {
+    if (!imageRef || !title || !authorId || !artTypeId || !categoryId) {
       alert("Veuillez remplir tous les champs obligatoires.");
     } else if (imageFile) {
       const modelData = new FormData();
@@ -246,13 +237,17 @@ export default function AdminEditArt() {
       modelData.append("categoryId", categoryId);
       if (shortTitle) {
         modelData.append("shortTitle", shortTitle);
-      } else if (day) {
+      }
+      if (day) {
         modelData.append("day", day);
-      } else if (month) {
+      }
+      if (month) {
         modelData.append("month", month);
-      } else if (about) {
+      }
+      if (about) {
         modelData.append("about", about);
-      } else if (article) {
+      }
+      if (article) {
         modelData.append("article", article);
       }
 
@@ -364,7 +359,10 @@ export default function AdminEditArt() {
           </p>
           <label htmlFor="image" className="img-label">
             <img
-              src={imageFile || imagePath}
+              src={
+                imageFile ||
+                `${import.meta.env.VITE_ASSETS_IMAGES_URL}/arts/${imagePath}`
+              }
               alt={imageFile ? `Image modifiée` : imageRef}
             />
             <input type="file" id="image" onChange={handleChangeImage} />
