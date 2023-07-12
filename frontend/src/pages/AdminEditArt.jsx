@@ -1,92 +1,56 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "./adminCreateArt.scss";
 
 export default function Admin() {
   const navigate = useNavigate();
 
-  const [authors, setAuthors] = useState();
-  const [artTypes, setArtTypes] = useState();
-  const [categories, setCategories] = useState();
-
+  const [image, setImage] = useState("");
   const [imageRef, setImageRef] = useState("");
   const [title, setTitle] = useState("");
   const [shortTitle, setShortTitle] = useState("");
-  const [authorId, setAuthorId] = useState("");
-  const [image, setImage] = useState("");
-  const [day, setDay] = useState("");
-  const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
+  const [month, setMonth] = useState("");
+  const [day, setDay] = useState("");
   const [artTypeId, setArtTypeId] = useState("");
   const [width, setWidth] = useState("");
   const [height, setHeight] = useState("");
   const [categoryId, setCategoryId] = useState("");
   const [about, setAbout] = useState("");
   const [article, setArticle] = useState("");
+  const [authorId, setAuthorId] = useState("");
 
-  const imageTypes = ["image/jpeg", "image/jpg", "image/png"];
+  const { id } = useParams();
 
-  const getAllAuthors = () => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/authors`, {
-      credentials: "include",
-    })
+  const getOneArt = () => {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/arts/${id}`)
       .then((res) => res.json())
-      .then((data) => setAuthors(data))
-      .catch((err) => console.error(err));
-  };
-
-  const getAllArtTypes = () => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artTypes`, {
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => setArtTypes(data))
-      .catch((err) => console.error(err));
-  };
-
-  const getAllCategories = () => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/categories`, {
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => setCategories(data))
+      .then((data) => {
+        setImage(data.image ? data.image : "");
+        setImageRef(data.imageRef ? data.imageRef : "");
+        setTitle(data.title ? data.title : "");
+        setShortTitle(data.shortTitle ? data.shortTitle : "");
+        setYear(data.year ? data.year : "");
+        setMonth(data.month ? data.month : "");
+        setDay(data.day ? data.day : "");
+        setArtTypeId(data.artTypeId ? data.artTypeId : "");
+        setWidth(data.width ? data.width : "");
+        setHeight(data.height ? data.height : "");
+        setCategoryId(data.categoryId ? data.categoryId : "");
+        setAbout(data.about ? data.about : "");
+        setArticle(data.article ? data.article : "");
+        setAuthorId(data.authorId ? data.authorId : "");
+      })
       .catch((err) => console.error(err));
   };
 
   useEffect(() => {
-    getAllAuthors();
-    getAllArtTypes();
-    getAllCategories();
-  }, []);
+    getOneArt();
+  }, [id]);
 
-  if (!authors || !artTypes || !categories) {
-    return <p>En cours de chargement...</p>;
-  }
-
-  const allDays = [];
-  for (let i = 0; i < 31; i += 1) {
-    allDays.push(i + 1);
-  }
-
-  const allMonths = [
-    { monthNumber: 1, monthName: "janvier" },
-    { monthNumber: 2, monthName: "février" },
-    { monthNumber: 3, monthName: "mars" },
-    { monthNumber: 4, monthName: "avril" },
-    { monthNumber: 5, monthName: "mai" },
-    { monthNumber: 6, monthName: "juin" },
-    { monthNumber: 7, monthName: "juillet" },
-    { monthNumber: 8, monthName: "août" },
-    { monthNumber: 9, monthName: "septembre" },
-    { monthNumber: 10, monthName: "octobre" },
-    { monthNumber: 11, monthName: "novembre" },
-    { monthNumber: 12, monthName: "décembre" },
-  ];
-
-  const allYears = [];
-  for (let i = 1599; i < 2023; i += 1) {
-    allYears.push(i + 1);
-  }
+  const handleChangeImage = (e) => {
+    setImage(e.target.value);
+  };
 
   const handleChangeImageRef = (e) => {
     setImageRef(e.target.value);
@@ -98,26 +62,6 @@ export default function Admin() {
 
   const handleChangeShortTitle = (e) => {
     setShortTitle(e.target.value);
-  };
-
-  const handleChangeAuthorId = (e) => {
-    const authorIdToUpdate = parseInt(e.target.value, 10);
-
-    if (!Number.isNaN(authorIdToUpdate)) {
-      setAuthorId(authorIdToUpdate);
-    } else {
-      alert("Ce champ est requis, veuillez sélectionner un auteur");
-    }
-  };
-
-  const handleChangeImage = (e) => {
-    const fileSelected = e.target.files[0];
-
-    if (imageTypes.includes(fileSelected.type)) {
-      setImage(e.target.files[0]);
-    } else {
-      alert("Votre image doit être au format .jpeg, .jpg ou .png.");
-    }
   };
 
   const handleChangeDay = (e) => {
@@ -160,6 +104,7 @@ export default function Admin() {
 
     if (!Number.isNaN(widthToUpdate)) {
       setWidth(widthToUpdate);
+      console.warn(typeof widthToUpdate, widthToUpdate);
     } else {
       alert("Ce champ est requis, veuillez renseigner une valeur");
     }
@@ -196,54 +141,58 @@ export default function Admin() {
     setArticle(e.target.value);
   };
 
+  const handleChangeAuthorId = (e) => {
+    const authorIdToUpdate = parseInt(e.target.value, 10);
+
+    if (
+      !Number.isNaN(authorIdToUpdate)
+      /* && voir pour le bloquer entre 0 et author.length */
+    ) {
+      setAuthorId(authorIdToUpdate);
+    } else {
+      alert("Ce champ est requis, veuillez sélectionner un auteur");
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (
-      !imageRef ||
       !title ||
       !image ||
       !width ||
       !height ||
-      !authorId ||
+      !imageRef ||
+      !categoryId ||
       !artTypeId ||
-      !categoryId
+      !authorId
     ) {
       alert("Veuillez remplir tous les champs obligatoires.");
     } else {
-      const modelData = new FormData();
-      modelData.append("imageRef", imageRef);
-      modelData.append("title", title);
-      modelData.append("image", image);
-      modelData.append("year", year || null);
-      modelData.append("width", width);
-      modelData.append("height", height);
-      modelData.append("author_id", authorId);
-      modelData.append("art_type_id", artTypeId);
-      modelData.append("category_id", categoryId);
-      if (shortTitle) {
-        modelData.append("short_title", shortTitle);
-      } else if (day) {
-        modelData.append("day", day);
-      } else if (month) {
-        modelData.append("month", month);
-      } else if (about) {
-        modelData.append("about", about);
-      } else if (article) {
-        modelData.append("article", article);
-      }
-
-      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/arts`, {
-        method: "POST",
-        credentials: "include",
-        // headers: {
-        //   "Content-Type": "multipart/form-data",
-        // },
-        body: modelData,
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/arts/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          imageRef,
+          title,
+          shortTitle,
+          image,
+          day,
+          month,
+          year: year || null,
+          width,
+          height,
+          about,
+          article,
+          categoryId,
+          artTypeId,
+          authorId,
+        }),
       })
-        .then((res) => res.json())
-        .then((data) => {
-          navigate(`/galerie/${data.id}`);
+        .then(() => {
+          navigate(`/galerie/${id}`);
         })
         .catch((err) => {
           console.error(err);
@@ -254,7 +203,7 @@ export default function Admin() {
 
   return (
     <div className="form-container">
-      <h2 className="create-art">Enregistrer une nouvelle œuvre</h2>
+      <h2 className="create-art">Modifier une œuvre existante</h2>
       <p className="required-fields">* : champs obligatoires</p>
       <section className="form">
         <form onSubmit={handleSubmit}>
@@ -294,54 +243,67 @@ export default function Admin() {
             Auteur <strong>*</strong>
           </p>
           <label htmlFor="authorId">
-            <select name="authorId" onChange={handleChangeAuthorId}>
-              <option value="">Veuillez sélectionner un auteur</option>
-              {authors.map((author) => (
-                <option value={author.id}>
-                  {author.firstname} {author.lastname}
-                </option>
-              ))}
-            </select>
+            <input
+              type="text"
+              id="authorId"
+              value={authorId}
+              onChange={handleChangeAuthorId}
+            />
           </label>
           <p>
             Image <strong>*</strong>
           </p>
           <label htmlFor="image">
-            <input type="file" id="image" onChange={handleChangeImage} />
+            <input
+              type="text"
+              id="image"
+              value={image}
+              onChange={handleChangeImage}
+            />
           </label>
           <p>Date de réalisation</p>
           <label htmlFor="creationDate" className="date-label">
-            <select name="day" onChange={handleChangeDay}>
-              <option value="">Jour</option>
-              {allDays.map((daySelected) => (
-                <option value={daySelected.id}>{daySelected}</option>
-              ))}
-            </select>
-            <select name="month" onChange={handleChangeMonth}>
-              <option value="">Mois</option>
-              {allMonths.map((monthSelected) => (
-                <option value={monthSelected.monthNumber}>
-                  {monthSelected.monthName}
-                </option>
-              ))}
-            </select>
-            <select name="year" onChange={handleChangeYear}>
-              <option value="">Année</option>
-              {allYears.map((yearSelected) => (
-                <option value={yearSelected.id}>{yearSelected}</option>
-              ))}
-            </select>
+            <input
+              type="number"
+              min="1"
+              max="31"
+              step="1"
+              id="day"
+              placeholder="jour"
+              value={day}
+              onChange={handleChangeDay}
+            />
+            <input
+              type="number"
+              min="1"
+              max="12"
+              step="1"
+              id="month"
+              placeholder="mois"
+              value={month}
+              onChange={handleChangeMonth}
+            />
+            <input
+              type="number"
+              min="1200"
+              max="2023"
+              step="1"
+              id="year"
+              placeholder="année"
+              value={year}
+              onChange={handleChangeYear}
+            />
           </label>
           <p>
             Technique <strong>*</strong>
           </p>
           <label htmlFor="artTypeId">
-            <select name="artTypeId" onChange={handleChangeArtTypeId}>
-              <option value="">Veuillez sélectionner une technique</option>
-              {artTypes.map((artType) => (
-                <option value={artType.id}>{artType.type}</option>
-              ))}
-            </select>
+            <input
+              type="text"
+              id="artTypeId"
+              value={artTypeId}
+              onChange={handleChangeArtTypeId}
+            />
           </label>
           <p>
             Dimensions <strong>*</strong>
@@ -372,12 +334,12 @@ export default function Admin() {
             Catégorie <strong>*</strong>
           </p>
           <label htmlFor="categoryId">
-            <select name="categoryId" onChange={handleChangeCategoryId}>
-              <option value="">Veuillez sélectionner une catégorie</option>
-              {categories.map((category) => (
-                <option value={category.id}>{category.catName}</option>
-              ))}
-            </select>
+            <input
+              type="text"
+              id="categoryId"
+              value={categoryId}
+              onChange={handleChangeCategoryId}
+            />
           </label>
           <p>Commentaire</p>
           <label htmlFor="about">
@@ -397,7 +359,7 @@ export default function Admin() {
               onChange={handleChangeArticle}
             />
           </label>
-          <button type="submit">Enregistrer l'œuvre</button>
+          <button type="submit">Enregistrer les modifications</button>
         </form>
       </section>
     </div>

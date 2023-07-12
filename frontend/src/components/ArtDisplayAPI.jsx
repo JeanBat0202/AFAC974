@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
-import "../pages/Gallery.scss";
 import PropTypes from "prop-types";
+import PrivatePartForGallery from "./PrivatePartForGallery";
+import "../pages/Gallery.scss";
 
 export default function ArtDisplayAPI({ id, shortTitle, image }) {
   return (
     <div className="parent">
       <div>
         <figure className="visage">
+          <PrivatePartForGallery authorizedRoles={[1]} artId={id} />
           <div className="image-container">
             <img src={image} alt={shortTitle} />
             <figcaption>
