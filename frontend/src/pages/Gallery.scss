@@ -66,6 +66,20 @@ figure > img {
   column-gap: 30px;
 }
 
+.CatégorieContainer {
+  margin-left: 3rem;
+}
+
+#ArtCat {
+  width: 120px;
+  height: 30px;
+  box-shadow: 1px 1px 2px #999;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 0.5rem;
+  font-size: medium;
+}
+
 @media screen and (min-width: 768px) {
   .container {
     column-count: 2;
