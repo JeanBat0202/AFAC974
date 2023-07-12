@@ -18,14 +18,28 @@ const uploadArtImage = (req, res, next) => {
       console.error(err);
       res.sendStatus(500);
     } else {
+      req.body.image = req.file.filename;
+      next();
+    }
+  });
+};
+
+const uploadArtImageForEdition = (req, res, next, imagePath) => {
+  // if (req.query.withImg === "true") {
+  upload.single("image")(req, res, (err) => {
+    if (err) {
+      console.error(err);
+      res.sendStatus(500);
+    } else {
       if (!req.file) {
-        req.body.image = null;
+        req.body.image = { imagePath };
       } else {
         req.body.image = req.file.filename;
       }
       next();
     }
   });
+  // }
 };
 
-module.exports = { uploadArtImage };
+module.exports = { uploadArtImage, uploadArtImageForEdition };

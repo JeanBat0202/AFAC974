@@ -10,7 +10,10 @@ export default function ArtDisplayAPI({ id, shortTitle, image }) {
         <figure className="visage">
           <PrivatePartForGallery authorizedRoles={[1]} artId={id} />
           <div className="image-container">
-            <img src={image} alt={shortTitle} />
+            <img
+              src={`${import.meta.env.VITE_ASSETS_IMAGES_URL}/arts/${image}`}
+              alt={shortTitle}
+            />
             <figcaption>
               {shortTitle}
               <Link to={`/galerie/${id}`} className="link">

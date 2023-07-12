@@ -1,11 +1,22 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from "../context/UserContext";
 import AdminEditArt from "../pages/AdminEditArt";
 import trashIcon from "../assets/Trash.svg";
 
 export default function PrivatePartForGallery({ authorizedRoles, artId }) {
+  const navigate = useNavigate();
   const [{ user }] = useUserContext();
+
+  const deleteArt = () => {
+    if (confirm("Êtes-vous sûr de vouoir supprimer cette œuvre ?")) {
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/arts/${artId}`, {
+        method: "DELETE",
+      })
+        .then(() => navigate("/galerie"))
+        .catch((err) => console.error(err));
+    }
+  };
 
   if (user && authorizedRoles.find((role) => role === user.role_id)) {
     return (
@@ -17,7 +28,9 @@ export default function PrivatePartForGallery({ authorizedRoles, artId }) {
         >
           ✎
         </Link>
-        <img src={trashIcon} alt="trash-icon" className="icon-gallery-page" />
+        <button type="button" onClick={deleteArt} className="icon-gallery-page">
+          <img src={trashIcon} alt="trash-icon" />
+        </button>
       </div>
     );
   }

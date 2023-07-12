@@ -38,11 +38,15 @@ img {
     .icon-gallery-page {
       font-size: 25px;
       height: 100%;
+      width: 20px;
       margin-top: 0;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
     }
 
     .icon-gallery-page:hover {
-      scale: 1.5;
+      scale: 1.4;
     }
 
     a.icon-gallery-page {
