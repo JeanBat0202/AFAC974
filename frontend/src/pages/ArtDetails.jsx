@@ -120,7 +120,12 @@ export default function ArtDetails() {
       </div>
       <div className="parentArtDetails">
         <div className="ArtContainer">
-          <img className="Art" src={art.image} alt={art.shortTitle} />
+          <img
+            className="Art"
+            src={art.image}
+            // src={`${import.meta.env.VITE_ASSETS_IMAGES_URL}/arts/${art.image}`}
+            alt={art.shortTitle}
+          />
         </div>
         <div className="ArtAbout">
           <Link className="LinkToAuthor" to={`/auteur/${art.author_id}`}>

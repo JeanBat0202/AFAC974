@@ -3,7 +3,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import "./adminCreateArt.scss";
 
-export default function Admin() {
+export default function AdminCreateArt() {
   const navigate = useNavigate();
 
   const [authors, setAuthors] = useState();
@@ -85,7 +85,7 @@ export default function Admin() {
   ];
 
   const allYears = [];
-  for (let i = 1599; i < 2023; i += 1) {
+  for (let i = 1799; i < 2023; i += 1) {
     allYears.push(i + 1);
   }
 
@@ -219,11 +219,11 @@ export default function Admin() {
       modelData.append("year", year || null);
       modelData.append("width", width);
       modelData.append("height", height);
-      modelData.append("author_id", authorId);
-      modelData.append("art_type_id", artTypeId);
-      modelData.append("category_id", categoryId);
+      modelData.append("authorId", authorId);
+      modelData.append("artTypeId", artTypeId);
+      modelData.append("categoryId", categoryId);
       if (shortTitle) {
-        modelData.append("short_title", shortTitle);
+        modelData.append("shortTitle", shortTitle);
       } else if (day) {
         modelData.append("day", day);
       } else if (month) {

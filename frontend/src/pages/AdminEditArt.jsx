@@ -3,31 +3,39 @@ import toast, { Toaster } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import "./adminCreateArt.scss";
 
-export default function Admin() {
+export default function AdminEditArt() {
   const navigate = useNavigate();
 
-  const [image, setImage] = useState("");
+  const [authors, setAuthors] = useState();
+  const [artTypes, setArtTypes] = useState();
+  const [categories, setCategories] = useState();
+
   const [imageRef, setImageRef] = useState("");
   const [title, setTitle] = useState("");
   const [shortTitle, setShortTitle] = useState("");
-  const [year, setYear] = useState("");
-  const [month, setMonth] = useState("");
+  const [authorId, setAuthorId] = useState("");
+  // const [imagePath, setImagePath] = useState("");
+  const [imageFile, setImageFile] = useState("");
   const [day, setDay] = useState("");
+  const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
   const [artTypeId, setArtTypeId] = useState("");
   const [width, setWidth] = useState("");
   const [height, setHeight] = useState("");
   const [categoryId, setCategoryId] = useState("");
   const [about, setAbout] = useState("");
   const [article, setArticle] = useState("");
-  const [authorId, setAuthorId] = useState("");
 
   const { id } = useParams();
+
+  const imageTypes = ["image/jpeg", "image/jpg", "image/png"];
 
   const getOneArt = () => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/arts/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        setImage(data.image ? data.image : "");
+        console.info(data);
+        // setImagePath(data.image ? data.image : "");
         setImageRef(data.imageRef ? data.imageRef : "");
         setTitle(data.title ? data.title : "");
         setShortTitle(data.shortTitle ? data.shortTitle : "");
@@ -40,18 +48,73 @@ export default function Admin() {
         setCategoryId(data.categoryId ? data.categoryId : "");
         setAbout(data.about ? data.about : "");
         setArticle(data.article ? data.article : "");
-        setAuthorId(data.authorId ? data.authorId : "");
+        setAuthorId(data.author_id ? data.author_id : "");
       })
+      .catch((err) => console.error(err));
+  };
+
+  const getAllAuthors = () => {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/authors`, {
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => setAuthors(data))
+      .catch((err) => console.error(err));
+  };
+
+  const getAllArtTypes = () => {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artTypes`, {
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => setArtTypes(data))
+      .catch((err) => console.error(err));
+  };
+
+  const getAllCategories = () => {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/categories`, {
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => setCategories(data))
       .catch((err) => console.error(err));
   };
 
   useEffect(() => {
     getOneArt();
+    getAllAuthors();
+    getAllArtTypes();
+    getAllCategories();
   }, [id]);
 
-  const handleChangeImage = (e) => {
-    setImage(e.target.value);
-  };
+  if (!authors || !artTypes || !categories) {
+    return <p>En cours de chargement...</p>;
+  }
+
+  const allDays = [];
+  for (let i = 0; i < 31; i += 1) {
+    allDays.push(i + 1);
+  }
+
+  // const allMonths = [
+  //   { monthNumber: 1, monthName: "janvier" },
+  //   { monthNumber: 2, monthName: "février" },
+  //   { monthNumber: 3, monthName: "mars" },
+  //   { monthNumber: 4, monthName: "avril" },
+  //   { monthNumber: 5, monthName: "mai" },
+  //   { monthNumber: 6, monthName: "juin" },
+  //   { monthNumber: 7, monthName: "juillet" },
+  //   { monthNumber: 8, monthName: "août" },
+  //   { monthNumber: 9, monthName: "septembre" },
+  //   { monthNumber: 10, monthName: "octobre" },
+  //   { monthNumber: 11, monthName: "novembre" },
+  //   { monthNumber: 12, monthName: "décembre" },
+  // ];
+
+  const allYears = [];
+  for (let i = 1799; i < 2023; i += 1) {
+    allYears.push(i + 1);
+  }
 
   const handleChangeImageRef = (e) => {
     setImageRef(e.target.value);
@@ -63,6 +126,16 @@ export default function Admin() {
 
   const handleChangeShortTitle = (e) => {
     setShortTitle(e.target.value);
+  };
+
+  const handleChangeImage = (e) => {
+    const fileSelected = e.target.files[0];
+
+    if (imageTypes.includes(fileSelected.type)) {
+      setImageFile(e.target.files[0]);
+    } else {
+      toast.alert("Votre image doit être au format .jpeg, .jpg ou .png.");
+    }
   };
 
   const handleChangeDay = (e) => {
@@ -105,7 +178,6 @@ export default function Admin() {
 
     if (!Number.isNaN(widthToUpdate)) {
       setWidth(widthToUpdate);
-      console.warn(typeof widthToUpdate, widthToUpdate);
     } else {
       toast.alert("Ce champ est requis, veuillez renseigner une valeur");
     }
@@ -124,10 +196,7 @@ export default function Admin() {
   const handleChangeCategoryId = (e) => {
     const categoryIdToUpdate = parseInt(e.target.value, 10);
 
-    if (
-      !Number.isNaN(categoryIdToUpdate)
-      /* && voir pour le bloquer entre 0 et category.length */
-    ) {
+    if (!Number.isNaN(categoryIdToUpdate)) {
       setCategoryId(categoryIdToUpdate);
     } else {
       toast.alert("Ce champ est requis, veuillez sélectionner une catégorie");
@@ -159,16 +228,54 @@ export default function Admin() {
     e.preventDefault();
 
     if (
+      !imageRef ||
       !title ||
-      !image ||
       !width ||
       !height ||
-      !imageRef ||
-      !categoryId ||
+      !authorId ||
       !artTypeId ||
-      !authorId
+      !categoryId
     ) {
       toast.alert("Veuillez remplir tous les champs obligatoires.");
+    } else if (imageFile) {
+      const modelData = new FormData();
+      modelData.append("imageRef", imageRef);
+      modelData.append("title", title);
+      modelData.append("image", imageFile);
+      modelData.append("year", year || null);
+      modelData.append("width", width);
+      modelData.append("height", height);
+      modelData.append("authorId", authorId);
+      modelData.append("artTypeId", artTypeId);
+      modelData.append("categoryId", categoryId);
+      if (shortTitle) {
+        modelData.append("shortTitle", shortTitle);
+      } else if (day) {
+        modelData.append("day", day);
+      } else if (month) {
+        modelData.append("month", month);
+      } else if (about) {
+        modelData.append("about", about);
+      } else if (article) {
+        modelData.append("article", article);
+      }
+
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/arts/${id}?withImg=true`, {
+        method: "PUT",
+        credentials: "include",
+        // headers: {
+        //   "Content-Type": "multipart/form-data",
+        // },
+        body: modelData,
+      })
+        .then(() => {
+          navigate(`/galerie/${id}`);
+          toast.alert("L'œuvre a bien été modifiée.");
+        })
+        .catch((err) => {
+          console.error(err);
+          toast.alert("Une erreur est survenue, veuillez réessayer.");
+        });
     } else {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/arts/${id}`, {
         method: "PUT",
@@ -178,18 +285,17 @@ export default function Admin() {
         body: JSON.stringify({
           imageRef,
           title,
-          shortTitle,
-          image,
-          day,
-          month,
-          year: year || null,
+          shortTitle: shortTitle || null,
+          authorId,
+          day: day || null,
+          month: month || null,
+          year,
+          artTypeId,
           width,
           height,
-          about,
-          article,
           categoryId,
-          artTypeId,
-          authorId,
+          about: about || null,
+          article: article || null,
         }),
       })
         .then(() => {
@@ -265,7 +371,7 @@ export default function Admin() {
               <input
                 type="text"
                 id="image"
-                value={image}
+                // value={image}
                 onChange={handleChangeImage}
               />
             </label>

@@ -3,6 +3,9 @@ import { Toaster } from "react-hot-toast";
 import AdminCreateArt from "./AdminCreateArt";
 import GalleryDisplay from "./GalleryDisplay";
 import "./admin.scss";
+// import AllUserAPI from "../components/AllUserAPI";
+// import EditUser from "../components/EditUser";
+// import SignUp from "../components/SignUp";
 
 export default function Admin() {
   return (

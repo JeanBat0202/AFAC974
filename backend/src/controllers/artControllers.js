@@ -36,7 +36,7 @@ const edit = (req, res) => {
   art.id = parseInt(req.params.id, 10);
 
   models.art
-    .update(art)
+    .update(art, req.query.withImg === "true")
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
