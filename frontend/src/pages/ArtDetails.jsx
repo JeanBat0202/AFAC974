@@ -23,12 +23,13 @@ export default function ArtDetails() {
   );
 
   const getOneFavorite = () => {
-    if (user && !isFavorite) {
+    if (user) {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/favorites/${user.id}`)
         .then((resp) => resp.json())
         .then((data) => setFavorites(data));
     }
   };
+
   useEffect(() => {
     disableRightClick();
     return () => removeDisableRightClick();
