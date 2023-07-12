@@ -3,7 +3,7 @@ import "./AllUserAPI.scss";
 import PropTypes from "prop-types";
 import Trash from "../assets/Trash.svg";
 
-function AllUserAPI({ id, firstname, lastname }) {
+function AllUserAPI({ id, userFirstname, lastname }) {
   const navigate = useNavigate();
 
   const deleteUser = () => {
@@ -20,7 +20,7 @@ function AllUserAPI({ id, firstname, lastname }) {
     <section className="tableau">
       <ul className="user">
         <li className="unique-key">{id}</li>
-        <li className="unique-key">{firstname}</li>
+        <li className="unique-key">{userFirstname}</li>
         <li className="unique-key">{lastname}</li>
         <Link className="btn" to={`/admin-edit-user/${id}`}>
           <p className="pen">✎</p>
@@ -34,9 +34,14 @@ function AllUserAPI({ id, firstname, lastname }) {
 }
 
 AllUserAPI.propTypes = {
-  firstname: PropTypes.string.isRequired,
-  lastname: PropTypes.string.isRequired,
+  userFirstname: PropTypes.string,
+  lastname: PropTypes.string,
   id: PropTypes.number.isRequired,
+};
+
+AllUserAPI.defaultProps = {
+  userFirstname: undefined,
+  lastname: undefined,
 };
 
 export default AllUserAPI;

@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import AdminCreateArt from "./AdminCreateArt";
 import GalleryDisplay from "./GalleryDisplay";
 import "./admin.scss";
+import AllUserAPI from "../components/AllUserAPI";
+import EditUser from "../components/EditUser";
+import SignUp from "../components/SignUp";
 
 export default function Admin() {
   return (
@@ -37,21 +40,21 @@ export default function Admin() {
         <section className="link-container">
           <Link
             to="/s'inscrire"
-            // element={<ICI_LE_NOM_DU_COMPOSANT />}
+            element={<SignUp />}
             className="link-looks-like-button"
           >
             Ajouter un utilisateur
           </Link>
           <Link
             to="/alluser"
-            // element={<ICI_LE_NOM_DU_COMPOSANT />}
+            element={<EditUser />}
             className="link-looks-like-button"
           >
             Modifier un utilisateur
           </Link>
           <Link
             to="/alluser"
-            // element={<ICI_LE_NOM_DU_COMPOSANT />}
+            element={<AllUserAPI />}
             className="link-looks-like-button"
           >
             Supprimer un utilisateur

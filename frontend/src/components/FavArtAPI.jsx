@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 import style from "./UserProfile.module.scss";
 
 // eslint-disable-next-line no-unused-vars
-export default function FavArtAPI({ artId, shortTitle, image }) {
+export default function FavArtAPI({ artId, imageRef, image }) {
   return (
     <figure className={style.figure}>
       <figcaption>
         <Link to={`/galerie/${artId}`} className="link">
           <img
             src={`${import.meta.env.VITE_ASSETS_IMAGES_URL}/arts/${image}`}
-            alt={shortTitle}
+            alt={imageRef}
           />
         </Link>
       </figcaption>
@@ -19,7 +19,7 @@ export default function FavArtAPI({ artId, shortTitle, image }) {
 }
 
 FavArtAPI.propTypes = {
-  shortTitle: PropTypes.string.isRequired,
+  imageRef: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   artId: PropTypes.number.isRequired,
 };
