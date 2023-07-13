@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import "./adminCreateArt.scss";
 
@@ -127,23 +128,13 @@ export default function AdminEditArt() {
     setShortTitle(e.target.value);
   };
 
-  const handleChangeAuthorId = (e) => {
-    const authorIdToUpdate = parseInt(e.target.value, 10);
-
-    if (!Number.isNaN(authorIdToUpdate)) {
-      setAuthorId(authorIdToUpdate);
-    } else {
-      alert("Ce champ est requis, veuillez sélectionner un auteur");
-    }
-  };
-
   const handleChangeImage = (e) => {
     const fileSelected = e.target.files[0];
 
     if (imageTypes.includes(fileSelected.type)) {
       setImageFile(e.target.files[0]);
     } else {
-      alert("Votre image doit être au format .jpeg, .jpg ou .png.");
+      toast.alert("Votre image doit être au format .jpeg, .jpg ou .png.");
     }
   };
 
@@ -165,7 +156,7 @@ export default function AdminEditArt() {
     if (!Number.isNaN(yearToUpdate)) {
       setYear(yearToUpdate);
     } else {
-      alert("Ce champ est requis, veuillez renseigner une valeur");
+      toast.alert("Ce champ est requis, veuillez renseigner une valeur");
     }
   };
 
@@ -178,7 +169,7 @@ export default function AdminEditArt() {
     ) {
       setArtTypeId(artTypeIdToUpdate);
     } else {
-      alert("Ce champ est requis, veuillez sélectionner un type d'œuvre");
+      toast.alert("Ce champ est requis, veuillez sélectionner un type d'œuvre");
     }
   };
 
@@ -188,7 +179,7 @@ export default function AdminEditArt() {
     if (!Number.isNaN(widthToUpdate)) {
       setWidth(widthToUpdate);
     } else {
-      alert("Ce champ est requis, veuillez renseigner une valeur");
+      toast.alert("Ce champ est requis, veuillez renseigner une valeur");
     }
   };
 
@@ -198,7 +189,7 @@ export default function AdminEditArt() {
     if (!Number.isNaN(heightToUpdate, 10)) {
       setHeight(heightToUpdate);
     } else {
-      alert("Ce champ est requis, veuillez renseigner une valeur");
+      toast.alert("Ce champ est requis, veuillez renseigner une valeur");
     }
   };
 
@@ -208,7 +199,7 @@ export default function AdminEditArt() {
     if (!Number.isNaN(categoryIdToUpdate)) {
       setCategoryId(categoryIdToUpdate);
     } else {
-      alert("Ce champ est requis, veuillez sélectionner une catégorie");
+      toast.alert("Ce champ est requis, veuillez sélectionner une catégorie");
     }
   };
 
@@ -220,10 +211,23 @@ export default function AdminEditArt() {
     setArticle(e.target.value);
   };
 
+  const handleChangeAuthorId = (e) => {
+    const authorIdToUpdate = parseInt(e.target.value, 10);
+
+    if (
+      !Number.isNaN(authorIdToUpdate)
+      /* && voir pour le bloquer entre 0 et author.length */
+    ) {
+      setAuthorId(authorIdToUpdate);
+    } else {
+      toast.alert("Ce champ est requis, veuillez sélectionner un auteur");
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!imageRef || !title || !authorId || !artTypeId || !categoryId) {
-      alert("Veuillez remplir tous les champs obligatoires.");
+      toast.alert("Veuillez remplir tous les champs obligatoires.");
     } else if (imageFile) {
       const modelData = new FormData();
       modelData.append("imageRef", imageRef);
@@ -261,11 +265,11 @@ export default function AdminEditArt() {
       })
         .then(() => {
           navigate(`/galerie/${id}`);
-          alert("L'œuvre a bien été modifiée.");
+          toast.success("L'œuvre a bien été modifiée.");
         })
         .catch((err) => {
           console.error(err);
-          alert("Une erreur est survenue, veuillez réessayer.");
+          toast.alert("Une erreur est survenue, veuillez réessayer.");
         });
     } else {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/arts/${id}`, {
@@ -291,181 +295,189 @@ export default function AdminEditArt() {
       })
         .then(() => {
           navigate(`/galerie/${id}`);
+          toast.success("L'oeuvre a bien été mise à jour !", {
+            duration: 4000,
+          });
         })
         .catch((err) => {
           console.error(err);
-          alert("Une erreur est survenue, veuillez réessayer.");
+          toast.error("Une erreur est survenue, veuillez réessayer.");
         });
     }
   };
 
   return (
-    <div className="form-container">
-      <h2 className="create-art">Modifier une œuvre existante</h2>
-      <p className="required-fields">* : champs obligatoires</p>
-      <section className="form">
-        <form onSubmit={handleSubmit}>
-          <p>
-            Référence image ADR <strong>*</strong>
-          </p>
-          <label htmlFor="imageRef">
-            <input
-              type="text"
-              id="imageRef"
-              value={imageRef}
-              onChange={handleChangeImageRef}
-            />
-          </label>
-          <p>
-            Titre complet de l'œuvre <strong>*</strong>
-          </p>
-          <label htmlFor="title">
-            <input
-              type="text"
-              id="title"
-              placeholder="Sans titre"
-              value={title}
-              onChange={handleChangeTitle}
-            />
-          </label>
-          <p>Titre résumé de l'œuvre</p>
-          <label htmlFor="shortTitle">
-            <input
-              type="text"
-              id="shortTitle"
-              value={shortTitle}
-              onChange={handleChangeShortTitle}
-            />
-          </label>
-          <p>
-            Auteur <strong>*</strong>
-          </p>
-          <label htmlFor="authorId">
-            <select
-              name="authorId"
-              value={authorId}
-              onChange={handleChangeAuthorId}
-            >
-              <option value="">Veuillez sélectionner un auteur</option>
-              {authors.map((author) => (
-                <option value={author.id}>
-                  {author.firstname} {author.lastname}
-                </option>
-              ))}
-            </select>
-          </label>
-          <p>
-            Image <strong>*</strong>
-          </p>
-          <label htmlFor="image" className="img-label">
-            <img
-              src={
-                imageFile ||
-                `${import.meta.env.VITE_ASSETS_IMAGES_URL}/arts/${imagePath}`
-              }
-              alt={imageFile ? `Image modifiée` : imageRef}
-            />
-            <input type="file" id="image" onChange={handleChangeImage} />
-          </label>
-          <p>Date de réalisation</p>
-          <label htmlFor="creationDate" className="date-label">
-            <select name="day" value={day} onChange={handleChangeDay}>
-              <option value="">Jour</option>
-              {allDays.map((daySelected) => (
-                <option value={daySelected}>{daySelected}</option>
-              ))}
-            </select>
-            <select name="month" value={month} onChange={handleChangeMonth}>
-              <option value="">Mois</option>
-              {allMonths.map((monthSelected) => (
-                <option value={monthSelected.monthNumber}>
-                  {monthSelected.monthName}
-                </option>
-              ))}
-            </select>
-            <select name="year" value={year} onChange={handleChangeYear}>
-              <option value="">Année *</option>
-              {allYears.map((yearSelected) => (
-                <option value={yearSelected}>{yearSelected}</option>
-              ))}
-            </select>
-          </label>
-          <p>
-            Technique <strong>*</strong>
-          </p>
-          <label htmlFor="artTypeId">
-            <select
-              name="artTypeId"
-              value={artTypeId}
-              onChange={handleChangeArtTypeId}
-            >
-              <option value="">Veuillez sélectionner une technique</option>
-              {artTypes.map((artType) => (
-                <option value={artType.id}>{artType.type}</option>
-              ))}
-            </select>
-          </label>
-          <p>
-            Dimensions <strong>*</strong>
-          </p>
-          <label htmlFor="dimensions" className="dimensions-label">
-            <input
-              type="number"
-              min="0"
-              max="10000"
-              step="0.01"
-              id="width"
-              placeholder="largeur"
-              value={width}
-              onChange={handleChangeWidth}
-            />
-            <input
-              type="number"
-              min="0"
-              max="10000"
-              step="0.01"
-              id="height"
-              placeholder="hauteur"
-              value={height}
-              onChange={handleChangeHeight}
-            />
-          </label>
-          <p>
-            Catégorie <strong>*</strong>
-          </p>
-          <label htmlFor="categoryId">
-            <select
-              name="categoryId"
-              value={categoryId}
-              onChange={handleChangeCategoryId}
-            >
-              <option value="">Veuillez sélectionner une catégorie</option>
-              {categories.map((category) => (
-                <option value={category.id}>{category.catName}</option>
-              ))}
-            </select>
-          </label>
-          <p>Commentaire</p>
-          <label htmlFor="about">
-            <textarea
-              type="text"
-              id="about"
-              value={about}
-              onChange={handleChangeAbout}
-            />
-          </label>
-          <p>Article lié</p>
-          <label htmlFor="article">
-            <input
-              type="text"
-              id="article"
-              value={article}
-              onChange={handleChangeArticle}
-            />
-          </label>
-          <button type="submit">Enregistrer les modifications</button>
-        </form>
-      </section>
-    </div>
+    <>
+      <div>
+        <Toaster position="bottom-center" />
+      </div>
+      <div className="form-container">
+        <h2 className="create-art">Modifier une œuvre existante</h2>
+        <p className="required-fields">* : champs obligatoires</p>
+        <section className="form">
+          <form onSubmit={handleSubmit}>
+            <p>
+              Référence image ADR <strong>*</strong>
+            </p>
+            <label htmlFor="imageRef">
+              <input
+                type="text"
+                id="imageRef"
+                value={imageRef}
+                onChange={handleChangeImageRef}
+              />
+            </label>
+            <p>
+              Titre complet de l'œuvre <strong>*</strong>
+            </p>
+            <label htmlFor="title">
+              <input
+                type="text"
+                id="title"
+                placeholder="Sans titre"
+                value={title}
+                onChange={handleChangeTitle}
+              />
+            </label>
+            <p>Titre résumé de l'œuvre</p>
+            <label htmlFor="shortTitle">
+              <input
+                type="text"
+                id="shortTitle"
+                value={shortTitle}
+                onChange={handleChangeShortTitle}
+              />
+            </label>
+            <p>
+              Auteur <strong>*</strong>
+            </p>
+            <label htmlFor="authorId">
+              <select
+                name="authorId"
+                value={authorId}
+                onChange={handleChangeAuthorId}
+              >
+                <option value="">Veuillez sélectionner un auteur</option>
+                {authors.map((author) => (
+                  <option value={author.id}>
+                    {author.firstname} {author.lastname}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <p>
+              Image <strong>*</strong>
+            </p>
+            <label htmlFor="image" className="img-label">
+              <img
+                src={
+                  imageFile ||
+                  `${import.meta.env.VITE_ASSETS_IMAGES_URL}/arts/${imagePath}`
+                }
+                alt={imageFile ? `Image modifiée` : imageRef}
+              />
+              <input type="file" id="image" onChange={handleChangeImage} />
+            </label>
+            <p>Date de réalisation</p>
+            <label htmlFor="creationDate" className="date-label">
+              <select name="day" value={day} onChange={handleChangeDay}>
+                <option value="">Jour</option>
+                {allDays.map((daySelected) => (
+                  <option value={daySelected}>{daySelected}</option>
+                ))}
+              </select>
+              <select name="month" value={month} onChange={handleChangeMonth}>
+                <option value="">Mois</option>
+                {allMonths.map((monthSelected) => (
+                  <option value={monthSelected.monthNumber}>
+                    {monthSelected.monthName}
+                  </option>
+                ))}
+              </select>
+              <select name="year" value={year} onChange={handleChangeYear}>
+                <option value="">Année *</option>
+                {allYears.map((yearSelected) => (
+                  <option value={yearSelected}>{yearSelected}</option>
+                ))}
+              </select>
+            </label>
+            <p>
+              Technique <strong>*</strong>
+            </p>
+            <label htmlFor="artTypeId">
+              <select
+                name="artTypeId"
+                value={artTypeId}
+                onChange={handleChangeArtTypeId}
+              >
+                <option value="">Veuillez sélectionner une technique</option>
+                {artTypes.map((artType) => (
+                  <option value={artType.id}>{artType.type}</option>
+                ))}
+              </select>
+            </label>
+            <p>
+              Dimensions <strong>*</strong>
+            </p>
+            <label htmlFor="dimensions" className="dimensions-label">
+              <input
+                type="number"
+                min="0"
+                max="10000"
+                step="0.01"
+                id="width"
+                placeholder="largeur"
+                value={width}
+                onChange={handleChangeWidth}
+              />
+              <input
+                type="number"
+                min="0"
+                max="10000"
+                step="0.01"
+                id="height"
+                placeholder="hauteur"
+                value={height}
+                onChange={handleChangeHeight}
+              />
+            </label>
+            <p>
+              Catégorie <strong>*</strong>
+            </p>
+            <label htmlFor="categoryId">
+              <select
+                name="categoryId"
+                value={categoryId}
+                onChange={handleChangeCategoryId}
+              >
+                <option value="">Veuillez sélectionner une catégorie</option>
+                {categories.map((category) => (
+                  <option value={category.id}>{category.catName}</option>
+                ))}
+              </select>
+            </label>
+            <p>Commentaire</p>
+            <label htmlFor="about">
+              <textarea
+                type="text"
+                id="about"
+                value={about}
+                onChange={handleChangeAbout}
+              />
+            </label>
+            <p>Article lié</p>
+            <label htmlFor="article">
+              <input
+                type="text"
+                id="article"
+                value={article}
+                onChange={handleChangeArticle}
+              />
+            </label>
+            <button type="submit">Enregistrer les modifications</button>
+          </form>
+        </section>
+      </div>
+    </>
   );
 }

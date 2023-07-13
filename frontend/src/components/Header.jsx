@@ -47,7 +47,7 @@ export default function Header() {
           {user ? (
             <Link to={`/utilisateur/${user.id}`}>
               <div className="useraccountconnected">
-                Bonjour {user.firstname} {user.lastname}
+                {user.firstname} {user.lastname}
               </div>
             </Link>
           ) : null}

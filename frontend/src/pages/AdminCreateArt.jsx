@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { useNavigate, Link } from "react-router-dom";
 import "./adminCreateArt.scss";
 
@@ -106,7 +107,7 @@ export default function AdminCreateArt() {
     if (!Number.isNaN(authorIdToUpdate)) {
       setAuthorId(authorIdToUpdate);
     } else {
-      alert("Ce champ est requis, veuillez sélectionner un auteur");
+      toast.alert("Ce champ est requis, veuillez sélectionner un auteur");
     }
   };
 
@@ -116,7 +117,7 @@ export default function AdminCreateArt() {
     if (imageTypes.includes(fileSelected.type)) {
       setImage(e.target.files[0]);
     } else {
-      alert("Votre image doit être au format .jpeg, .jpg ou .png.");
+      toast.alert("Votre image doit être au format .jpeg, .jpg ou .png.");
     }
   };
 
@@ -138,7 +139,7 @@ export default function AdminCreateArt() {
     if (!Number.isNaN(yearToUpdate)) {
       setYear(yearToUpdate);
     } else {
-      alert("Ce champ est requis, veuillez renseigner une valeur");
+      toast.alert("Ce champ est requis, veuillez renseigner une valeur");
     }
   };
 
@@ -151,7 +152,7 @@ export default function AdminCreateArt() {
     ) {
       setArtTypeId(artTypeIdToUpdate);
     } else {
-      alert("Ce champ est requis, veuillez sélectionner un type d'œuvre");
+      toast.alert("Ce champ est requis, veuillez sélectionner un type d'œuvre");
     }
   };
 
@@ -161,7 +162,7 @@ export default function AdminCreateArt() {
     if (!Number.isNaN(widthToUpdate)) {
       setWidth(widthToUpdate);
     } else {
-      alert("Ce champ est requis, veuillez renseigner une valeur");
+      toast.alert("Ce champ est requis, veuillez renseigner une valeur");
     }
   };
 
@@ -171,7 +172,7 @@ export default function AdminCreateArt() {
     if (!Number.isNaN(heightToUpdate, 10)) {
       setHeight(heightToUpdate);
     } else {
-      alert("Ce champ est requis, veuillez renseigner une valeur");
+      toast.alert("Ce champ est requis, veuillez renseigner une valeur");
     }
   };
 
@@ -184,7 +185,7 @@ export default function AdminCreateArt() {
     ) {
       setCategoryId(categoryIdToUpdate);
     } else {
-      alert("Ce champ est requis, veuillez sélectionner une catégorie");
+      toast.alert("Ce champ est requis, veuillez sélectionner une catégorie");
     }
   };
 
@@ -207,7 +208,7 @@ export default function AdminCreateArt() {
       !artTypeId ||
       !categoryId
     ) {
-      alert("Veuillez remplir tous les champs obligatoires.");
+      toast.error("Veuillez remplir tous les champs obligatoires.");
     } else {
       const modelData = new FormData();
       modelData.append("imageRef", imageRef);
@@ -250,176 +251,183 @@ export default function AdminCreateArt() {
         .then((res) => res.json())
         .then((data) => {
           navigate(`/galerie/${data.id}`);
-          alert("L'œuvre a bien été enregistrée.");
+          toast.success("L'oeuvres a été ajouté !", {
+            duration: 4000,
+          });
         })
         .catch((err) => {
           console.error(err);
-          alert("Une erreur est survenue, veuillez réessayer.");
+          toast.error("Une erreur est survenue, veuillez réessayer.");
         });
     }
   };
 
   return (
-    <div className="form-container">
-      <h2 className="create-art">Enregistrer une nouvelle œuvre</h2>
-      <p className="required-fields">* : champs obligatoires</p>
-      <section className="form">
-        <form onSubmit={handleSubmit}>
-          <p>
-            Référence image ADR <strong>*</strong>
-          </p>
-          <label htmlFor="imageRef">
-            <input
-              type="text"
-              id="imageRef"
-              value={imageRef}
-              onChange={handleChangeImageRef}
-            />
-          </label>
-          <p>
-            Titre complet de l'œuvre <strong>*</strong>
-          </p>
-          <label htmlFor="title">
-            <input
-              type="text"
-              id="title"
-              placeholder="Sans titre"
-              value={title}
-              onChange={handleChangeTitle}
-            />
-          </label>
-          <p>Titre résumé de l'œuvre</p>
-          <label htmlFor="shortTitle">
-            <input
-              type="text"
-              id="shortTitle"
-              value={shortTitle}
-              onChange={handleChangeShortTitle}
-            />
-          </label>
-          <p>
-            Auteur <strong>*</strong>
-          </p>
-          <label htmlFor="authorId" className="label-with-link-to-add-data">
-            <select name="authorId" onChange={handleChangeAuthorId}>
-              <option value="">Veuillez sélectionner un auteur</option>
-              {authors.map((author) => (
-                <option value={author.id}>
-                  {author.authorAlias} {author.firstname} {author.lastname}
-                </option>
-              ))}
-            </select>
-            <div className="to-add-data">
-              <Link to="/admin-create-author" className="to-add-data">
-                +
-              </Link>
-            </div>
-          </label>
-          <p>
-            Image <strong>*</strong>
-          </p>
-          <label htmlFor="image">
-            <input type="file" id="image" onChange={handleChangeImage} />
-          </label>
-          <p>Date de réalisation</p>
-          <label htmlFor="creationDate" className="date-label">
-            <select name="day" onChange={handleChangeDay}>
-              <option value="">Jour</option>
-              {allDays.map((daySelected) => (
-                <option value={daySelected}>{daySelected}</option>
-              ))}
-            </select>
-            <select name="month" onChange={handleChangeMonth}>
-              <option value="">Mois</option>
-              {allMonths.map((monthSelected) => (
-                <option value={monthSelected.monthNumber}>
-                  {monthSelected.monthName}
-                </option>
-              ))}
-            </select>
-            <select name="year" onChange={handleChangeYear}>
-              <option value="">Année *</option>
-              {allYears.map((yearSelected) => (
-                <option value={yearSelected}>{yearSelected}</option>
-              ))}
-            </select>
-          </label>
-          <p>
-            Technique <strong>*</strong>
-          </p>
-          <label htmlFor="artTypeId" className="label-with-link-to-add-data">
-            <select name="artTypeId" onChange={handleChangeArtTypeId}>
-              <option value="">Veuillez sélectionner une technique</option>
-              {artTypes.map((artType) => (
-                <option value={artType.id}>{artType.type}</option>
-              ))}
-            </select>
-            <div className="to-add-data">
-              <Link to="/admin-create-art-type" className="to-add-data">
-                +
-              </Link>
-            </div>
-          </label>
-          <p>Dimensions</p>
-          <label htmlFor="dimensions" className="dimensions-label">
-            <input
-              type="number"
-              min="0"
-              max="10000"
-              step="0.01"
-              id="width"
-              placeholder="largeur"
-              value={width}
-              onChange={handleChangeWidth}
-            />
-            <input
-              type="number"
-              min="0"
-              max="10000"
-              step="0.01"
-              id="height"
-              placeholder="hauteur"
-              value={height}
-              onChange={handleChangeHeight}
-            />
-          </label>
-          <p>
-            Catégorie <strong>*</strong>
-          </p>
-          <label htmlFor="categoryId" className="label-with-link-to-add-data">
-            <select name="categoryId" onChange={handleChangeCategoryId}>
-              <option value="">Veuillez sélectionner une catégorie</option>
-              {categories.map((category) => (
-                <option value={category.id}>{category.catName}</option>
-              ))}
-            </select>
-            <div className="to-add-data">
-              <Link to="/admin-create-category" className="to-add-data">
-                +
-              </Link>
-            </div>
-          </label>
-          <p>Commentaire</p>
-          <label htmlFor="about">
-            <textarea
-              type="text"
-              id="about"
-              value={about}
-              onChange={handleChangeAbout}
-            />
-          </label>
-          <p>Article lié</p>
-          <label htmlFor="article">
-            <input
-              type="text"
-              id="article"
-              value={article}
-              onChange={handleChangeArticle}
-            />
-          </label>
-          <button type="submit">Enregistrer l'œuvre</button>
-        </form>
-      </section>
-    </div>
+    <>
+      <div>
+        <Toaster position="bottom-center" />
+      </div>
+      <div className="form-container">
+        <h2 className="create-art">Enregistrer une nouvelle œuvre</h2>
+        <p className="required-fields">* : champs obligatoires</p>
+        <section className="form">
+          <form onSubmit={handleSubmit}>
+            <p>
+              Référence image ADR <strong>*</strong>
+            </p>
+            <label htmlFor="imageRef">
+              <input
+                type="text"
+                id="imageRef"
+                value={imageRef}
+                onChange={handleChangeImageRef}
+              />
+            </label>
+            <p>
+              Titre complet de l'œuvre <strong>*</strong>
+            </p>
+            <label htmlFor="title">
+              <input
+                type="text"
+                id="title"
+                placeholder="Sans titre"
+                value={title}
+                onChange={handleChangeTitle}
+              />
+            </label>
+            <p>Titre résumé de l'œuvre</p>
+            <label htmlFor="shortTitle">
+              <input
+                type="text"
+                id="shortTitle"
+                value={shortTitle}
+                onChange={handleChangeShortTitle}
+              />
+            </label>
+            <p>
+              Auteur <strong>*</strong>
+            </p>
+            <label htmlFor="authorId" className="label-with-link-to-add-data">
+              <select name="authorId" onChange={handleChangeAuthorId}>
+                <option value="">Veuillez sélectionner un auteur</option>
+                {authors.map((author) => (
+                  <option value={author.id}>
+                    {author.authorAlias} {author.firstname} {author.lastname}
+                  </option>
+                ))}
+              </select>
+              <div className="to-add-data">
+                <Link to="/admin-create-author" className="to-add-data">
+                  +
+                </Link>
+              </div>
+            </label>
+            <p>
+              Image <strong>*</strong>
+            </p>
+            <label htmlFor="image">
+              <input type="file" id="image" onChange={handleChangeImage} />
+            </label>
+            <p>Date de réalisation</p>
+            <label htmlFor="creationDate" className="date-label">
+              <select name="day" onChange={handleChangeDay}>
+                <option value="">Jour</option>
+                {allDays.map((daySelected) => (
+                  <option value={daySelected}>{daySelected}</option>
+                ))}
+              </select>
+              <select name="month" onChange={handleChangeMonth}>
+                <option value="">Mois</option>
+                {allMonths.map((monthSelected) => (
+                  <option value={monthSelected.monthNumber}>
+                    {monthSelected.monthName}
+                  </option>
+                ))}
+              </select>
+              <select name="year" onChange={handleChangeYear}>
+                <option value="">Année *</option>
+                {allYears.map((yearSelected) => (
+                  <option value={yearSelected}>{yearSelected}</option>
+                ))}
+              </select>
+            </label>
+            <p>
+              Technique <strong>*</strong>
+            </p>
+            <label htmlFor="artTypeId" className="label-with-link-to-add-data">
+              <select name="artTypeId" onChange={handleChangeArtTypeId}>
+                <option value="">Veuillez sélectionner une technique</option>
+                {artTypes.map((artType) => (
+                  <option value={artType.id}>{artType.type}</option>
+                ))}
+              </select>
+              <div className="to-add-data">
+                <Link to="/admin-create-art-type" className="to-add-data">
+                  +
+                </Link>
+              </div>
+            </label>
+            <p>Dimensions</p>
+            <label htmlFor="dimensions" className="dimensions-label">
+              <input
+                type="number"
+                min="0"
+                max="10000"
+                step="0.01"
+                id="width"
+                placeholder="largeur"
+                value={width}
+                onChange={handleChangeWidth}
+              />
+              <input
+                type="number"
+                min="0"
+                max="10000"
+                step="0.01"
+                id="height"
+                placeholder="hauteur"
+                value={height}
+                onChange={handleChangeHeight}
+              />
+            </label>
+            <p>
+              Catégorie <strong>*</strong>
+            </p>
+            <label htmlFor="categoryId" className="label-with-link-to-add-data">
+              <select name="categoryId" onChange={handleChangeCategoryId}>
+                <option value="">Veuillez sélectionner une catégorie</option>
+                {categories.map((category) => (
+                  <option value={category.id}>{category.catName}</option>
+                ))}
+              </select>
+              <div className="to-add-data">
+                <Link to="/admin-create-category" className="to-add-data">
+                  +
+                </Link>
+              </div>
+            </label>
+            <p>Commentaire</p>
+            <label htmlFor="about">
+              <textarea
+                type="text"
+                id="about"
+                value={about}
+                onChange={handleChangeAbout}
+              />
+            </label>
+            <p>Article lié</p>
+            <label htmlFor="article">
+              <input
+                type="text"
+                id="article"
+                value={article}
+                onChange={handleChangeArticle}
+              />
+            </label>
+            <button type="submit">Enregistrer l'œuvre</button>
+          </form>
+        </section>
+      </div>
+    </>
   );
 }
