@@ -15,7 +15,7 @@ export default function ArtDisplayAPI({ id, shortTitle, image }) {
               src={`${import.meta.env.VITE_ASSETS_IMAGES_URL}/arts/${image}`}
               alt={shortTitle}
             />
-            <figcaption>
+            <figcaption className={!shortTitle ? "only-link" : ""}>
               {shortTitle}
               <Link to={`/galerie/${id}`} className="link">
                 + D'INFOS
@@ -29,7 +29,13 @@ export default function ArtDisplayAPI({ id, shortTitle, image }) {
 }
 
 ArtDisplayAPI.propTypes = {
-  shortTitle: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  shortTitle: PropTypes.string,
+  image: PropTypes.string,
+  id: PropTypes.number,
+};
+
+ArtDisplayAPI.defaultProps = {
+  shortTitle: undefined,
+  image: undefined,
+  id: undefined,
 };
