@@ -265,7 +265,7 @@ export default function AdminEditArt() {
       })
         .then(() => {
           navigate(`/galerie/${id}`);
-          toast.alert("L'œuvre a bien été modifiée.");
+          toast.success("L'œuvre a bien été modifiée.");
         })
         .catch((err) => {
           console.error(err);

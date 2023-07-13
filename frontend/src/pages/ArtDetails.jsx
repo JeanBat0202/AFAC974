@@ -50,17 +50,15 @@ export default function ArtDetails() {
         artId,
       }),
     })
-      .then((resp) => resp.json())
-      .then((data) => {
+      .then(() => {
+        toast.success("L'oeuvres a été ajouté aux favoris !", {
+          duration: 4000,
+        });
         setIsOnFavorite(true);
-        console.info(data);
       })
       .catch((error) => {
         console.error(error);
       });
-    toast.success("L'oeuvres a été ajouté aux favoris !", {
-      duration: 4000,
-    });
   };
 
   const removeToFavorite = () => {
@@ -77,17 +75,15 @@ export default function ArtDetails() {
         artId,
       }),
     })
-      .then((resp) => resp.json())
-      .then((data) => {
+      .then(() => {
+        toast.success("L'oeuvres a été retiré des favoris !", {
+          duration: 4000,
+        });
         setIsOnFavorite(false);
-        console.info(data);
       })
       .catch((error) => {
         console.error(error);
       });
-    toast.success("L'oeuvres a été retiré des favoris !", {
-      duration: 4000,
-    });
   };
 
   useEffect(() => {

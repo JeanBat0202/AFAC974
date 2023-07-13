@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
 import "./EditUser.scss";
 
@@ -112,11 +112,16 @@ export default function EditUser() {
     </div>
   );
   return (
-    <div className="app-edit-user">
-      <div className="login-form-edit-user">
-        <div className="title-edit-user">Modifier</div>
-        {renderForm}
+    <>
+      <div>
+        <Toaster position="bottom-center" />
       </div>
-    </div>
+      <div className="app-edit-user">
+        <div className="login-form-edit-user">
+          <div className="title-edit-user">Modifier</div>
+          {renderForm}
+        </div>
+      </div>
+    </>
   );
 }

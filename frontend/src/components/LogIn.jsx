@@ -39,7 +39,6 @@ function LogIn() {
         .then((res) => res.json())
         .then(toast.success("Bienvenue !", { duration: 4000 }))
         .then((data) => {
-          console.warn(data);
           dispatch({ type: "SET_USER", payload: data });
           navigate(`/`);
         })
