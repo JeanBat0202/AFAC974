@@ -60,10 +60,12 @@
         }
       }
 
+      .label-with-link-to-add-data,
       .dimensions-label,
       .date-label,
       .img-label {
         display: flex;
+        align-items: center;
 
         input,
         select {
@@ -72,6 +74,25 @@
 
           &:last-child {
             margin: 0;
+            margin-bottom: 1rem;
+          }
+        }
+
+        div.to-add-data {
+          border: 5px double #74658a;
+          height: 35px;
+          width: 35px;
+          display: flex;
+          margin-bottom: 1rem;
+
+          a.to-add-data {
+            text-align: center;
+            height: 100%;
+            width: 100%;
+            font-family: "Bebas Neue";
+            font-size: 24px;
+            color: #74658a;
+            margin-top: -1px;
           }
         }
       }
@@ -95,6 +116,10 @@
         margin: auto;
         cursor: pointer;
         grid-area: 12 / 1 / 12 / span 2;
+      }
+
+      button.create-small-data {
+        grid-area: 2 / 1 / 2 / span 2;
       }
     }
 
@@ -120,6 +145,21 @@
 
           img {
             height: 45px;
+          }
+        }
+
+        .label-with-link-to-add-data,
+        .dimensions-label,
+        .date-label,
+        .img-label {
+          div.to-add-data {
+            width: 45px;
+            height: 45px;
+
+            a.to-add-data {
+              font-size: 32px;
+              margin-top: 1px;
+            }
           }
         }
 
