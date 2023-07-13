@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./adminCreateArt.scss";
 
 export default function AdminCreateArt() {
@@ -307,15 +307,20 @@ export default function AdminCreateArt() {
             <p>
               Auteur <strong>*</strong>
             </p>
-            <label htmlFor="authorId">
+            <label htmlFor="authorId" className="label-with-link-to-add-data">
               <select name="authorId" onChange={handleChangeAuthorId}>
                 <option value="">Veuillez sélectionner un auteur</option>
                 {authors.map((author) => (
                   <option value={author.id}>
-                    {author.firstname} {author.lastname}
+                    {author.authorAlias} {author.firstname} {author.lastname}
                   </option>
                 ))}
               </select>
+              <div className="to-add-data">
+                <Link to="/admin-create-author" className="to-add-data">
+                  +
+                </Link>
+              </div>
             </label>
             <p>
               Image <strong>*</strong>
@@ -349,13 +354,18 @@ export default function AdminCreateArt() {
             <p>
               Technique <strong>*</strong>
             </p>
-            <label htmlFor="artTypeId">
+            <label htmlFor="artTypeId" className="label-with-link-to-add-data">
               <select name="artTypeId" onChange={handleChangeArtTypeId}>
                 <option value="">Veuillez sélectionner une technique</option>
                 {artTypes.map((artType) => (
                   <option value={artType.id}>{artType.type}</option>
                 ))}
               </select>
+              <div className="to-add-data">
+                <Link to="/admin-create-art-type" className="to-add-data">
+                  +
+                </Link>
+              </div>
             </label>
             <p>Dimensions</p>
             <label htmlFor="dimensions" className="dimensions-label">
@@ -383,13 +393,18 @@ export default function AdminCreateArt() {
             <p>
               Catégorie <strong>*</strong>
             </p>
-            <label htmlFor="categoryId">
+            <label htmlFor="categoryId" className="label-with-link-to-add-data">
               <select name="categoryId" onChange={handleChangeCategoryId}>
                 <option value="">Veuillez sélectionner une catégorie</option>
                 {categories.map((category) => (
                   <option value={category.id}>{category.catName}</option>
                 ))}
               </select>
+              <div className="to-add-data">
+                <Link to="/admin-create-category" className="to-add-data">
+                  +
+                </Link>
+              </div>
             </label>
             <p>Commentaire</p>
             <label htmlFor="about">
