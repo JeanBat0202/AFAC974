@@ -1,4 +1,5 @@
 import { Tooltip } from "react-tooltip";
+import toast, { Toaster } from "react-hot-toast";
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useUserContext } from "../context/UserContext";
@@ -49,10 +50,11 @@ export default function ArtDetails() {
         artId,
       }),
     })
-      .then((resp) => resp.json())
-      .then((data) => {
+      .then(() => {
+        toast.success("L'oeuvres a été ajouté aux favoris !", {
+          duration: 4000,
+        });
         setIsOnFavorite(true);
-        console.info(data);
       })
       .catch((error) => {
         console.error(error);
@@ -73,10 +75,11 @@ export default function ArtDetails() {
         artId,
       }),
     })
-      .then((resp) => resp.json())
-      .then((data) => {
+      .then(() => {
+        toast.success("L'oeuvres a été retiré des favoris !", {
+          duration: 4000,
+        });
         setIsOnFavorite(false);
-        console.info(data);
       })
       .catch((error) => {
         console.error(error);
@@ -100,6 +103,9 @@ export default function ArtDetails() {
 
   return (
     <>
+      <div>
+        <Toaster position="bottom-center" />
+      </div>
       <div className="linkbutton">
         <Link className="returnbutton" to="/galerie">
           <strong className="back-to-gallery">
