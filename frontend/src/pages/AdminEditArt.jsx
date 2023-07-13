@@ -368,7 +368,7 @@ export default function AdminEditArt() {
             <p>
               Image <strong>*</strong>
             </p>
-            <label htmlFor="image">
+            <label htmlFor="image" className="img-label">
               <img
                 src={
                   imageFile ||

@@ -8,7 +8,10 @@ export default function FavArtAPI({ artId, imageRef, image }) {
     <figure className={style.figure}>
       <figcaption>
         <Link to={`/galerie/${artId}`} className="link">
-          <img src={image} alt={imageRef} />
+          <img
+            src={`${import.meta.env.VITE_ASSETS_IMAGES_URL}/arts/${image}`}
+            alt={imageRef}
+          />
         </Link>
       </figcaption>
     </figure>

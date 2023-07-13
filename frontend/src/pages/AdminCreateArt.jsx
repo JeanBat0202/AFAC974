@@ -204,8 +204,6 @@ export default function AdminCreateArt() {
       !imageRef ||
       !title ||
       !image ||
-      !width ||
-      !height ||
       !authorId ||
       !artTypeId ||
       !categoryId
@@ -216,21 +214,29 @@ export default function AdminCreateArt() {
       modelData.append("imageRef", imageRef);
       modelData.append("title", title);
       modelData.append("image", image);
-      modelData.append("year", year || null);
-      modelData.append("width", width);
-      modelData.append("height", height);
+      modelData.append("year", year);
       modelData.append("authorId", authorId);
       modelData.append("artTypeId", artTypeId);
       modelData.append("categoryId", categoryId);
       if (shortTitle) {
         modelData.append("shortTitle", shortTitle);
-      } else if (day) {
+      }
+      if (day) {
         modelData.append("day", day);
-      } else if (month) {
+      }
+      if (month) {
         modelData.append("month", month);
-      } else if (about) {
+      }
+      if (width) {
+        modelData.append("width", width);
+      }
+      if (height) {
+        modelData.append("height", height);
+      }
+      if (about) {
         modelData.append("about", about);
-      } else if (article) {
+      }
+      if (article) {
         modelData.append("article", article);
       }
 
@@ -322,7 +328,7 @@ export default function AdminCreateArt() {
               <select name="day" onChange={handleChangeDay}>
                 <option value="">Jour</option>
                 {allDays.map((daySelected) => (
-                  <option value={daySelected.id}>{daySelected}</option>
+                  <option value={daySelected}>{daySelected}</option>
                 ))}
               </select>
               <select name="month" onChange={handleChangeMonth}>
@@ -334,9 +340,9 @@ export default function AdminCreateArt() {
                 ))}
               </select>
               <select name="year" onChange={handleChangeYear}>
-                <option value="">Année</option>
+                <option value="">Année *</option>
                 {allYears.map((yearSelected) => (
-                  <option value={yearSelected.id}>{yearSelected}</option>
+                  <option value={yearSelected}>{yearSelected}</option>
                 ))}
               </select>
             </label>
@@ -351,9 +357,7 @@ export default function AdminCreateArt() {
                 ))}
               </select>
             </label>
-            <p>
-              Dimensions <strong>*</strong>
-            </p>
+            <p>Dimensions</p>
             <label htmlFor="dimensions" className="dimensions-label">
               <input
                 type="number"

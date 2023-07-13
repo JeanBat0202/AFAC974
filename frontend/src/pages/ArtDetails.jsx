@@ -122,8 +122,8 @@ export default function ArtDetails() {
         <div className="ArtContainer">
           <img
             className="Art"
-            src={art.image}
-            // src={`${import.meta.env.VITE_ASSETS_IMAGES_URL}/arts/${art.image}`}
+            // src={art.image}
+            src={`${import.meta.env.VITE_ASSETS_IMAGES_URL}/arts/${art.image}`}
             alt={art.shortTitle}
           />
         </div>
@@ -132,8 +132,7 @@ export default function ArtDetails() {
             <h1 className="ArtAuthor">{`${art.firstname} ${art.lastname}`}</h1>
           </Link>
           <h1 className="ArtTitle">
-            {" "}
-            {art.title}{" "}
+            {art.title}
             {user &&
               (!isFavorite ? (
                 <button
@@ -206,7 +205,6 @@ export default function ArtDetails() {
           <h2 className="ArtDimension">
             ({art.width}x{art.height}cm) - {art.type}
           </h2>
-          <br />
           <p className="ArtStory">{art.about}</p>
         </div>
       </div>

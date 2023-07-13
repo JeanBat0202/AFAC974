@@ -35,6 +35,8 @@ const uploadArtImageForEdition = (req, res, next) => {
         next();
       }
     });
+  } else {
+    next();
   }
 };
 
