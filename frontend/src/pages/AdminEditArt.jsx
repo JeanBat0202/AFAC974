@@ -234,8 +234,6 @@ export default function AdminEditArt() {
       modelData.append("title", title);
       modelData.append("image", imageFile);
       modelData.append("year", year || null);
-      modelData.append("width", width);
-      modelData.append("height", height);
       modelData.append("authorId", authorId);
       modelData.append("artTypeId", artTypeId);
       modelData.append("categoryId", categoryId);
@@ -247,6 +245,12 @@ export default function AdminEditArt() {
       }
       if (month) {
         modelData.append("month", month);
+      }
+      if (width) {
+        modelData.append("width", width);
+      }
+      if (height) {
+        modelData.append("height", height);
       }
       if (about) {
         modelData.append("about", about);

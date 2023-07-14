@@ -53,7 +53,7 @@ export default function Profile() {
       <h2>galerie personnelle</h2>
       {!favorites ? (
         <p className="NoFavorites">
-          Vous n'avez pas ajouté d'oeuvres à vos favoris
+          Vous n'avez pas ajouté d'œuvres à vos favoris
         </p>
       ) : (
         <span className={style.span}>

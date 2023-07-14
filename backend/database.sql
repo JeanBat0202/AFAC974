@@ -643,10 +643,12 @@ DROP TABLE IF EXISTS `favorite`;
 ;
 
 CREATE TABLE `favorite` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `art_id` int NOT NULL,
   KEY `fk_favorite_user` (`user_id`),
   KEY `fk_favorite_art` (`art_id`),
+  PRIMARY KEY (`id`),
   CONSTRAINT `fk_favorite_art` FOREIGN KEY (`art_id`) REFERENCES `art` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_favorite_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
