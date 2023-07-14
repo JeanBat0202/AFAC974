@@ -51,7 +51,7 @@ export default function ArtDetails() {
       }),
     })
       .then(() => {
-        toast.success("L'oeuvres a été ajouté aux favoris !", {
+        toast.success("L'œuvre a été ajoutée aux favoris !", {
           duration: 4000,
         });
         setIsOnFavorite(true);
@@ -76,7 +76,7 @@ export default function ArtDetails() {
       }),
     })
       .then(() => {
-        toast.success("L'oeuvres a été retiré des favoris !", {
+        toast.success("L'œuvre a été retirée des favoris !", {
           duration: 4000,
         });
         setIsOnFavorite(false);
@@ -159,7 +159,7 @@ export default function ArtDetails() {
                         : "Add to favorites"
                     }
                     data-tooltip-id="my-tooltip"
-                    data-tooltip-content="Ajouter l'oeuvre aux favoris"
+                    data-tooltip-content="Ajouter l'œuvre aux favoris"
                   />
                   <Tooltip id="my-tooltip" />
                 </button>
@@ -192,14 +192,16 @@ export default function ArtDetails() {
                         : "Remove from favorites"
                     }
                     data-tooltip-id="my-tooltip"
-                    data-tooltip-content="Retirer l'oeuvre des favoris"
+                    data-tooltip-content="Retirer l'œuvre des favoris"
                   />
                   <Tooltip id="my-tooltip" />
                 </button>
               ))}{" "}
           </h1>
           <h2 className="ArtDimension">
-            ({art.width}x{art.height}cm) - {art.type}
+            {art.width && art.height
+              ? `(${art.width}x${art.height}cm) - ${art.type}`
+              : `${art.type}`}
           </h2>
           <p className="ArtStory">{art.about}</p>
         </div>
