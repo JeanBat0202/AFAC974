@@ -107,7 +107,9 @@ export default function AdminCreateArt() {
     if (!Number.isNaN(authorIdToUpdate)) {
       setAuthorId(authorIdToUpdate);
     } else {
-      toast.alert("Ce champ est requis, veuillez sélectionner un auteur");
+      toast.error(
+        'Le champ "Auteur" est requis, veuillez sélectionner un auteur'
+      );
     }
   };
 
@@ -117,7 +119,7 @@ export default function AdminCreateArt() {
     if (imageTypes.includes(fileSelected.type)) {
       setImage(e.target.files[0]);
     } else {
-      toast.alert("Votre image doit être au format .jpeg, .jpg ou .png.");
+      toast.error("Votre image doit être au format .jpeg, .jpg ou .png.");
     }
   };
 
@@ -139,7 +141,9 @@ export default function AdminCreateArt() {
     if (!Number.isNaN(yearToUpdate)) {
       setYear(yearToUpdate);
     } else {
-      toast.alert("Ce champ est requis, veuillez renseigner une valeur");
+      toast.error(
+        'Le champ "Année" est requis, veuillez renseigner une valeur'
+      );
     }
   };
 
@@ -152,7 +156,9 @@ export default function AdminCreateArt() {
     ) {
       setArtTypeId(artTypeIdToUpdate);
     } else {
-      toast.alert("Ce champ est requis, veuillez sélectionner un type d'œuvre");
+      toast.error(
+        'Le champ "Technique" est requis, veuillez sélectionner un type d\'œuvre'
+      );
     }
   };
 
@@ -162,7 +168,7 @@ export default function AdminCreateArt() {
     if (!Number.isNaN(widthToUpdate)) {
       setWidth(widthToUpdate);
     } else {
-      toast.alert("Veuillez vérifier votre saisie.");
+      toast.error("Veuillez vérifier votre saisie.");
     }
   };
 
@@ -172,7 +178,7 @@ export default function AdminCreateArt() {
     if (!Number.isNaN(heightToUpdate, 10)) {
       setHeight(heightToUpdate);
     } else {
-      toast.alert("Veuillez vérifier votre saisie.");
+      toast.error("Veuillez vérifier votre saisie.");
     }
   };
 
@@ -185,7 +191,9 @@ export default function AdminCreateArt() {
     ) {
       setCategoryId(categoryIdToUpdate);
     } else {
-      toast.alert("Ce champ est requis, veuillez sélectionner une catégorie");
+      toast.error(
+        'Le champ "Catégorie" est requis, veuillez sélectionner une catégorie'
+      );
     }
   };
 
