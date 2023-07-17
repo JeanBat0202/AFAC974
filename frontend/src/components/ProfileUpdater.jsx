@@ -55,10 +55,14 @@ export default function profileUpdater() {
           firstname,
           lastname,
           email,
+          role_id: 2,
         }),
       })
         .then(() => {
           navigate(`/utilisateur/${user.id}`);
+          toast.success("Les modifications ont bien été prises en compte.", {
+            duration: 4000,
+          });
         })
         .catch(() => {
           toast.alert("Une erreur s'est produite, veuillez réessayer.");

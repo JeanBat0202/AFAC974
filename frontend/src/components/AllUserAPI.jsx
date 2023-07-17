@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import { Tooltip } from "react-tooltip";
 import toast, { Toaster } from "react-hot-toast";
 import "./AllUserAPI.scss";
 import PropTypes from "prop-types";
@@ -8,7 +9,7 @@ function AllUserAPI({ id, userFirstname, lastname }) {
   const navigate = useNavigate();
 
   const deleteUser = () => {
-    if (confirm("Are you sure to delete this user?")) {
+    if (confirm("Etes-vous sûr de vouloir supprimer l'utilisateur ?")) {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/${id}`, {
         method: "DELETE",
       })
@@ -32,17 +33,30 @@ function AllUserAPI({ id, userFirstname, lastname }) {
       </div>
       <section className="tableau">
         <ul className="user">
-          <li className="unique-key">{id}</li>
-          <li className="unique-key">{userFirstname}</li>
-          <li className="unique-key">{lastname}</li>
+          <li className="id">{id}</li>
+          <li className="firstname">{userFirstname}</li>
+          <li className="lastname">{lastname}</li>
           <Link className="btn" to={`/admin-edit-user/${id}`}>
-            <p className="pen">✎</p>
+            <p
+              className="pen"
+              data-tooltip-id="my-tooltip"
+              data-tooltip-content="Modifier l'utilisateur"
+            >
+              ✎
+            </p>
           </Link>
           <button className="btn" type="button" onClick={deleteUser}>
-            <img src={Trash} alt="" />
+            <img
+              src={Trash}
+              alt="trash"
+              className="trash"
+              data-tooltip-id="my-tooltip"
+              data-tooltip-content="Supprimer l'utilisateur"
+            />
           </button>
         </ul>
       </section>
+      <Tooltip id="my-tooltip" />
     </>
   );
 }
