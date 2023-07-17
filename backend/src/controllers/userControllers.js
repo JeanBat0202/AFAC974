@@ -1,3 +1,5 @@
+const jwt = require("jsonwebtoken");
+
 const argon2 = require("@node-rs/argon2");
 const models = require("../models");
 
@@ -100,15 +102,24 @@ const login = (req, res) => {
       } else if (!argon2.verifySync(users[0].hashedPassword, password)) {
         res.sendStatus(404);
       } else {
-        const user = { ...users[0] };
-        delete user.hashedPassword;
+        const userData = { ...users[0] };
+        const token = jwt.sign(
+          {
+            id: userData.id,
+            role: userData.role,
+          },
+          process.env.JWT_SECRET,
+          { expiresIn: process.env.JWT_EXPIRESIN }
+        );
+        delete userData.hashedPassword;
         res
-          .cookie("token", "my super token", {
+          .cookie("accessToken", token, {
             httpOnly: true,
-            secure: false,
-            maxAge: 10000,
+            secure: process.env.JWT_SECURE === "true",
+            maxAge: parseInt(process.env.JWT_COOKIE_MAXAGE, 10),
           })
-          .json(user);
+          .status(200)
+          .json(userData);
       }
     })
     .catch((err) => {

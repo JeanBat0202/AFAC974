@@ -20,6 +20,7 @@ export default function AdminCreateArtType() {
     } else {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artTypes`, {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

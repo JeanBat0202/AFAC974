@@ -14,7 +14,12 @@ export default function ArtDetails() {
   const [favorites, setFavorites] = useState([]);
 
   const getOneArt = () => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/arts/${id}`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/arts/${id}`, {
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((resp) => resp.json())
       .then((data) => setArt(data));
   };
@@ -25,7 +30,12 @@ export default function ArtDetails() {
 
   const getOneFavorite = () => {
     if (user) {
-      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/favorites/${user.id}`)
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/favorites/${user.id}`, {
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
         .then((resp) => resp.json())
         .then((data) => setFavorites(data));
     }
@@ -42,6 +52,7 @@ export default function ArtDetails() {
 
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/favorites`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -67,6 +78,7 @@ export default function ArtDetails() {
 
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/favorites/${userId}`, {
       method: "DELETE",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
