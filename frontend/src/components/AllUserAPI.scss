@@ -4,13 +4,14 @@ section.user-be-container {
   align-items: center;
   width: 100%;
 }
+
 h1.user-title {
   font-family: "Bebas Neue";
   display: flex;
-  text-align: left;
   font-size: 30px;
   margin-top: 2%;
 }
+
 div.user-container {
   display: flex;
   flex-direction: column;
@@ -18,58 +19,54 @@ div.user-container {
   width: 80%;
   border: black 2px solid;
   margin-top: 2%;
-
   margin-bottom: 2%;
+
   ul.user {
     display: flex;
-    flex-direction: row;
     justify-content: space-around;
+    align-items: center;
     width: 100%;
-    margin-top: 2%;
-    li.unique-key {
+    height: 62px;
+
+    li {
       list-style: none;
+      text-align: center;
     }
+
+    li.firstname {
+      width: 150px;
+    }
+
     button.btn {
-      display: none;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      background: none;
+      color: #bc7c61;
     }
+
+    .trash {
+      width: 20px;
+    }
+
+    .pen {
+      color: #bc7c61;
+      font-size: 30px;
+    }
+
     @media screen and (min-width: 1024px) {
       ul.user {
-        flex-direction: column;
         width: 60%;
       }
-      li.unique-key {
+
+      li {
         font-size: 20px;
       }
-      button.btn p.pen {
-        font-size: 40px;
-      }
-      button.btn {
-        border: none;
-        display: flex;
-        cursor: pointer;
-        padding: 2px;
-        margin-bottom: 30px;
-        text-decoration: none;
-        font-size: 1.25rem;
-        font-family: "Bebas Neue";
-        background: none;
-        color: #bc7c61;
-      }
+
       a.btn p.pen {
         font-size: 40px;
       }
-      a.btn {
-        border: none;
-        display: flex;
-        cursor: pointer;
-        padding: 2px;
-        margin-bottom: 30px;
-        text-decoration: none;
-        font-size: 1.25rem;
-        font-family: "Bebas Neue";
-        background: none;
-        color: #bc7c61;
-      }
+
       button.btn img {
         width: 30px;
       }
