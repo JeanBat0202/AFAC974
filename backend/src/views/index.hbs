@@ -6,12 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Carte postale</title>
     <style>
-      div.container { text-align: center; } h1 { text-align: center; color: red;
-      text-decoration: underline; } ul { color: orange; list-style: none;
-      text-align: center; padding: 0; margin: 1rem auto; } ul li { display:
-      inline; margin: 0 1rem; } div.image-container { text-align: center; } img
-      { width: 50%; height: auto; border: 2px solid black; border-radius: 10px;
-      box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.34); }
+      div.container { text-align: center; } h2 { text-align: center; } div.image-container { text-align: center; } img
+      { width: 50%; height: auto;
+      box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.34); } a {text-decoration: none; color: #7F253E} p.message {background-color: #C4B29A; width: 50%; margin: 25 auto}
     </style>
   </head>
 
@@ -25,8 +22,8 @@
         ! Découvrez-la ci-dessous :</p>
       <div class="image-container">
         <figure>
-          <img src="cid:{{imageToSend}}" alt={{titleToSend}} />
-          <figcaption>{{titleToSend}}</figcaption>
+          <img src="cid:{{src}}" alt={{alt}} />
+          <figcaption>{{alt}}</figcaption>
         </figure>
       </div>
       <p>{{message}}</p>

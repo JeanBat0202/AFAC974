@@ -11,7 +11,6 @@ export default function SendPostCard() {
 
   const [favorite, setFavorite] = useState("");
   const [receiver, setReceiver] = useState("");
-  const [object, setObject] = useState("");
   const [message, setMessage] = useState("");
 
   const { id } = useParams();
@@ -34,8 +33,6 @@ export default function SendPostCard() {
     getOneFavorite();
   }, [id]);
 
-  const { firstname } = user.firstname;
-  const { lastname } = user.lastname;
   const imageToSend = favorite.image;
   const titleToSend = favorite.title;
 
@@ -47,23 +44,21 @@ export default function SendPostCard() {
     setReceiver(e.target.value);
   };
 
-  const handleChangeObject = (e) => {
-    setObject(e.target.value);
-  };
-
   const handleChangeMessage = (e) => {
     setMessage(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!receiver || !object || !message) {
+    const { firstname, lastname } = user;
+    if (!receiver || !message) {
       toast.alert("Veuillez remplir tous les champs obligatoires.");
     } else {
       fetch(
         `${import.meta.env.VITE_BACKEND_URL}/api/emails/send-mail-with-hbs`,
         {
           method: "POST",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
@@ -71,7 +66,6 @@ export default function SendPostCard() {
             receiver,
             firstname,
             lastname,
-            object,
             imageToSend,
             titleToSend,
             message,
@@ -110,17 +104,6 @@ export default function SendPostCard() {
                 id="receiver"
                 value={receiver}
                 onChange={handleChangeReceiver}
-              />
-            </label>
-            <p>
-              Objet <strong>*</strong>
-            </p>
-            <label htmlFor="object">
-              <input
-                type="text"
-                id="object"
-                value={object}
-                onChange={handleChangeObject}
               />
             </label>
             <p>
