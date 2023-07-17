@@ -18,15 +18,21 @@
   <body>
     <div class="container">
       <h1>Bonjour,</h1>
-      <p>{{firstname}} {{lastname}} vous a envoyé une carte postale depuis <a href={{link}}>{{linkName}}</a> ! Découvrez-la ci-dessous :</p>
+      <p>{{firstname}}
+        {{lastname}}
+        vous a envoyé une carte postale depuis
+        <a href={{link}}>{{linkName}}</a>
+        ! Découvrez-la ci-dessous :</p>
       <div class="image-container">
         <figure>
-        <img src="cid:{{imageToSend}}" alt={{titleToSend}} />
-        <figcaption>{{titleToSend}}</figcaption>
+          <img src="cid:{{imageToSend}}" alt={{titleToSend}} />
+          <figcaption>{{titleToSend}}</figcaption>
         </figure>
       </div>
       <p>{{message}}</p>
-      <a href={{link}}>Envoyez vous-même une carte postale en vous connectant sur {{linkName}}</a>
+      <a href={{link}}>Envoyez vous-même une carte postale en vous connectant
+        sur
+        {{linkName}}</a>
     </div>
   </body>
 

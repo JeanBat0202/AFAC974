@@ -53,20 +53,20 @@ function HomeHexagone() {
                 alt="Quartier St Pierre. Etablissement de la Rivière, montagnes de l'Entre Deux"
               />
             </Link>
-            <Link className={style.link} to="/galerie/12">
+            <Link className={style.link} to="/galerie/30">
               <img
                 src={`${
                   import.meta.env.VITE_ASSETS_IMAGES_URL
-                }/arts/1689170452179-arts-40FI91.jpg`}
-                alt="Boutchiana- Casernes"
+                }/arts/1689172654712-arts-40FI53.1.jpg`}
+                alt="Caille de Bourbon"
               />
             </Link>
-            <Link className={style.link} to="/galerie/13">
+            <Link className={style.link} to="/galerie/27">
               <img
                 src={`${
                   import.meta.env.VITE_ASSETS_IMAGES_URL
-                }/arts/1689170502842-arts-40FI90.jpg`}
-                alt="Boutchiana-Casernes, de face"
+                }/arts/1689172211625-arts-40FI105bis.jpg`}
+                alt="Le volcan de Bourbon vu du Pas de Bellecombre"
               />
             </Link>
           </div>

@@ -62,6 +62,9 @@ export default function profileUpdater() {
       })
         .then(() => {
           navigate(`/utilisateur/${user.id}`);
+          toast.success("Les modifications ont bien été prises en compte.", {
+            duration: 4000,
+          });
         })
         .catch(() => {
           toast.alert("Une erreur s'est produite, veuillez réessayer.");
