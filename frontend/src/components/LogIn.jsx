@@ -35,7 +35,9 @@ function LogIn() {
           password,
         }),
       })
-        .then((res) => res.json())
+        .then((res) => {
+          return res.json();
+        })
         .then((data) => {
           console.warn(data);
           dispatch({ type: "SET_USER", payload: data });

@@ -13,7 +13,12 @@ export default function Profile() {
   const { id } = useParams();
 
   const getOneUserConnected = () => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/${id}`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/${id}`, {
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((resp) => resp.json())
       .then((data) => setUserConnected(data));
   };
