@@ -14,15 +14,31 @@ export default function Profile() {
   const { id } = useParams();
 
   const getOneUserConnected = () => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/${id}`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/${id}`, {
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((resp) => resp.json())
-      .then((data) => setUserConnected(data));
+      .then((data) => setUserConnected(data))
+      .catch((err) => {
+        console.error("get_user", err);
+      });
   };
 
   const getFavorites = () => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/favorites/${id}`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/favorites/${id}`, {
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((resp) => resp.json())
-      .then((data) => setFavorites(data));
+      .then((data) => setFavorites(data))
+      .catch((err) => {
+        console.error("get_favorite", err);
+      });
   };
 
   useEffect(() => {

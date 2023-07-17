@@ -12,6 +12,7 @@ export default function PrivatePartForGallery({ authorizedRoles, artId }) {
     if (confirm("Êtes-vous sûr de vouloir supprimer cette œuvre ?")) {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/arts/${artId}`, {
         method: "DELETE",
+        credentials: "include",
       })
         .then(() => navigate("/galerie"))
         .catch((err) => console.error(err));

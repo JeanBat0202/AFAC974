@@ -7,7 +7,12 @@ export default function GalleryDisplay() {
   const [currentCat, setCurrentCat] = useState("Tout");
 
   const getArts = () => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/arts/`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/arts/`, {
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((resp) => resp.json())
       .then((data) => setArtList(data))
       .catch((error) => console.error(error));

@@ -5,7 +5,12 @@ export default function AllUser() {
   const [userList, setUserList] = useState([]);
 
   const getUsers = () => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/`, {
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((resp) => resp.json())
       .then((data) => setUserList(data))
       .catch((error) => console.error(error));

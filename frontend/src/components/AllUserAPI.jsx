@@ -12,6 +12,7 @@ function AllUserAPI({ id, userFirstname, lastname }) {
     if (confirm("Etes-vous sûr de vouloir supprimer l'utilisateur ?")) {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/${id}`, {
         method: "DELETE",
+        credentials: "include",
       })
         .then(() => {
           navigate("/admin");

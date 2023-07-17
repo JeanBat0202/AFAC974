@@ -9,7 +9,12 @@ export default function Author() {
   const { id } = useParams();
 
   const getOneAuthor = () => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/authors/${id}`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/authors/${id}`, {
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((resp) => resp.json())
       .then((data) => setAuthor(data));
   };

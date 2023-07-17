@@ -17,7 +17,12 @@ export default function SendPostCard() {
   const { id } = useParams();
 
   const getOneFavorite = () => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/favorites/by-fav/${id}`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/favorites/by-fav/${id}`, {
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         setFavorite(data[0]);
