@@ -46,7 +46,7 @@ class UserManager extends AbstractManager {
 
   findAll() {
     return this.database.query(
-      `SELECT u.id, u.firstname AS userFirstname, u.lastname, u.email, u.role_id AS role_id, r.name FROM ${this.table} AS u JOIN role AS r ON r.id = u.role_id `
+      `SELECT u.id, u.firstname AS userFirstname, u.lastname, u.email, u.role_id AS role_id, r.name FROM ${this.table} AS u JOIN role AS r ON r.id = u.role_id`
     );
   }
 

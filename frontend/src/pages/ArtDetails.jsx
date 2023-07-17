@@ -1,4 +1,5 @@
 import { Tooltip } from "react-tooltip";
+import toast, { Toaster } from "react-hot-toast";
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useUserContext } from "../context/UserContext";
@@ -13,7 +14,12 @@ export default function ArtDetails() {
   const [favorites, setFavorites] = useState([]);
 
   const getOneArt = () => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/arts/${id}`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/arts/${id}`, {
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((resp) => resp.json())
       .then((data) => setArt(data));
   };
@@ -24,7 +30,12 @@ export default function ArtDetails() {
 
   const getOneFavorite = () => {
     if (user) {
-      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/favorites/${user.id}`)
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/favorites/${user.id}`, {
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
         .then((resp) => resp.json())
         .then((data) => setFavorites(data));
     }
@@ -41,6 +52,7 @@ export default function ArtDetails() {
 
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/favorites`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -49,10 +61,11 @@ export default function ArtDetails() {
         artId,
       }),
     })
-      .then((resp) => resp.json())
-      .then((data) => {
+      .then(() => {
+        toast.success("L'œuvre a été ajoutée aux favoris !", {
+          duration: 4000,
+        });
         setIsOnFavorite(true);
-        console.info(data);
       })
       .catch((error) => {
         console.error(error);
@@ -65,6 +78,7 @@ export default function ArtDetails() {
 
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/favorites/${userId}`, {
       method: "DELETE",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -73,10 +87,11 @@ export default function ArtDetails() {
         artId,
       }),
     })
-      .then((resp) => resp.json())
-      .then((data) => {
+      .then(() => {
+        toast.success("L'œuvre a été retirée des favoris !", {
+          duration: 4000,
+        });
         setIsOnFavorite(false);
-        console.info(data);
       })
       .catch((error) => {
         console.error(error);
@@ -100,6 +115,9 @@ export default function ArtDetails() {
 
   return (
     <>
+      <div>
+        <Toaster position="bottom-center" />
+      </div>
       <div className="linkbutton">
         <Link className="returnbutton" to="/galerie">
           <strong className="back-to-gallery">
@@ -153,7 +171,7 @@ export default function ArtDetails() {
                         : "Add to favorites"
                     }
                     data-tooltip-id="my-tooltip"
-                    data-tooltip-content="Ajouter l'oeuvre aux favoris"
+                    data-tooltip-content="Ajouter l'œuvre aux favoris"
                   />
                   <Tooltip id="my-tooltip" />
                 </button>
@@ -186,14 +204,16 @@ export default function ArtDetails() {
                         : "Remove from favorites"
                     }
                     data-tooltip-id="my-tooltip"
-                    data-tooltip-content="Retirer l'oeuvre des favoris"
+                    data-tooltip-content="Retirer l'œuvre des favoris"
                   />
                   <Tooltip id="my-tooltip" />
                 </button>
               ))}{" "}
           </h1>
           <h2 className="ArtDimension">
-            ({art.width}x{art.height}cm) - {art.type}
+            {art.width && art.height
+              ? `(${art.width}x${art.height}cm) - ${art.type}`
+              : `${art.type}`}
           </h2>
           <p className="ArtStory">{art.about}</p>
         </div>

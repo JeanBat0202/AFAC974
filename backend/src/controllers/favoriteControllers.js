@@ -12,11 +12,29 @@ const browse = (req, res) => {
     });
 };
 
-const read = (req, res) => {
+const browseByUser = (req, res) => {
   const userId = req.params.id;
 
   models.favorite
     .findByUser(userId)
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.sendStatus(404);
+      } else {
+        res.send(rows);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const read = (req, res) => {
+  const favId = req.params.id;
+
+  models.favorite
+    .find(favId)
     .then(([rows]) => {
       if (rows[0] == null) {
         res.sendStatus(404);
@@ -87,6 +105,7 @@ const destroy = (req, res) => {
 
 module.exports = {
   browse,
+  browseByUser,
   read,
   edit,
   add,

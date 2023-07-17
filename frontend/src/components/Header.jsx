@@ -14,8 +14,25 @@ export default function Header() {
   const showSidebar = () => setSideBar(!sidebar);
 
   const [{ user }, dispatch] = useUserContext();
-  const handleLogout = () => {
-    dispatch({ type: "RESET_USER" });
+  const handleLogout = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/users/logout`,
+        {
+          credentials: "include",
+        }
+      );
+
+      if (response.ok) {
+        dispatch({ type: "RESET_USER" });
+      } else {
+        const errorData = await response.json();
+        alert(errorData, "error");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("An error occurred while logging out.", "error");
+    }
   };
 
   return (
@@ -47,7 +64,7 @@ export default function Header() {
           {user ? (
             <Link to={`/utilisateur/${user.id}`}>
               <div className="useraccountconnected">
-                Bonjour {user.firstname} {user.lastname}
+                {user.firstname} {user.lastname}
               </div>
             </Link>
           ) : null}

@@ -1,5 +1,6 @@
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { useUserContext } from "../context/UserContext";
 import "./ProfileUpdater.scss";
 
@@ -15,6 +16,7 @@ export default function profileUpdater() {
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/${id}`, {
       method: "GET",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -26,7 +28,7 @@ export default function profileUpdater() {
         setEmail(data.email);
       })
       .catch(() => {
-        alert("Error to modify your account, please try again!!!");
+        toast.alert("Une erreur s'est produite, veuillez réessayer.");
       });
   }, []);
 
@@ -47,6 +49,7 @@ export default function profileUpdater() {
     if (firstname && lastname && email) {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/${id}`, {
         method: "PUT",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -54,16 +57,17 @@ export default function profileUpdater() {
           firstname,
           lastname,
           email,
+          role_id: user.role_id,
         }),
       })
         .then(() => {
           navigate(`/utilisateur/${user.id}`);
         })
         .catch(() => {
-          alert("Error to modify your account, please try again!!!");
+          toast.alert("Une erreur s'est produite, veuillez réessayer.");
         });
     } else {
-      alert("Veullez remplir tous les champs !!!!");
+      toast.error("Veuillez remplir tous les champs !!!!");
     }
   };
 

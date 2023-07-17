@@ -20,13 +20,24 @@ export default function Profile() {
       },
     })
       .then((resp) => resp.json())
-      .then((data) => setUserConnected(data));
+      .then((data) => setUserConnected(data))
+      .catch((err) => {
+        console.error("get_user", err);
+      });
   };
 
   const getFavorites = () => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/favorites/${id}`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/favorites/${id}`, {
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((resp) => resp.json())
-      .then((data) => setFavorites(data));
+      .then((data) => setFavorites(data))
+      .catch((err) => {
+        console.error("get_favorite", err);
+      });
   };
 
   useEffect(() => {
@@ -58,7 +69,7 @@ export default function Profile() {
       <h2>galerie personnelle</h2>
       {!favorites ? (
         <p className="NoFavorites">
-          Vous n'avez pas ajouté d'oeuvres à vos favoris
+          Vous n'avez pas ajouté d'œuvres à vos favoris
         </p>
       ) : (
         <span className={style.span}>

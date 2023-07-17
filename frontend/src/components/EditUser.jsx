@@ -1,4 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
 import "./EditUser.scss";
 
@@ -12,6 +13,7 @@ export default function EditUser() {
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/${id}`, {
       method: "GET",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -23,7 +25,7 @@ export default function EditUser() {
         setEmail(data.email);
       })
       .catch(() => {
-        alert("Error to modify your account, please try again!!!");
+        toast.alert("Erreur lors des modifications. Veuillez réessayer");
       });
   }, []);
 
@@ -44,6 +46,7 @@ export default function EditUser() {
     if (firstname && lastname && email) {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/${id}`, {
         method: "PUT",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -58,11 +61,14 @@ export default function EditUser() {
           navigate(`/alluser`);
         })
         .catch(() => {
-          alert("Error to modify your account, please try again!!!");
+          toast.alert("Erreur lors des modifications. Veuillez réessayer");
         });
     } else {
-      alert("Veullez remplir tous les champs !!!!");
+      toast.alert("Veullez remplir tous les champs !!!!");
     }
+    toast.success("Les modifications ont bien été prises en compte.", {
+      duration: 2000,
+    });
   };
 
   const renderForm = (
@@ -108,11 +114,16 @@ export default function EditUser() {
     </div>
   );
   return (
-    <div className="app-edit-user">
-      <div className="login-form-edit-user">
-        <div className="title-edit-user">Modifier</div>
-        {renderForm}
+    <>
+      <div>
+        <Toaster position="bottom-center" />
       </div>
-    </div>
+      <div className="app-edit-user">
+        <div className="login-form-edit-user">
+          <div className="title-edit-user">Modifier</div>
+          {renderForm}
+        </div>
+      </div>
+    </>
   );
 }

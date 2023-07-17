@@ -1,11 +1,39 @@
 const router = require("express").Router();
 
 const authorControllers = require("../controllers/authorControllers");
+const uploadAuthorImageControllers = require("../controllers/uploadAuthorImageControllers");
+const AuthController = require("../controllers/AuthController");
 
-router.get("/", authorControllers.browse);
-router.get("/:id", authorControllers.read);
-router.put("/:id", authorControllers.edit);
-router.post("/", authorControllers.add);
-router.delete("/:id", authorControllers.destroy);
+router.get(
+  "/",
+  AuthController.isUserConnected,
+  AuthController.isUserAdmin,
+  authorControllers.browse
+);
+router.get(
+  "/:id",
+  AuthController.isUserConnected,
+  AuthController.isUserAdmin,
+  authorControllers.read
+);
+router.put(
+  "/:id",
+  AuthController.isUserConnected,
+  AuthController.isUserAdmin,
+  authorControllers.edit
+);
+router.post(
+  "/",
+  AuthController.isUserConnected,
+  AuthController.isUserAdmin,
+  uploadAuthorImageControllers.uploadDataImage,
+  authorControllers.add
+);
+router.delete(
+  "/:id",
+  AuthController.isUserConnected,
+  AuthController.isUserAdmin,
+  authorControllers.destroy
+);
 
 module.exports = router;

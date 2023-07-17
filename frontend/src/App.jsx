@@ -8,9 +8,13 @@ import AboutPage from "./pages/AboutPage";
 import GalleryDisplay from "./pages/GalleryDisplay";
 import ArtDetails from "./pages/ArtDetails";
 import User from "./pages/User";
+import SendPostCard from "./components/SendPostCard";
 import Admin from "./pages/Admin";
 import AdminCreateArt from "./pages/AdminCreateArt";
 import AdminEditArt from "./pages/AdminEditArt";
+import AdminCreateAuthor from "./pages/AdminCreateAuthor";
+import AdminCreateArtType from "./pages/AdminCreateArtType";
+import AdminCreateCategory from "./pages/AdminCreateCategory";
 import Author from "./components/Author";
 import Connection from "./pages/Connection";
 import SignUp from "./components/SignUp";
@@ -54,11 +58,24 @@ function App() {
             <Route path="/utilisateur" element={<User />} />
             <Route path="/modification/:id" element={<ProfileUpdater />} />
             <Route path="/utilisateur/:id" element={<User />} />
+            <Route path="/send-post-card/:id" element={<SendPostCard />} />
           </Route>
           <Route path="/" element={<PrivateRoutes authorizedRoles={[1]} />}>
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin-create-art" element={<AdminCreateArt />} />
             <Route path="/admin-edit-art/:id" element={<AdminEditArt />} />
+            <Route
+              path="/admin-create-author"
+              element={<AdminCreateAuthor />}
+            />
+            <Route
+              path="/admin-create-art-type"
+              element={<AdminCreateArtType />}
+            />
+            <Route
+              path="/admin-create-category"
+              element={<AdminCreateCategory />}
+            />
             <Route path="/alluser" element={<AllUser />} />
             <Route path="/admin-edit-user/:id" element={<EditUser />} />
           </Route>
