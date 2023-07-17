@@ -58,6 +58,7 @@ export default function SendPostCard() {
         `${import.meta.env.VITE_BACKEND_URL}/api/emails/send-mail-with-hbs`,
         {
           method: "POST",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
