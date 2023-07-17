@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from "../context/UserContext";
 import "./LogIn.scss";
@@ -22,7 +23,7 @@ function LogIn() {
     e.preventDefault();
 
     if (!email || !password) {
-      alert("You must provide an email and a password!!!!");
+      toast.error("Vous devez fournir un email et un mot de passe !!");
     } else {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/login`, {
         method: "POST",
@@ -36,13 +37,15 @@ function LogIn() {
         }),
       })
         .then((res) => res.json())
+        .then(toast.success("Bienvenue !", { duration: 4000 }))
         .then((data) => {
-          console.warn(data);
           dispatch({ type: "SET_USER", payload: data });
           navigate(`/`);
         })
         .catch(() => {
-          alert("Error to login, please try again!!!");
+          toast.error(
+            "Identifiant et/ou mot de passe incorrect. Veuillez réessayer"
+          );
         });
     }
   };
@@ -83,13 +86,18 @@ function LogIn() {
     </div>
   );
   return (
-    <div className="app">
-      <div className="login-form">
-        <div className="title"> Connexion </div>
-        {renderForm}
+    <>
+      <div>
+        <Toaster position="bottom-center" />
       </div>
-      <div className="hexagone" />
-    </div>
+      <div className="app">
+        <div className="login-form">
+          <div className="title"> Connexion </div>
+          {renderForm}
+        </div>
+        <div className="hexagone" />
+      </div>
+    </>
   );
 }
 

@@ -94,18 +94,28 @@ figure > img {
     margin-top: 0;
     margin-left: 0;
     margin-right: 0;
+    overflow: hidden;
   }
   .image-container figcaption {
-    visibility: hidden;
-    opacity: 0;
-  }
-  .image-container:hover figcaption {
     display: flex;
     justify-content: space-between;
-    visibility: visible;
-    opacity: 1;
-    bottom: 0;
+    bottom: -100%;
+    transition: bottom 0s ease-in-out;
   }
+
+  .image-container:hover figcaption.only-link {
+    justify-content: end;
+    bottom: 0;
+    transition: bottom 0.5s ease-in-out;
+  }
+
+  .image-container:hover figcaption {
+    // display: flex;
+    justify-content: space-between;
+    bottom: 0;
+    transition: bottom 0.5s ease-in-out;
+  }
+
   .container {
     column-count: 3;
   }
