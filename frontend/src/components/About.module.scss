@@ -66,7 +66,7 @@ h2 {
     background: linear-gradient(
       90deg,
       rgb(198, 131, 150) 0%,
-        rgba(225, 64, 110, 0.351) 100%
+      rgba(225, 64, 110, 0.351) 100%
     );
     z-index: -1;
   }
@@ -145,22 +145,23 @@ h2 {
       display: block;
       margin: 1rem;
     }
-  
 
-     .hexagone {
-       position: absolute;
-       bottom: -90px;
-       right: -54px;
-       width: 200px;
-       height: 200px;
-       transform: rotate(43deg);
-       clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-       background: linear-gradient(90deg,
-           rgba(127, 37, 62, 1) 0%,
-           rgba(127, 37, 62, 0.3505996148459384) 100% );
-       z-index: -1;
-     }
-}
+    .hexagone {
+      position: absolute;
+      bottom: -90px;
+      right: -54px;
+      width: 200px;
+      height: 200px;
+      transform: rotate(43deg);
+      clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+      background: linear-gradient(
+        90deg,
+        rgba(127, 37, 62, 1) 0%,
+        rgba(127, 37, 62, 0.3505996148459384) 100%
+      );
+      z-index: -1;
+    }
+  }
 }
 
 @media screen and (min-width: 1024px) {
