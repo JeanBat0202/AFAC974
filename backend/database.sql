@@ -558,7 +558,7 @@ CREATE TABLE `author` (
   `death_date` int DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE = InnoDB AUTO_INCREMENT = 4 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 
 /*!40101 SET character_set_client = @saved_cs_client */
 ;
@@ -579,10 +579,10 @@ VALUES
     'Hippolyte Charles Napoléon',
     'Mortier',
     'Duc de Trévise',
-    'Fils de Napoléon Mortier de Trévise (1804-1869), 2e duc de Trévise et de la duchesse née Anne-Marie Lecomte-Stuart (1808-1870), il hérite du château de Sceaux en, 1869, en indivision avec ses frères et sœurs mais il cède ses parts à son frère, Jean-François Hippolyte Mortier, marquis de Trévise qui reste seul propriétaire du domaine. ',
-    '1835',
-    NULL,
-    NULL
+    'Fils de Napoléon Mortier de Trévise (1804-1869), 2e duc de Trévise et de la duchesse née Anne-Marie Lecomte-Stuart (1808-1870), il hérite du château de Sceaux en, 1869, en indivision avec ses frères et sœurs mais il cède ses parts à son frère, Jean-François Hippolyte Mortier, marquis de Trévise qui reste seul propriétaire du domaine.',
+    1835,
+    1892,
+    '1689364383409-authors-Hippolyte.jpeg'
   );
 
 /*!40000 ALTER TABLE `author` ENABLE KEYS */
@@ -643,8 +643,10 @@ DROP TABLE IF EXISTS `favorite`;
 ;
 
 CREATE TABLE `favorite` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `art_id` int NOT NULL,
+  PRIMARY KEY (`id`),
   KEY `fk_favorite_user` (`user_id`),
   KEY `fk_favorite_art` (`art_id`),
   CONSTRAINT `fk_favorite_art` FOREIGN KEY (`art_id`) REFERENCES `art` (`id`) ON DELETE CASCADE,
@@ -818,4 +820,4 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */
 ;
 
--- Dump completed on 2023-07-12 16:58:57
+-- Dump completed on 2023-07-14 21:55:15

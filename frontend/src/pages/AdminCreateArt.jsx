@@ -107,7 +107,9 @@ export default function AdminCreateArt() {
     if (!Number.isNaN(authorIdToUpdate)) {
       setAuthorId(authorIdToUpdate);
     } else {
-      toast.alert("Ce champ est requis, veuillez sélectionner un auteur");
+      toast.error(
+        'Le champ "Auteur" est requis, veuillez sélectionner un auteur'
+      );
     }
   };
 
@@ -117,7 +119,7 @@ export default function AdminCreateArt() {
     if (imageTypes.includes(fileSelected.type)) {
       setImage(e.target.files[0]);
     } else {
-      toast.alert("Votre image doit être au format .jpeg, .jpg ou .png.");
+      toast.error("Votre image doit être au format .jpeg, .jpg ou .png.");
     }
   };
 
@@ -139,7 +141,9 @@ export default function AdminCreateArt() {
     if (!Number.isNaN(yearToUpdate)) {
       setYear(yearToUpdate);
     } else {
-      toast.alert("Ce champ est requis, veuillez renseigner une valeur");
+      toast.error(
+        'Le champ "Année" est requis, veuillez renseigner une valeur'
+      );
     }
   };
 
@@ -152,7 +156,9 @@ export default function AdminCreateArt() {
     ) {
       setArtTypeId(artTypeIdToUpdate);
     } else {
-      toast.alert("Ce champ est requis, veuillez sélectionner un type d'œuvre");
+      toast.error(
+        'Le champ "Technique" est requis, veuillez sélectionner un type d\'œuvre'
+      );
     }
   };
 
@@ -162,7 +168,7 @@ export default function AdminCreateArt() {
     if (!Number.isNaN(widthToUpdate)) {
       setWidth(widthToUpdate);
     } else {
-      toast.alert("Ce champ est requis, veuillez renseigner une valeur");
+      toast.error("Veuillez vérifier votre saisie.");
     }
   };
 
@@ -172,7 +178,7 @@ export default function AdminCreateArt() {
     if (!Number.isNaN(heightToUpdate, 10)) {
       setHeight(heightToUpdate);
     } else {
-      toast.alert("Ce champ est requis, veuillez renseigner une valeur");
+      toast.error("Veuillez vérifier votre saisie.");
     }
   };
 
@@ -185,7 +191,9 @@ export default function AdminCreateArt() {
     ) {
       setCategoryId(categoryIdToUpdate);
     } else {
-      toast.alert("Ce champ est requis, veuillez sélectionner une catégorie");
+      toast.error(
+        'Le champ "Catégorie" est requis, veuillez sélectionner une catégorie'
+      );
     }
   };
 
@@ -251,7 +259,7 @@ export default function AdminCreateArt() {
         .then((res) => res.json())
         .then((data) => {
           navigate(`/galerie/${data.id}`);
-          toast.success("L'oeuvres a été ajouté !", {
+          toast.success("L'œuvre a été ajoutée !", {
             duration: 4000,
           });
         })
@@ -311,7 +319,7 @@ export default function AdminCreateArt() {
               <select name="authorId" onChange={handleChangeAuthorId}>
                 <option value="">Veuillez sélectionner un auteur</option>
                 {authors.map((author) => (
-                  <option value={author.id}>
+                  <option value={author.id} key={author.id}>
                     {author.authorAlias} {author.firstname} {author.lastname}
                   </option>
                 ))}
@@ -333,13 +341,18 @@ export default function AdminCreateArt() {
               <select name="day" onChange={handleChangeDay}>
                 <option value="">Jour</option>
                 {allDays.map((daySelected) => (
-                  <option value={daySelected}>{daySelected}</option>
+                  <option value={daySelected} key={daySelected}>
+                    {daySelected}
+                  </option>
                 ))}
               </select>
               <select name="month" onChange={handleChangeMonth}>
                 <option value="">Mois</option>
                 {allMonths.map((monthSelected) => (
-                  <option value={monthSelected.monthNumber}>
+                  <option
+                    value={monthSelected.monthNumber}
+                    key={monthSelected.monthNumber}
+                  >
                     {monthSelected.monthName}
                   </option>
                 ))}
@@ -347,7 +360,9 @@ export default function AdminCreateArt() {
               <select name="year" onChange={handleChangeYear}>
                 <option value="">Année *</option>
                 {allYears.map((yearSelected) => (
-                  <option value={yearSelected}>{yearSelected}</option>
+                  <option value={yearSelected} key={yearSelected}>
+                    {yearSelected}
+                  </option>
                 ))}
               </select>
             </label>
@@ -358,7 +373,9 @@ export default function AdminCreateArt() {
               <select name="artTypeId" onChange={handleChangeArtTypeId}>
                 <option value="">Veuillez sélectionner une technique</option>
                 {artTypes.map((artType) => (
-                  <option value={artType.id}>{artType.type}</option>
+                  <option value={artType.id} key={artType.id}>
+                    {artType.type}
+                  </option>
                 ))}
               </select>
               <div className="to-add-data">
@@ -397,7 +414,9 @@ export default function AdminCreateArt() {
               <select name="categoryId" onChange={handleChangeCategoryId}>
                 <option value="">Veuillez sélectionner une catégorie</option>
                 {categories.map((category) => (
-                  <option value={category.id}>{category.catName}</option>
+                  <option value={category.id} key={category.id}>
+                    {category.catName}
+                  </option>
                 ))}
               </select>
               <div className="to-add-data">

@@ -53,13 +53,13 @@ function SignUp() {
         })
         .then(
           toast.success(
-            "Le compte a été créée avec succes ! Veuillez vous connecter",
+            "Le compte a été créé avec succès ! Veuillez vous connecter.",
             { duration: 3000 }
           )
         )
         .catch(() => {
           toast.error(
-            "Erreur lors de la création du compte. Veuillez réesayer"
+            "Erreur lors de la création du compte. Veuillez réessayer."
           );
         });
     }

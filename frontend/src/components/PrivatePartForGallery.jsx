@@ -9,7 +9,7 @@ export default function PrivatePartForGallery({ authorizedRoles, artId }) {
   const [{ user }] = useUserContext();
 
   const deleteArt = () => {
-    if (confirm("Êtes-vous sûr de vouoir supprimer cette œuvre ?")) {
+    if (confirm("Êtes-vous sûr de vouloir supprimer cette œuvre ?")) {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/arts/${artId}`, {
         method: "DELETE",
       })

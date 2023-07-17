@@ -34,7 +34,6 @@ export default function AdminEditArt() {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/arts/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.info(data);
         setImagePath(data.image ? data.image : "");
         setImageRef(data.imageRef ? data.imageRef : "");
         setTitle(data.title ? data.title : "");
@@ -156,7 +155,7 @@ export default function AdminEditArt() {
     if (!Number.isNaN(yearToUpdate)) {
       setYear(yearToUpdate);
     } else {
-      toast.alert("Ce champ est requis, veuillez renseigner une valeur");
+      toast.alert("Ce champ est requis, veuillez renseigner une valeur.");
     }
   };
 
@@ -169,7 +168,9 @@ export default function AdminEditArt() {
     ) {
       setArtTypeId(artTypeIdToUpdate);
     } else {
-      toast.alert("Ce champ est requis, veuillez sélectionner un type d'œuvre");
+      toast.alert(
+        "Ce champ est requis, veuillez sélectionner un type d'œuvre."
+      );
     }
   };
 
@@ -179,7 +180,7 @@ export default function AdminEditArt() {
     if (!Number.isNaN(widthToUpdate)) {
       setWidth(widthToUpdate);
     } else {
-      toast.alert("Ce champ est requis, veuillez renseigner une valeur");
+      toast.alert("Veuillez vérifier votre saisie.");
     }
   };
 
@@ -189,7 +190,7 @@ export default function AdminEditArt() {
     if (!Number.isNaN(heightToUpdate, 10)) {
       setHeight(heightToUpdate);
     } else {
-      toast.alert("Ce champ est requis, veuillez renseigner une valeur");
+      toast.alert("Veuillez vérifier votre saisie.");
     }
   };
 
@@ -233,9 +234,7 @@ export default function AdminEditArt() {
       modelData.append("imageRef", imageRef);
       modelData.append("title", title);
       modelData.append("image", imageFile);
-      modelData.append("year", year || null);
-      modelData.append("width", width);
-      modelData.append("height", height);
+      modelData.append("year", year);
       modelData.append("authorId", authorId);
       modelData.append("artTypeId", artTypeId);
       modelData.append("categoryId", categoryId);
@@ -247,6 +246,12 @@ export default function AdminEditArt() {
       }
       if (month) {
         modelData.append("month", month);
+      }
+      if (width) {
+        modelData.append("width", width);
+      }
+      if (height) {
+        modelData.append("height", height);
       }
       if (about) {
         modelData.append("about", about);
@@ -295,7 +300,7 @@ export default function AdminEditArt() {
       })
         .then(() => {
           navigate(`/galerie/${id}`);
-          toast.success("L'oeuvre a bien été mise à jour !", {
+          toast.success("L'œuvre a bien été mise à jour !", {
             duration: 4000,
           });
         })
@@ -359,7 +364,7 @@ export default function AdminEditArt() {
               >
                 <option value="">Veuillez sélectionner un auteur</option>
                 {authors.map((author) => (
-                  <option value={author.id}>
+                  <option value={author.id} key={author.id}>
                     {author.firstname} {author.lastname}
                   </option>
                 ))}
@@ -383,13 +388,18 @@ export default function AdminEditArt() {
               <select name="day" value={day} onChange={handleChangeDay}>
                 <option value="">Jour</option>
                 {allDays.map((daySelected) => (
-                  <option value={daySelected}>{daySelected}</option>
+                  <option value={daySelected} key={daySelected}>
+                    {daySelected}
+                  </option>
                 ))}
               </select>
               <select name="month" value={month} onChange={handleChangeMonth}>
                 <option value="">Mois</option>
                 {allMonths.map((monthSelected) => (
-                  <option value={monthSelected.monthNumber}>
+                  <option
+                    value={monthSelected.monthNumber}
+                    key={monthSelected.monthNumber}
+                  >
                     {monthSelected.monthName}
                   </option>
                 ))}
@@ -397,7 +407,9 @@ export default function AdminEditArt() {
               <select name="year" value={year} onChange={handleChangeYear}>
                 <option value="">Année *</option>
                 {allYears.map((yearSelected) => (
-                  <option value={yearSelected}>{yearSelected}</option>
+                  <option value={yearSelected} key={yearSelected}>
+                    {yearSelected}
+                  </option>
                 ))}
               </select>
             </label>
@@ -412,13 +424,13 @@ export default function AdminEditArt() {
               >
                 <option value="">Veuillez sélectionner une technique</option>
                 {artTypes.map((artType) => (
-                  <option value={artType.id}>{artType.type}</option>
+                  <option value={artType.id} key={artType.id}>
+                    {artType.type}
+                  </option>
                 ))}
               </select>
             </label>
-            <p>
-              Dimensions <strong>*</strong>
-            </p>
+            <p>Dimensions</p>
             <label htmlFor="dimensions" className="dimensions-label">
               <input
                 type="number"
@@ -452,7 +464,9 @@ export default function AdminEditArt() {
               >
                 <option value="">Veuillez sélectionner une catégorie</option>
                 {categories.map((category) => (
-                  <option value={category.id}>{category.catName}</option>
+                  <option value={category.id} key={category.id}>
+                    {category.catName}
+                  </option>
                 ))}
               </select>
             </label>

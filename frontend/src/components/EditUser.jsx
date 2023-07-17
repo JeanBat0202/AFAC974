@@ -64,7 +64,7 @@ export default function EditUser() {
     } else {
       toast.alert("Veullez remplir tous les champs !!!!");
     }
-    toast.success("Les modifications ont bien été prise en compte.", {
+    toast.success("Les modifications ont bien été prises en compte.", {
       duration: 2000,
     });
   };

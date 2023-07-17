@@ -27,7 +27,7 @@ export default function profileUpdater() {
         setEmail(data.email);
       })
       .catch(() => {
-        toast.alert("Error to modify your account, please try again!!!");
+        toast.alert("Une erreur s'est produite, veuillez réessayer.");
       });
   }, []);
 
@@ -61,10 +61,10 @@ export default function profileUpdater() {
           navigate(`/utilisateur/${user.id}`);
         })
         .catch(() => {
-          toast.alert("Error to modify your account, please try again!!!");
+          toast.alert("Une erreur s'est produite, veuillez réessayer.");
         });
     } else {
-      toast.error("Veullez remplir tous les champs !!!!");
+      toast.error("Veuillez remplir tous les champs !!!!");
     }
   };
 

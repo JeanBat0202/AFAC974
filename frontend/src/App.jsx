@@ -7,6 +7,7 @@ import AboutPage from "./pages/AboutPage";
 import GalleryDisplay from "./pages/GalleryDisplay";
 import ArtDetails from "./pages/ArtDetails";
 import User from "./pages/User";
+import SendPostCard from "./components/SendPostCard";
 import Admin from "./pages/Admin";
 import AdminCreateArt from "./pages/AdminCreateArt";
 import AdminEditArt from "./pages/AdminEditArt";
@@ -36,6 +37,7 @@ function App() {
             <Route path="/utilisateur" element={<User />} />
             <Route path="/modification/:id" element={<ProfileUpdater />} />
             <Route path="/utilisateur/:id" element={<User />} />
+            <Route path="/send-post-card/:id" element={<SendPostCard />} />
           </Route>
           <Route path="/" element={<PrivateRoutes authorizedRoles={[1]} />}>
             <Route path="/admin" element={<Admin />} />
