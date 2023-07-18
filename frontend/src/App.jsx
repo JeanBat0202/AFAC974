@@ -11,9 +11,9 @@ import SendPostCard from "./components/SendPostCard";
 import Admin from "./pages/Admin";
 import AdminCreateArt from "./pages/AdminCreateArt";
 import AdminEditArt from "./pages/AdminEditArt";
-import AdminCreateAuthor from "./pages/AdminCreateAuthor";
-import AdminCreateArtType from "./pages/AdminCreateArtType";
-import AdminCreateCategory from "./pages/AdminCreateCategory";
+// import AdminCreateAuthor from "./components/AdminCreateAuthor";
+// import AdminCreateArtType from "./components/AdminCreateArtType";
+// import AdminCreateCategory from "./components/AdminCreateCategory";
 import Author from "./components/Author";
 import Connection from "./pages/Connection";
 import SignUp from "./components/SignUp";
@@ -43,7 +43,7 @@ function App() {
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin-create-art" element={<AdminCreateArt />} />
             <Route path="/admin-edit-art/:id" element={<AdminEditArt />} />
-            <Route
+            {/* <Route
               path="/admin-create-author"
               element={<AdminCreateAuthor />}
             />
@@ -54,7 +54,7 @@ function App() {
             <Route
               path="/admin-create-category"
               element={<AdminCreateCategory />}
-            />
+            /> */}
             <Route path="/alluser" element={<AllUser />} />
             <Route path="/admin-edit-user/:id" element={<EditUser />} />
           </Route>
