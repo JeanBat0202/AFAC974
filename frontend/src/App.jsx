@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import { useUserContext } from "./context/UserContext";
 import PrivateRoutes from "./components/PrivateRoutes";
 import HomePage from "./pages/HomePage";
 import Header from "./components/Header";
@@ -23,6 +24,26 @@ import "./App.scss";
 import EditUser from "./components/EditUser";
 
 function App() {
+  const dispatch = useUserContext()[1];
+
+  const checkConnection = async () => {
+    try {
+      const data = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/users/refreshToken`,
+        {
+          credentials: "include",
+        }
+      ).then((result) => result.json());
+      return dispatch({ type: "SET_USER", payload: data });
+    } catch (err) {
+      return alert(err.response.data, "error");
+    }
+  };
+
+  useEffect(() => {
+    checkConnection();
+  }, []);
+
   return (
     <main>
       <Router>

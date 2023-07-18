@@ -8,12 +8,13 @@ const {
   SMTP_PORT_SENDIN,
   SMTP_SENDIN_USER,
   SMTP_SENDIN_PASSWORD,
+  SMTP_SECURE,
 } = process.env;
 
 const transporter = nodemailer.createTransport({
   host: SMTP_SENDIN,
   port: SMTP_PORT_SENDIN,
-  secure: false,
+  secure: SMTP_SECURE === "true",
   auth: {
     user: SMTP_SENDIN_USER,
     pass: SMTP_SENDIN_PASSWORD,
@@ -27,15 +28,15 @@ const sendEmailWithHbsTemplate = (req, res) => {
   const options = {
     from: SMTP_SENDIN_USER,
     to: receiver,
-    subject: "Test with Nodemailer with Hbs",
-    attachements: [
+    subject: "Carte postale AFAC974",
+    attachments: [
       {
         filename: imageToSend,
         path: path.join(
           __dirname,
-          `../public/assets/images/arts/${imageToSend}`
+          `../../public/assets/images/arts/${imageToSend}`
         ),
-        cid: { imageToSend },
+        cid: imageToSend,
       },
     ],
     template: "index",
@@ -71,8 +72,8 @@ const sendEmailWithHbsTemplate = (req, res) => {
       // console.log(values);
       res.send("Email sent with success");
     })
-    .catch((/* err */) => {
-      // console.err(err);
+    .catch((err) => {
+      console.error(err);
       res.sendStatus(500);
     });
 };

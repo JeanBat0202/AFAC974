@@ -16,6 +16,7 @@ export default function profileUpdater() {
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/${id}`, {
       method: "GET",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -48,6 +49,7 @@ export default function profileUpdater() {
     if (firstname && lastname && email) {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/${id}`, {
         method: "PUT",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -55,10 +57,14 @@ export default function profileUpdater() {
           firstname,
           lastname,
           email,
+          role_id: user.role_id,
         }),
       })
         .then(() => {
           navigate(`/utilisateur/${user.id}`);
+          toast.success("Les modifications ont bien été prises en compte.", {
+            duration: 4000,
+          });
         })
         .catch(() => {
           toast.alert("Une erreur s'est produite, veuillez réessayer.");

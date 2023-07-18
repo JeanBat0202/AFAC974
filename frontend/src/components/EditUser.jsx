@@ -13,6 +13,7 @@ export default function EditUser() {
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/${id}`, {
       method: "GET",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -45,6 +46,7 @@ export default function EditUser() {
     if (firstname && lastname && email) {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/${id}`, {
         method: "PUT",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

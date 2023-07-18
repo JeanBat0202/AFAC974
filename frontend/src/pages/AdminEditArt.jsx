@@ -323,6 +323,7 @@ export default function AdminEditArt() {
     } else {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/arts/${id}`, {
         method: "PUT",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

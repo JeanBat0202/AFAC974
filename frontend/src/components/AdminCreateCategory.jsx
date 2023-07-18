@@ -21,6 +21,7 @@ export default function AdminCreateCategory({
     } else {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/categories`, {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

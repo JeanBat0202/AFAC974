@@ -1,9 +1,27 @@
 const router = require("express").Router();
 const userControllers = require("../controllers/userControllers");
+const AuthController = require("../controllers/AuthController");
 
-router.get("/", userControllers.browse);
-router.get("/:id", userControllers.read);
-router.put("/:id", userControllers.edit);
+router.get(
+  "/",
+  AuthController.isUserConnected,
+  AuthController.isUserAdmin,
+  userControllers.browse
+);
+router.get("/logout", AuthController.refreshToken);
+router.get("/refreshToken", AuthController.refreshToken);
+router.get(
+  "/:id",
+  AuthController.isUserConnected,
+  AuthController.isUserAllowedToGet,
+  userControllers.read
+);
+router.put(
+  "/:id",
+  AuthController.isUserConnected,
+  AuthController.isUserAllowedToGet,
+  userControllers.edit
+);
 router.post(
   "/",
   userControllers.hashPassword,
@@ -11,6 +29,11 @@ router.post(
   userControllers.read
 );
 router.post("/login", userControllers.login);
-router.delete("/:id", userControllers.destroy);
+router.delete(
+  "/:id",
+  AuthController.isUserConnected,
+  AuthController.isUserAdmin,
+  userControllers.destroy
+);
 
 module.exports = router;

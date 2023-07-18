@@ -8,10 +8,14 @@ export default function Header() {
         <h2>Presentation de l'association AFAC974</h2>
         <br />
         <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam
-          deleniti consectetur possimus esse ea iste sit porro vero dolorum
-          exercitationem quod repellat laborum, temporibus nisi. Illo voluptates
-          maxime quam dolores.
+          Nous sommes une équipe de personnes qui travaillent dans un
+          environnement créatif autour de la pédagogie, et du lien entre
+          générations. Nos productions sont libres de droits. Nous faisons des
+          interventions à la demande auprès des collectivités, des
+          établissements scolaires, des entreprises ou des associations: 2021:
+          PRE Caisse des Ecoles du Tampon, Lycée Ambroise Vollard 2022: Service
+          addictologie, CHU Nord, Lycée Pierre Lagourgue, Amis de l'Université,
+          Fondation Favron.
         </p>
         <br />
       </span>
