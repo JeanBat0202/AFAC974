@@ -17,7 +17,6 @@ export default function FavArtAPI({ favId, artId, imageRef, image }) {
         <Tooltip id="post-card-tooltip" className={style.postCardTooltip} />
         <img src={envelopeIcon} alt="envelope-icon" />
       </Link>
-      {/* <figcaption> */}
       <Link to={`/galerie/${artId}`} className="link">
         <img
           src={`${import.meta.env.VITE_ASSETS_IMAGES_URL}/arts/${image}`}
@@ -25,7 +24,6 @@ export default function FavArtAPI({ favId, artId, imageRef, image }) {
           className={style.imgWithShadow}
         />
       </Link>
-      {/* </figcaption> */}
     </div>
   );
 }

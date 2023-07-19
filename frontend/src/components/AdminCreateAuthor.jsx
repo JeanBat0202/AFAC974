@@ -1,11 +1,12 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import "./adminCreateArt.scss";
+import PropTypes from "prop-types";
+import "../pages/adminCreateArt.scss";
 
-export default function AdminCreateAuthor() {
-  const navigate = useNavigate();
-
+export default function AdminCreateAuthor({
+  displayAuthorForm,
+  getAllAuthors,
+}) {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [authorAlias, setAuthorAlias] = useState("");
@@ -43,7 +44,7 @@ export default function AdminCreateAuthor() {
     if (!Number.isNaN(yearToUpdate)) {
       setBirthDate(yearToUpdate);
     } else {
-      toast.alert("Ce champ est requis, veuillez renseigner une valeur");
+      toast.error("Ce champ est requis, veuillez renseigner une valeur");
     }
   };
 
@@ -59,7 +60,7 @@ export default function AdminCreateAuthor() {
     if (imageTypes.includes(fileSelected.type)) {
       setImage(e.target.files[0]);
     } else {
-      toast.alert("Votre image doit être au format .jpeg, .jpg ou .png.");
+      toast.error("Votre image doit être au format .jpeg, .jpg ou .png.");
     }
   };
 
@@ -71,7 +72,7 @@ export default function AdminCreateAuthor() {
       !birthDate ||
       ((!firstname || !lastname) && !authorAlias)
     ) {
-      toast.alert("Veuillez remplir tous les champs obligatoires.");
+      toast.error("Veuillez remplir tous les champs obligatoires.");
     } else {
       const modelData = new FormData();
       modelData.append("biography", biography);
@@ -101,12 +102,19 @@ export default function AdminCreateAuthor() {
         body: modelData,
       })
         .then(() => {
-          navigate(`/admin-create-art/`);
-          toast.alert("L'auteur a bien été enregistré.");
+          getAllAuthors();
+          setFirstname("");
+          setLastname("");
+          setAuthorAlias("");
+          setBiography("");
+          setBirthDate("");
+          setDeathDate("");
+          setImage("");
+          toast.success("L'auteur a bien été enregistré.");
         })
         .catch((err) => {
           console.error(err);
-          toast.alert("Une erreur est survenue, veuillez réessayer.");
+          toast.error("Une erreur est survenue, veuillez réessayer.");
         });
     }
   };
@@ -166,7 +174,11 @@ export default function AdminCreateAuthor() {
               Date de naissance <strong>*</strong>
             </p>
             <label htmlFor="birthDate" className="date-label">
-              <select name="birthDate" onChange={handleChangeBirthDate}>
+              <select
+                name="birthDate"
+                onChange={handleChangeBirthDate}
+                value={birthDate}
+              >
                 <option value="">Année</option>
                 {allYears.map((yearSelected) => (
                   <option value={yearSelected} key={yearSelected}>
@@ -177,7 +189,11 @@ export default function AdminCreateAuthor() {
             </label>
             <p>Date de décès</p>
             <label htmlFor="deathDate" className="date-label">
-              <select name="deathDate" onChange={handleChangeDeathDate}>
+              <select
+                name="deathDate"
+                onChange={handleChangeDeathDate}
+                value={deathDate}
+              >
                 <option value="">Année</option>
                 {allYears.map((yearSelected) => (
                   <option value={yearSelected} key={yearSelected}>
@@ -190,10 +206,28 @@ export default function AdminCreateAuthor() {
             <label htmlFor="image">
               <input type="file" id="image" onChange={handleChangeImage} />
             </label>
-            <button type="submit">Enregistrer l'auteur</button>
+            <button
+              type="submit"
+              onClick={displayAuthorForm}
+              className="create-small-data"
+            >
+              Enregistrer l'auteur
+            </button>
+            <button
+              type="button"
+              onClick={displayAuthorForm}
+              className="create-small-data cancel-form"
+            >
+              Annuler
+            </button>
           </form>
         </section>
       </div>
     </>
   );
 }
+
+AdminCreateAuthor.propTypes = {
+  displayAuthorForm: PropTypes.func.isRequired,
+  getAllAuthors: PropTypes.func.isRequired,
+};

@@ -1,11 +1,12 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import "./adminCreateArt.scss";
+import PropTypes from "prop-types";
+import "../pages/adminCreateArt.scss";
 
-export default function AdminCreateCategory() {
-  const navigate = useNavigate();
-
+export default function AdminCreateCategory({
+  displayCategoryForm,
+  getAllCategories,
+}) {
   const [catName, setCatName] = useState("");
 
   const handleChangeCatName = (e) => {
@@ -16,7 +17,7 @@ export default function AdminCreateCategory() {
     e.preventDefault();
 
     if (!catName) {
-      toast.alert("Veuillez remplir tous les champs obligatoires.");
+      toast.error("Veuillez remplir tous les champs obligatoires.");
     } else {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/categories`, {
         method: "POST",
@@ -30,11 +31,14 @@ export default function AdminCreateCategory() {
       })
         // .then((res) => res.json())
         .then(() => {
-          navigate(`/admin-create-art`);
+          getAllCategories();
+          setCatName("");
+          displayCategoryForm();
+          toast.success("La catégorie a bien été enregistrée.");
         })
         .catch((err) => {
           console.error(err);
-          toast.alert("Une erreur est survenue, veuillez réessayer.");
+          toast.error("Une erreur est survenue, veuillez réessayer.");
         });
     }
   };
@@ -58,8 +62,19 @@ export default function AdminCreateCategory() {
                 onChange={handleChangeCatName}
               />
             </label>
-            <button type="submit" className="create-small-data">
+            <button
+              type="submit"
+              // onClick={displayCategoryForm}
+              className="create-small-data"
+            >
               Enregistrer la catégorie
+            </button>
+            <button
+              type="button"
+              onClick={displayCategoryForm}
+              className="create-small-data cancel-form"
+            >
+              Annuler
             </button>
           </form>
         </section>
@@ -67,3 +82,8 @@ export default function AdminCreateCategory() {
     </>
   );
 }
+
+AdminCreateCategory.propTypes = {
+  displayCategoryForm: PropTypes.func.isRequired,
+  getAllCategories: PropTypes.func.isRequired,
+};

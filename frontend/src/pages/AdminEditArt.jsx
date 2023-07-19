@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
+import AdminCreateAuthor from "../components/AdminCreateAuthor";
+import AdminCreateArtType from "../components/AdminCreateArtType";
+import AdminCreateCategory from "../components/AdminCreateCategory";
 import "./adminCreateArt.scss";
 
 export default function AdminEditArt() {
@@ -25,6 +28,41 @@ export default function AdminEditArt() {
   const [categoryId, setCategoryId] = useState("");
   const [about, setAbout] = useState("");
   const [article, setArticle] = useState("");
+
+  const [authorForm, setAuthorForm] = useState("author-hidden");
+  const [artTypeForm, setArtTypeForm] = useState("art-type-hidden");
+  const [categoryForm, setCategoryForm] = useState("category-hidden");
+  const [isClicked, setIsClicked] = useState(false);
+
+  const displayAuthorForm = () => {
+    if (!isClicked) {
+      setAuthorForm("author-visible");
+      setIsClicked(!isClicked);
+    } else {
+      setAuthorForm("author-hidden");
+      setIsClicked(!isClicked);
+    }
+  };
+
+  const displayArtTypeForm = () => {
+    if (!isClicked) {
+      setArtTypeForm("art-type-visible");
+      setIsClicked(!isClicked);
+    } else {
+      setArtTypeForm("art-type-hidden");
+      setIsClicked(!isClicked);
+    }
+  };
+
+  const displayCategoryForm = () => {
+    if (!isClicked) {
+      setCategoryForm("category-visible");
+      setIsClicked(!isClicked);
+    } else {
+      setCategoryForm("category-hidden");
+      setIsClicked(!isClicked);
+    }
+  };
 
   const { id } = useParams();
 
@@ -127,13 +165,28 @@ export default function AdminEditArt() {
     setShortTitle(e.target.value);
   };
 
+  const handleChangeAuthorId = (e) => {
+    const authorIdToUpdate = parseInt(e.target.value, 10);
+
+    if (
+      !Number.isNaN(authorIdToUpdate)
+      /* && voir pour le bloquer entre 0 et author.length */
+    ) {
+      setAuthorId(authorIdToUpdate);
+    } else {
+      toast.error(
+        'Le champ "Auteur" est requis, veuillez sélectionner un auteur'
+      );
+    }
+  };
+
   const handleChangeImage = (e) => {
     const fileSelected = e.target.files[0];
 
     if (imageTypes.includes(fileSelected.type)) {
       setImageFile(e.target.files[0]);
     } else {
-      toast.alert("Votre image doit être au format .jpeg, .jpg ou .png.");
+      toast.error("Votre image doit être au format .jpeg, .jpg ou .png.");
     }
   };
 
@@ -155,7 +208,9 @@ export default function AdminEditArt() {
     if (!Number.isNaN(yearToUpdate)) {
       setYear(yearToUpdate);
     } else {
-      toast.alert("Ce champ est requis, veuillez renseigner une valeur.");
+      toast.error(
+        'Le champ "Année" est requis, veuillez renseigner une valeur'
+      );
     }
   };
 
@@ -168,8 +223,8 @@ export default function AdminEditArt() {
     ) {
       setArtTypeId(artTypeIdToUpdate);
     } else {
-      toast.alert(
-        "Ce champ est requis, veuillez sélectionner un type d'œuvre."
+      toast.error(
+        'Le champ "Technique" est requis, veuillez sélectionner un type d\'œuvre'
       );
     }
   };
@@ -180,7 +235,7 @@ export default function AdminEditArt() {
     if (!Number.isNaN(widthToUpdate)) {
       setWidth(widthToUpdate);
     } else {
-      toast.alert("Veuillez vérifier votre saisie.");
+      toast.error("Veuillez vérifier votre saisie.");
     }
   };
 
@@ -190,7 +245,7 @@ export default function AdminEditArt() {
     if (!Number.isNaN(heightToUpdate, 10)) {
       setHeight(heightToUpdate);
     } else {
-      toast.alert("Veuillez vérifier votre saisie.");
+      toast.error("Veuillez vérifier votre saisie.");
     }
   };
 
@@ -200,7 +255,9 @@ export default function AdminEditArt() {
     if (!Number.isNaN(categoryIdToUpdate)) {
       setCategoryId(categoryIdToUpdate);
     } else {
-      toast.alert("Ce champ est requis, veuillez sélectionner une catégorie");
+      toast.error(
+        'Le champ "Catégorie" est requis, veuillez sélectionner une catégorie'
+      );
     }
   };
 
@@ -212,23 +269,10 @@ export default function AdminEditArt() {
     setArticle(e.target.value);
   };
 
-  const handleChangeAuthorId = (e) => {
-    const authorIdToUpdate = parseInt(e.target.value, 10);
-
-    if (
-      !Number.isNaN(authorIdToUpdate)
-      /* && voir pour le bloquer entre 0 et author.length */
-    ) {
-      setAuthorId(authorIdToUpdate);
-    } else {
-      toast.alert("Ce champ est requis, veuillez sélectionner un auteur");
-    }
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!imageRef || !title || !authorId || !artTypeId || !categoryId) {
-      toast.alert("Veuillez remplir tous les champs obligatoires.");
+      toast.error("Veuillez remplir tous les champs obligatoires.");
     } else if (imageFile) {
       const modelData = new FormData();
       modelData.append("imageRef", imageRef);
@@ -270,11 +314,11 @@ export default function AdminEditArt() {
       })
         .then(() => {
           navigate(`/galerie/${id}`);
-          toast.success("L'œuvre a bien été modifiée.");
+          toast.success("L'œuvre a bien été mise à jour !", { duration: 4000 });
         })
         .catch((err) => {
           console.error(err);
-          toast.alert("Une erreur est survenue, veuillez réessayer.");
+          toast.error("Une erreur est survenue, veuillez réessayer.");
         });
     } else {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/arts/${id}`, {
@@ -370,6 +414,13 @@ export default function AdminEditArt() {
                   </option>
                 ))}
               </select>
+              <button
+                type="button"
+                onClick={displayAuthorForm}
+                className="to-add-data"
+              >
+                +
+              </button>
             </label>
             <p>
               Image <strong>*</strong>
@@ -430,6 +481,13 @@ export default function AdminEditArt() {
                   </option>
                 ))}
               </select>
+              <button
+                type="button"
+                onClick={displayArtTypeForm}
+                className="to-add-data"
+              >
+                +
+              </button>
             </label>
             <p>Dimensions</p>
             <label htmlFor="dimensions" className="dimensions-label">
@@ -470,6 +528,13 @@ export default function AdminEditArt() {
                   </option>
                 ))}
               </select>
+              <button
+                type="button"
+                onClick={displayCategoryForm}
+                className="to-add-data"
+              >
+                +
+              </button>
             </label>
             <p>Commentaire</p>
             <label htmlFor="about">
@@ -489,9 +554,29 @@ export default function AdminEditArt() {
                 onChange={handleChangeArticle}
               />
             </label>
-            <button type="submit">Enregistrer les modifications</button>
+            <button type="submit" className="general">
+              Enregistrer les modifications
+            </button>
           </form>
         </section>
+      </div>
+      <div className={authorForm}>
+        <AdminCreateAuthor
+          displayAuthorForm={displayAuthorForm}
+          getAllAuthors={getAllAuthors}
+        />
+      </div>
+      <div className={artTypeForm}>
+        <AdminCreateArtType
+          displayArtTypeForm={displayArtTypeForm}
+          getAllArtTypes={getAllArtTypes}
+        />
+      </div>
+      <div className={categoryForm}>
+        <AdminCreateCategory
+          displayCategoryForm={displayCategoryForm}
+          getAllCategories={getAllCategories}
+        />
       </div>
     </>
   );
