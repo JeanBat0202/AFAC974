@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import AdminCreateAuthor from "../components/AdminCreateAuthor";
+import AdminCreateArtType from "../components/AdminCreateArtType";
+import AdminCreateCategory from "../components/AdminCreateCategory";
 import "./adminCreateArt.scss";
 
 export default function AdminCreateArt() {
@@ -24,6 +27,41 @@ export default function AdminCreateArt() {
   const [categoryId, setCategoryId] = useState("");
   const [about, setAbout] = useState("");
   const [article, setArticle] = useState("");
+
+  const [authorForm, setAuthorForm] = useState("author-hidden");
+  const [artTypeForm, setArtTypeForm] = useState("art-type-hidden");
+  const [categoryForm, setCategoryForm] = useState("category-hidden");
+  const [isClicked, setIsClicked] = useState(false);
+
+  const displayAuthorForm = () => {
+    if (!isClicked) {
+      setAuthorForm("author-visible");
+      setIsClicked(!isClicked);
+    } else {
+      setAuthorForm("author-hidden");
+      setIsClicked(!isClicked);
+    }
+  };
+
+  const displayArtTypeForm = () => {
+    if (!isClicked) {
+      setArtTypeForm("art-type-visible");
+      setIsClicked(!isClicked);
+    } else {
+      setArtTypeForm("art-type-hidden");
+      setIsClicked(!isClicked);
+    }
+  };
+
+  const displayCategoryForm = () => {
+    if (!isClicked) {
+      setCategoryForm("category-visible");
+      setIsClicked(!isClicked);
+    } else {
+      setCategoryForm("category-hidden");
+      setIsClicked(!isClicked);
+    }
+  };
 
   const imageTypes = ["image/jpeg", "image/jpg", "image/png"];
 
@@ -324,11 +362,13 @@ export default function AdminCreateArt() {
                   </option>
                 ))}
               </select>
-              <div className="to-add-data">
-                <Link to="/admin-create-author" className="to-add-data">
-                  +
-                </Link>
-              </div>
+              <button
+                type="button"
+                onClick={displayAuthorForm}
+                className="to-add-data"
+              >
+                +
+              </button>
             </label>
             <p>
               Image <strong>*</strong>
@@ -378,11 +418,13 @@ export default function AdminCreateArt() {
                   </option>
                 ))}
               </select>
-              <div className="to-add-data">
-                <Link to="/admin-create-art-type" className="to-add-data">
-                  +
-                </Link>
-              </div>
+              <button
+                type="button"
+                onClick={displayArtTypeForm}
+                className="to-add-data"
+              >
+                +
+              </button>
             </label>
             <p>Dimensions</p>
             <label htmlFor="dimensions" className="dimensions-label">
@@ -419,11 +461,13 @@ export default function AdminCreateArt() {
                   </option>
                 ))}
               </select>
-              <div className="to-add-data">
-                <Link to="/admin-create-category" className="to-add-data">
-                  +
-                </Link>
-              </div>
+              <button
+                type="button"
+                onClick={displayCategoryForm}
+                className="to-add-data"
+              >
+                +
+              </button>
             </label>
             <p>Commentaire</p>
             <label htmlFor="about">
@@ -443,9 +487,29 @@ export default function AdminCreateArt() {
                 onChange={handleChangeArticle}
               />
             </label>
-            <button type="submit">Enregistrer l'œuvre</button>
+            <button type="submit" className="general">
+              Enregistrer l'œuvre
+            </button>
           </form>
         </section>
+      </div>
+      <div className={authorForm}>
+        <AdminCreateAuthor
+          displayAuthorForm={displayAuthorForm}
+          getAllAuthors={getAllAuthors}
+        />
+      </div>
+      <div className={artTypeForm}>
+        <AdminCreateArtType
+          displayArtTypeForm={displayArtTypeForm}
+          getAllArtTypes={getAllArtTypes}
+        />
+      </div>
+      <div className={categoryForm}>
+        <AdminCreateCategory
+          displayCategoryForm={displayCategoryForm}
+          getAllCategories={getAllCategories}
+        />
       </div>
     </>
   );

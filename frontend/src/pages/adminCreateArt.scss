@@ -78,22 +78,16 @@
           }
         }
 
-        div.to-add-data {
-          border: 5px double #74658a;
+        button.to-add-data {
           height: 35px;
           width: 35px;
-          display: flex;
+          font-family: "Bebas Neue";
+          font-size: 24px;
+          color: #74658a;
+          background-color: #ffffff;
+          border: 5px double #74658a;
           margin-bottom: 1rem;
-
-          a.to-add-data {
-            text-align: center;
-            height: 100%;
-            width: 100%;
-            font-family: "Bebas Neue";
-            font-size: 24px;
-            color: #74658a;
-            margin-top: -1px;
-          }
+          cursor: pointer;
         }
       }
 
@@ -108,23 +102,23 @@
         height: 100%;
       }
 
-      button {
+      button.general,
+      button.cancel-form {
         padding: 2px;
         padding-top: 4px;
         border: 5px double #bc7c61;
         text-decoration: none;
-        font-size: 17px;
+        font-size: 23px;
         font-family: "Bebas Neue";
         background: none;
         color: #bc7c61;
         width: 70%;
         margin: auto;
         cursor: pointer;
-        grid-area: 12 / 1 / 12 / span 2;
       }
 
-      button.create-small-data {
-        grid-area: 2 / 1 / 2 / span 2;
+      button.general {
+        grid-area: 12 / 1 / 12 / span 2;
       }
     }
 
@@ -157,22 +151,57 @@
         .dimensions-label,
         .date-label,
         .img-label {
-          div.to-add-data {
+          button.to-add-data {
             width: 45px;
             height: 45px;
-
-            a.to-add-data {
-              font-size: 32px;
-              margin-top: 1px;
-            }
+            font-size: 32px;
+            margin-top: 1px;
           }
         }
 
-        button {
+        button.general,
+        button.cancel-form {
           font-size: 24px;
           width: 40%;
         }
       }
     }
+  }
+}
+
+.author-hidden,
+.art-type-hidden,
+.category-hidden,
+.modal-hidden {
+  display: none;
+}
+
+.author-visible,
+.art-type-visible,
+.category-visible,
+.modal-visible {
+  display: initial;
+  position: fixed;
+  top: 72px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 1);
+
+  @media screen and (min-width: 768px) {
+    top: 145px;
+  }
+}
+
+.author-visible {
+  button.create-small-data,
+  button.cancel-form {
+    grid-area: initial;
+  }
+}
+
+.art-type-visible,
+.category-visible {
+  button.create-small-data,
+  button.cancel-form {
+    grid-area: initial;
   }
 }
