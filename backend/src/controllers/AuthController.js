@@ -97,7 +97,7 @@ class AuthController {
     ) {
       return next();
     }
-    return res.status(403).send("bite Vous ne pouvez pas faire ça !");
+    return res.status(403).send("Vous ne pouvez pas faire ça !");
   };
 }
 
