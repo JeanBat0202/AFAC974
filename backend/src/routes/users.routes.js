@@ -8,7 +8,11 @@ router.get(
   AuthController.isUserAdmin,
   userControllers.browse
 );
-router.get("/logout", AuthController.refreshToken);
+router.get(
+  "/logout",
+  AuthController.isUserConnected,
+  AuthController.deleteToken
+);
 router.get("/refreshToken", AuthController.refreshToken);
 router.get(
   "/:id",

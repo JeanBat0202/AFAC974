@@ -54,18 +54,18 @@ class AuthController {
     }
   };
 
-  // static deleteToken = async (req, res) => {
-  //   const token = req.cookies.accessToken;
-  //   if (!token) {
-  //     res.sendStatus(204);
-  //   }
-  //   try {
-  //     res.clearCookie("accessToken", { path: "/", expires: new Date(0) });
-  //     return res.sendStatus(204);
-  //   } catch (err) {
-  //     res.status(500).send(err.message);
-  //   }
-  // };
+  static deleteToken = async (req, res) => {
+    const token = await req.cookies.accessToken;
+    if (!token) {
+      return res.sendStatus(204);
+    }
+    try {
+      res.clearCookie("accessToken");
+      return res.sendStatus(204);
+    } catch (err) {
+      return res.status(500).send(err.message);
+    }
+  };
 
   static isUserAdmin = async (req, res, next) => {
     const { id } = await req.decodedToken;
