@@ -122,8 +122,9 @@ export default function AdminCreateArt() {
     { monthNumber: 12, monthName: "décembre" },
   ];
 
+  const currentYear = new Date().getFullYear();
   const allYears = [];
-  for (let i = 1799; i < 2023; i += 1) {
+  for (let i = 1799; i < currentYear; i += 1) {
     allYears.push(i + 1);
   }
 
@@ -146,7 +147,8 @@ export default function AdminCreateArt() {
       setAuthorId(authorIdToUpdate);
     } else {
       toast.error(
-        'Le champ "Auteur" est requis, veuillez sélectionner un auteur'
+        'Le champ "Auteur" est requis, veuillez sélectionner un auteur.',
+        { duration: 4000 }
       );
     }
   };
@@ -157,7 +159,9 @@ export default function AdminCreateArt() {
     if (imageTypes.includes(fileSelected.type)) {
       setImage(e.target.files[0]);
     } else {
-      toast.error("Votre image doit être au format .jpeg, .jpg ou .png.");
+      toast.error("Votre image doit être au format .jpeg, .jpg ou .png.", {
+        duration: 4000,
+      });
     }
   };
 
@@ -180,7 +184,8 @@ export default function AdminCreateArt() {
       setYear(yearToUpdate);
     } else {
       toast.error(
-        'Le champ "Année" est requis, veuillez renseigner une valeur'
+        'Le champ "Année" est requis, veuillez renseigner une valeur.',
+        { duration: 4000 }
       );
     }
   };
@@ -195,7 +200,8 @@ export default function AdminCreateArt() {
       setArtTypeId(artTypeIdToUpdate);
     } else {
       toast.error(
-        'Le champ "Technique" est requis, veuillez sélectionner un type d\'œuvre'
+        'Le champ "Technique" est requis, veuillez sélectionner un type d\'œuvre.',
+        { duration: 4000 }
       );
     }
   };
@@ -206,7 +212,7 @@ export default function AdminCreateArt() {
     if (!Number.isNaN(widthToUpdate)) {
       setWidth(widthToUpdate);
     } else {
-      toast.error("Veuillez vérifier votre saisie.");
+      toast.error("Veuillez vérifier votre saisie.", { duration: 4000 });
     }
   };
 
@@ -216,7 +222,7 @@ export default function AdminCreateArt() {
     if (!Number.isNaN(heightToUpdate, 10)) {
       setHeight(heightToUpdate);
     } else {
-      toast.error("Veuillez vérifier votre saisie.");
+      toast.error("Veuillez vérifier votre saisie.", { duration: 4000 });
     }
   };
 
@@ -230,7 +236,8 @@ export default function AdminCreateArt() {
       setCategoryId(categoryIdToUpdate);
     } else {
       toast.error(
-        'Le champ "Catégorie" est requis, veuillez sélectionner une catégorie'
+        'Le champ "Catégorie" est requis, veuillez sélectionner une catégorie.',
+        { duration: 4000 }
       );
     }
   };
@@ -254,7 +261,9 @@ export default function AdminCreateArt() {
       !artTypeId ||
       !categoryId
     ) {
-      toast.error("Veuillez remplir tous les champs obligatoires.");
+      toast.error("Veuillez remplir tous les champs obligatoires.", {
+        duration: 4000,
+      });
     } else {
       const modelData = new FormData();
       modelData.append("imageRef", imageRef);
@@ -303,7 +312,9 @@ export default function AdminCreateArt() {
         })
         .catch((err) => {
           console.error(err);
-          toast.error("Une erreur est survenue, veuillez réessayer.");
+          toast.error("Une erreur est survenue, veuillez réessayer.", {
+            duration: 4000,
+          });
         });
     }
   };
@@ -354,7 +365,11 @@ export default function AdminCreateArt() {
               Auteur <strong>*</strong>
             </p>
             <label htmlFor="authorId" className="label-with-link-to-add-data">
-              <select name="authorId" onChange={handleChangeAuthorId}>
+              <select
+                name="authorId"
+                value={authorId}
+                onChange={handleChangeAuthorId}
+              >
                 <option value="">Veuillez sélectionner un auteur</option>
                 {authors.map((author) => (
                   <option value={author.id} key={author.id}>
@@ -378,7 +393,7 @@ export default function AdminCreateArt() {
             </label>
             <p>Date de réalisation</p>
             <label htmlFor="creationDate" className="date-label">
-              <select name="day" onChange={handleChangeDay}>
+              <select name="day" value={day} onChange={handleChangeDay}>
                 <option value="">Jour</option>
                 {allDays.map((daySelected) => (
                   <option value={daySelected} key={daySelected}>
@@ -410,7 +425,11 @@ export default function AdminCreateArt() {
               Technique <strong>*</strong>
             </p>
             <label htmlFor="artTypeId" className="label-with-link-to-add-data">
-              <select name="artTypeId" onChange={handleChangeArtTypeId}>
+              <select
+                name="artTypeId"
+                value={artTypeId}
+                onChange={handleChangeArtTypeId}
+              >
                 <option value="">Veuillez sélectionner une technique</option>
                 {artTypes.map((artType) => (
                   <option value={artType.id} key={artType.id}>
@@ -453,7 +472,11 @@ export default function AdminCreateArt() {
               Catégorie <strong>*</strong>
             </p>
             <label htmlFor="categoryId" className="label-with-link-to-add-data">
-              <select name="categoryId" onChange={handleChangeCategoryId}>
+              <select
+                name="categoryId"
+                value={categoryId}
+                onChange={handleChangeCategoryId}
+              >
                 <option value="">Veuillez sélectionner une catégorie</option>
                 {categories.map((category) => (
                   <option value={category.id} key={category.id}>

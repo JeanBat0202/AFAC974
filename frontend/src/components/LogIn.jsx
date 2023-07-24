@@ -3,6 +3,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from "../context/UserContext";
 import "./LogIn.scss";
+// import bgHexa from "../assets/hexagon-for-bottom-svgrepo-com.svg";
 
 function LogIn() {
   const dispatch = useUserContext()[1];
@@ -23,7 +24,9 @@ function LogIn() {
     e.preventDefault();
 
     if (!email || !password) {
-      toast.error("Vous devez fournir un email et un mot de passe !!");
+      toast.error("Vous devez fournir un e-mail et un mot de passe !!", {
+        duration: 4000,
+      });
     } else {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/login`, {
         method: "POST",
@@ -44,59 +47,56 @@ function LogIn() {
         })
         .catch(() => {
           toast.error(
-            "Identifiant et/ou mot de passe incorrect. Veuillez réessayer"
+            "Identifiant et/ou mot de passe incorrect. Veuillez réessayer",
+            { duration: 4000 }
           );
         });
     }
   };
 
   const renderForm = (
-    <div className="form">
-      <form onSubmit={handleSubmit}>
-        <div className="input-container">
-          <label htmlFor="email"> Email </label>
-          <input
-            className="border"
-            type="email"
-            name="email"
-            required
-            onChange={handleChangeEmail}
-          />
-        </div>
-        <div className="input-container">
-          <label htmlFor="password"> Mot de passe </label>
-          <input
-            className="border"
-            type="password"
-            name="pass"
-            required
-            onChange={handleChangePassword}
-          />
-        </div>
-        <div className="button-container">
-          <button type="submit">Se connecter </button>
-        </div>
-        <p className="text">
-          Pas encore inscrit ?
-          <Link to="/s'inscrire" className="sign-up">
-            Créer un compte
-          </Link>
-        </p>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit} className="login-form">
+      <label htmlFor="email">
+        E-mail
+        <input
+          className="border"
+          type="email"
+          name="email"
+          required
+          onChange={handleChangeEmail}
+        />
+      </label>
+      <label htmlFor="password">
+        Mot de passe
+        <input
+          className="border"
+          type="password"
+          name="pass"
+          required
+          onChange={handleChangePassword}
+        />
+      </label>
+      <button type="submit">Se connecter</button>
+      {/* </div> */}
+      <p className="text">
+        Pas encore inscrit ?
+        <Link to="/s'inscrire" className="sign-up">
+          Créer un compte
+        </Link>
+      </p>
+    </form>
   );
   return (
     <>
+      {/* <img src={bgHexa} alt="Hexagone bas de page" className="bg-hexa-bottom" /> */}
       <div>
         <Toaster position="bottom-center" />
       </div>
-      <div className="app">
-        <div className="login-form">
-          <div className="title"> Connexion </div>
-          {renderForm}
-        </div>
-        <div className="hexagone" />
+      <div className="form-container">
+        <h2 className="title">Connexion</h2>
+        {renderForm}
       </div>
+      <div className="hexagone" />
     </>
   );
 }

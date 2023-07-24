@@ -4,12 +4,19 @@
 
 h2 {
   font-family: "Bebas Neue";
+  font-size: 23px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 28px;
+  }
 }
 
 .about {
   position: relative;
   flex: 1 1 0%;
-  padding: 1.5%;
+  // padding: 1.5%;
+  padding: 5%;
+  padding-top: 20px;
 
   .hexa1 {
     display: none;

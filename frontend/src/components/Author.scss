@@ -5,6 +5,8 @@
   gap: 3rem;
   position: relative;
   overflow: hidden;
+  padding: 5%;
+  padding-top: 20px;
 
   .author-image {
     height: 30%;
@@ -15,7 +17,7 @@
 
   .hexa1 {
     min-width: 15rem;
-    min-height: 10rem;
+    min-height: 8rem;
     display: grid;
     grid-template-columns: repeat(11, 1fr);
     grid-template-rows: repeat(6, 1fr);
@@ -91,9 +93,13 @@
 }
 
 h2.author-font-family {
-  font-size: 24px;
+  font-size: 23px;
   font-family: "Bebas Neue";
   margin-bottom: 1rem;
+
+  @media screen and (min-width: 768px) {
+    font-size: 28px;
+  }
 }
 
 h3 {
@@ -147,8 +153,8 @@ h3 {
     margin-left: 3rem;
 
     .hexa1 {
-      min-width: 15rem;
-      min-height: 10rem;
+      // min-width: 15rem;
+      // min-height: 10rem;
       display: grid;
       grid-template-columns: repeat(11, 1fr);
       grid-template-rows: repeat(6, 1fr);

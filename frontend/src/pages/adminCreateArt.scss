@@ -103,6 +103,7 @@
       }
 
       button.general,
+      button.create-small-data,
       button.cancel-form {
         padding: 2px;
         padding-top: 4px;
@@ -114,6 +115,7 @@
         color: #bc7c61;
         width: 70%;
         margin: auto;
+        margin-top: 1rem;
         cursor: pointer;
       }
 
@@ -160,6 +162,7 @@
         }
 
         button.general,
+        button.create-small-data,
         button.cancel-form {
           font-size: 24px;
           width: 40%;
@@ -181,27 +184,58 @@
 .category-visible,
 .modal-visible {
   display: initial;
-  position: fixed;
+  position: absolute;
   top: 72px;
+  bottom: 0;
   width: 100%;
-  background-color: rgba(255, 255, 255, 1);
+  background-color: rgb(255, 255, 255);
+  overflow: auto;
 
   @media screen and (min-width: 768px) {
     top: 145px;
   }
 }
 
-.author-visible {
-  button.create-small-data,
-  button.cancel-form {
-    grid-area: initial;
+.author-visible,
+.art-type-visible,
+.category-visible {
+  section.form {
+    form {
+      div.button-container-create-small-data {
+        display: flex;
+        flex-direction: column;
+
+        button.create-small-data,
+        button.cancel-form {
+          padding: 4px 6px;
+          padding-top: 6px;
+          width: auto;
+        }
+
+        @media screen and (min-width: 768px) {
+          grid-area: 2 / 1 / 2 / span 2;
+          margin: 0 auto;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+
+          button.cancel-form {
+            margin-left: 1rem;
+          }
+        }
+      }
+    }
   }
 }
 
-.art-type-visible,
-.category-visible {
-  button.create-small-data,
-  button.cancel-form {
-    grid-area: initial;
+.author-visible {
+  section.form {
+    form {
+      div.button-container-create-small-data {
+        @media screen and (min-width: 768px) {
+          grid-area: 8 / 1 / 8 / span 2;
+        }
+      }
+    }
   }
 }

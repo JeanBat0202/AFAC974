@@ -52,7 +52,9 @@ export default function SendPostCard() {
     e.preventDefault();
     const { firstname, lastname } = user;
     if (!receiver || !message) {
-      toast.alert("Veuillez remplir tous les champs obligatoires.");
+      toast.alert("Veuillez remplir tous les champs obligatoires.", {
+        duration: 4000,
+      });
     } else {
       fetch(
         `${import.meta.env.VITE_BACKEND_URL}/api/emails/send-mail-with-hbs`,
@@ -80,7 +82,9 @@ export default function SendPostCard() {
         })
         .catch((err) => {
           console.error(err);
-          toast.error("Une erreur est survenue, veuillez réessayer.");
+          toast.error("Une erreur est survenue, veuillez réessayer.", {
+            duration: 4000,
+          });
         });
     }
   };
