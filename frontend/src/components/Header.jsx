@@ -14,11 +14,13 @@ export default function Header() {
   const showSidebar = () => setSideBar(!sidebar);
 
   const [{ user }, dispatch] = useUserContext();
+
   const handleLogout = async () => {
     try {
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/api/users/logout`,
         {
+          method: "GET",
           credentials: "include",
         }
       );

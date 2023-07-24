@@ -31,6 +31,7 @@ function App() {
       const data = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/api/users/refreshToken`,
         {
+          method: "GET",
           credentials: "include",
         }
       ).then((result) => result.json());
