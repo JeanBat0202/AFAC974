@@ -44,7 +44,9 @@ export default function AdminCreateAuthor({
     if (!Number.isNaN(yearToUpdate)) {
       setBirthDate(yearToUpdate);
     } else {
-      toast.error("Ce champ est requis, veuillez renseigner une valeur");
+      toast.error("Ce champ est requis, veuillez renseigner une valeur", {
+        duration: 4000,
+      });
     }
   };
 
@@ -60,7 +62,9 @@ export default function AdminCreateAuthor({
     if (imageTypes.includes(fileSelected.type)) {
       setImage(e.target.files[0]);
     } else {
-      toast.error("Votre image doit être au format .jpeg, .jpg ou .png.");
+      toast.error("Votre image doit être au format .jpeg, .jpg ou .png.", {
+        duration: 4000,
+      });
     }
   };
 
@@ -72,7 +76,9 @@ export default function AdminCreateAuthor({
       !birthDate ||
       ((!firstname || !lastname) && !authorAlias)
     ) {
-      toast.error("Veuillez remplir tous les champs obligatoires.");
+      toast.error("Veuillez remplir tous les champs obligatoires.", {
+        duration: 4000,
+      });
     } else {
       const modelData = new FormData();
       modelData.append("biography", biography);
@@ -110,11 +116,13 @@ export default function AdminCreateAuthor({
           setBirthDate("");
           setDeathDate("");
           setImage("");
-          toast.success("L'auteur a bien été enregistré.");
+          toast.success("L'auteur a bien été enregistré.", { duration: 4000 });
         })
         .catch((err) => {
           console.error(err);
-          toast.error("Une erreur est survenue, veuillez réessayer.");
+          toast.error("Une erreur est survenue, veuillez réessayer.", {
+            duration: 4000,
+          });
         });
     }
   };
@@ -206,20 +214,22 @@ export default function AdminCreateAuthor({
             <label htmlFor="image">
               <input type="file" id="image" onChange={handleChangeImage} />
             </label>
-            <button
-              type="submit"
-              onClick={displayAuthorForm}
-              className="create-small-data"
-            >
-              Enregistrer l'auteur
-            </button>
-            <button
-              type="button"
-              onClick={displayAuthorForm}
-              className="create-small-data cancel-form"
-            >
-              Annuler
-            </button>
+            <div className="button-container-create-small-data">
+              <button
+                type="submit"
+                onClick={displayAuthorForm}
+                className="create-small-data"
+              >
+                Enregistrer l'auteur
+              </button>
+              <button
+                type="button"
+                onClick={displayAuthorForm}
+                className="create-small-data cancel-form"
+              >
+                Annuler
+              </button>
+            </div>
           </form>
         </section>
       </div>
@@ -229,5 +239,9 @@ export default function AdminCreateAuthor({
 
 AdminCreateAuthor.propTypes = {
   displayAuthorForm: PropTypes.func.isRequired,
-  getAllAuthors: PropTypes.func.isRequired,
+  getAllAuthors: PropTypes.func,
+};
+
+AdminCreateAuthor.defaultProps = {
+  getAllAuthors: undefined,
 };

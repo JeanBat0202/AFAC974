@@ -1,7 +1,7 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import "./SignUp.scss";
+import "./LogIn.scss";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -31,7 +31,10 @@ function SignUp() {
 
     if (!firstname || !lastname || !email || !password) {
       toast.alert(
-        "Vous devez fournir un nom, un prénom, un mail et un mot de passe"
+        "Vous devez fournir un nom, un prénom, un mail et un mot de passe",
+        {
+          duration: 4000,
+        }
       );
     } else {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users`, {
@@ -55,65 +58,56 @@ function SignUp() {
         .then(
           toast.success(
             "Le compte a été créé avec succès ! Veuillez vous connecter.",
-            { duration: 3000 }
+            { duration: 4000 }
           )
         )
         .catch(() => {
           toast.error(
-            "Erreur lors de la création du compte. Veuillez réessayer."
+            "Erreur lors de la création du compte. Veuillez réessayer.",
+            {
+              duration: 4000,
+            }
           );
         });
     }
   };
 
   const renderForm = (
-    <div className="form">
-      <form onSubmit={handleSubmit}>
-        <div className="input-container">
-          <label htmlFor="firstname">Prénom</label>
-          <input
-            className="border2"
-            type="text"
-            name="firstname"
-            required
-            onChange={handleChangeFirstName}
-          />
-        </div>
-        <div className="input-container">
-          <label htmlFor="lastname">Nom </label>
-          <input
-            className="border2"
-            type="text"
-            name="lastname"
-            required
-            onChange={handleChangeLastName}
-          />
-        </div>
-        <div className="input-container">
-          <label htmlFor="email">Email </label>
-          <input
-            className="border2"
-            type="email"
-            name="email"
-            required
-            onChange={handleChangeEmail}
-          />
-        </div>
-        <div className="input-container">
-          <label htmlFor="password">Mot de passe </label>
-          <input
-            className="border2"
-            type="password"
-            name="pass"
-            required
-            onChange={handleChangePassword}
-          />
-        </div>
-        <div className="button-container">
-          <button type="submit"> Enregistrer </button>
-        </div>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit} className="login-form">
+      <label htmlFor="firstname">Prénom</label>
+      <input
+        className="border"
+        type="text"
+        name="firstname"
+        required
+        onChange={handleChangeFirstName}
+      />
+      <label htmlFor="lastname">Nom</label>
+      <input
+        className="border"
+        type="text"
+        name="lastname"
+        required
+        onChange={handleChangeLastName}
+      />
+      <label htmlFor="email">E-mail</label>
+      <input
+        className="border"
+        type="email"
+        name="email"
+        required
+        onChange={handleChangeEmail}
+      />
+      <label htmlFor="password">Mot de passe</label>
+      <input
+        className="border"
+        type="password"
+        name="pass"
+        required
+        onChange={handleChangePassword}
+      />
+      <button type="submit">Enregistrer</button>
+    </form>
   );
 
   return (
@@ -121,11 +115,9 @@ function SignUp() {
       <div>
         <Toaster position="bottom-center" />
       </div>
-      <div className="app">
-        <div className="login-form">
-          <div className="title">S'inscrire</div>
-          {renderForm}
-        </div>
+      <div className="form-container">
+        <h2 className="title">S'inscrire</h2>
+        {renderForm}
       </div>
     </>
   );

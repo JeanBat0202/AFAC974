@@ -32,7 +32,7 @@ export default function GalleryDisplay() {
   };
 
   return (
-    <>
+    <div className="gallery-big-container">
       <div className="CatégorieContainer">
         <div>Trier par catégorie : </div>
         <select
@@ -57,6 +57,6 @@ export default function GalleryDisplay() {
               .filter((art) => art.catName === currentCat)
               .map((art) => <ArtDisplayAPI {...art} key={`art-${art.id}`} />)}
       </div>
-    </>
+    </div>
   );
 }

@@ -25,7 +25,9 @@ export default function EditUser() {
         setEmail(data.email);
       })
       .catch(() => {
-        toast.alert("Erreur lors des modifications. Veuillez réessayer");
+        toast.alert("Erreur lors des modifications. Veuillez réessayer", {
+          duration: 4000,
+        });
       });
   }, []);
 
@@ -61,13 +63,15 @@ export default function EditUser() {
           navigate(`/alluser`);
         })
         .catch(() => {
-          toast.alert("Erreur lors des modifications. Veuillez réessayer");
+          toast.alert("Erreur lors des modifications. Veuillez réessayer", {
+            duration: 4000,
+          });
         });
     } else {
-      toast.alert("Veullez remplir tous les champs !!!!");
+      toast.alert("Veullez remplir tous les champs !!!!", { duration: 4000 });
     }
     toast.success("Les modifications ont bien été prises en compte.", {
-      duration: 2000,
+      duration: 4000,
     });
   };
 
@@ -86,7 +90,7 @@ export default function EditUser() {
           />
         </div>
         <div className="input-container-edit-user">
-          <label htmlFor="lastname">Nom </label>
+          <label htmlFor="lastname">Nom</label>
           <input
             value={lastname}
             className="border3"
@@ -97,7 +101,7 @@ export default function EditUser() {
           />
         </div>
         <div className="input-container-edit-user">
-          <label htmlFor="email">Email </label>
+          <label htmlFor="email">E-mail</label>
           <input
             value={email}
             className="border3"
@@ -108,7 +112,7 @@ export default function EditUser() {
           />
         </div>
         <div className="button-container-edit-user">
-          <button type="submit"> Modifier </button>
+          <button type="submit">Modifier</button>
         </div>
       </form>
     </div>

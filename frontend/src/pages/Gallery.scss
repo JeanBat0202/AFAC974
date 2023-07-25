@@ -1,32 +1,8 @@
-.image-container {
-  position: relative;
-  // display: inline-block;
-  margin-top: 10%;
-  margin-left: 5%;
-  margin-right: 5%;
-  filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.5));
-}
-.image-container figcaption {
-  width: 100%;
-  position: absolute;
-  background-color: #74658ad5;
-  color: white;
-  padding: 5px 10px;
-  transition: visibility 0s, opacity 0.5s;
-  filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.5));
-}
-.image-container figcaption .link {
-  color: #ffffff;
-}
-img {
-  max-width: 100%;
-  display: block;
-}
 .visage {
   display: grid;
   grid-template-rows: 1fr auto;
-  margin-bottom: 30px;
   break-inside: avoid;
+  margin-bottom: 15%;
 
   .icon-gallery-page-container {
     display: flex;
@@ -55,6 +31,39 @@ img {
       color: #bc7c61;
     }
   }
+
+  .image-container {
+    // position: relative;
+    // margin-top: 10%;
+    // margin-left: 5%;
+    // margin-right: 5%;
+    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.5));
+
+    figcaption {
+      width: 100%;
+      position: absolute;
+      background-color: #74658ad5;
+      color: white;
+      padding: 5px 10px;
+      transition: visibility 0s, opacity 0.5s;
+      display: flex;
+      justify-content: space-between;
+      // filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.5));
+
+      .link {
+        color: #ffffff;
+      }
+    }
+
+    .only-link {
+      justify-content: end;
+    }
+  }
+}
+
+img {
+  max-width: 100%;
+  display: block;
 }
 
 figure > img {
@@ -62,71 +71,84 @@ figure > img {
   grid-column: 1;
 }
 
-.container {
-  margin-right: 5%;
-  margin-left: 5%;
-  margin-top: 5%;
-  column-count: 1;
-  column-gap: 30px;
-}
+.gallery-big-container {
+  padding: 5%;
+  padding-top: 20px;
 
-.CatégorieContainer {
-  margin-left: 3rem;
-}
+  .container {
+    column-count: 1;
+    column-gap: 30px;
+  }
 
-#ArtCat {
-  width: 120px;
-  height: 30px;
-  box-shadow: 1px 1px 2px #999;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-top: 0.5rem;
-  font-size: medium;
+  #ArtCat {
+    cursor: pointer;
+    padding: 2px;
+    margin-bottom: 30px;
+    border: 5px double #bc7c61;
+    text-decoration: none;
+    font-family: "Bebas Neue";
+    background: none;
+    color: #bc7c61;
+
+    width: 120px;
+    height: 2.5rem;
+    // box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    // padding: 3px;
+    // border-radius: 5px;
+    font-size: large;
+  }
 }
 
 @media screen and (min-width: 768px) {
-  .container {
-    column-count: 2;
+  .gallery-big-container {
+    .container {
+      column-count: 2;
+    }
   }
 }
+
 @media screen and (min-width: 1024px) {
-  .image-container {
-    margin-top: 0;
-    margin-left: 0;
-    margin-right: 0;
-    overflow: hidden;
-  }
-  .image-container figcaption {
-    display: flex;
-    justify-content: space-between;
-    bottom: -100%;
-    transition: bottom 0s ease-in-out;
-  }
+  .gallery-big-container {
+    .container {
+      column-count: 3;
 
-  .image-container:hover figcaption.only-link {
-    justify-content: end;
-    bottom: 0;
-    transition: bottom 0.5s ease-in-out;
-  }
+      .image-container {
+        margin-top: 0;
+        margin-left: 0;
+        margin-right: 0;
+        overflow: hidden;
 
-  .image-container:hover figcaption {
-    // display: flex;
-    justify-content: space-between;
-    bottom: 0;
-    transition: bottom 0.5s ease-in-out;
-  }
+        figcaption {
+          bottom: -100%;
+          transition: bottom 0s ease-in-out;
+        }
 
-  .container {
-    column-count: 3;
+        &:hover figcaption.only-link {
+          bottom: 0;
+          transition: bottom 0.3s ease-in-out;
+        }
+
+        &:hover figcaption {
+          bottom: 0;
+          transition: bottom 0.3s ease-in-out;
+        }
+      }
+    }
   }
 }
+
 @media screen and (min-width: 1224px) {
-  .container {
-    column-count: 4;
+  .gallery-big-container {
+    .container {
+      column-count: 4;
+    }
   }
 }
+
 @media screen and (min-width: 1824px) {
-  .container {
-    column-count: 5;
+  .gallery-big-container {
+    .container {
+      column-count: 5;
+    }
   }
 }
