@@ -133,7 +133,9 @@ export default function SendPostCard() {
                 id="send-post-card"
               />
             </label>
-            <button type="submit">Envoyer la carte postale</button>
+            <button type="submit" id="send-postcard">
+              Envoyer la carte postale
+            </button>
           </form>
         </section>
       </div>

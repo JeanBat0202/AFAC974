@@ -118,10 +118,10 @@ export default function profileUpdater() {
               />
             </label>
             <span>
+              <button type="submit">Valider</button>
               <Link className="cancel" to={`/utilisateur/${user.id}`}>
                 Annuler
               </Link>
-              <button type="submit">Valider</button>
             </span>
           </form>
         </section>
