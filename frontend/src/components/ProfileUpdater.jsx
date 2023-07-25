@@ -1,6 +1,6 @@
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { useUserContext } from "../context/UserContext";
 import "./ProfileUpdater.scss";
 
@@ -28,7 +28,9 @@ export default function profileUpdater() {
         setEmail(data.email);
       })
       .catch(() => {
-        toast.alert("Une erreur s'est produite, veuillez réessayer.");
+        toast.alert("Une erreur s'est produite, veuillez réessayer.", {
+          duration: 4000,
+        });
       });
   }, []);
 
@@ -67,56 +69,63 @@ export default function profileUpdater() {
           });
         })
         .catch(() => {
-          toast.alert("Une erreur s'est produite, veuillez réessayer.");
+          toast.alert("Une erreur s'est produite, veuillez réessayer.", {
+            duration: 4000,
+          });
         });
     } else {
-      toast.error("Veuillez remplir tous les champs !!!!");
+      toast.error("Veuillez remplir tous les champs !!!!", { duration: 4000 });
     }
   };
 
   return (
-    <div className="profile-form">
-      <h2>Modifier vos informations</h2>
-      <section className="form-updater">
-        <form onSubmit={handleSubmit}>
-          <p>Modifier mon prénom</p>
-          <label htmlFor="firstName">
-            <input
-              type="text"
-              name="firstName"
-              value={firstname}
-              onChange={handleChangeFirstName}
-              required
-            />
-          </label>
-          <p>Modifier mon nom</p>
-          <label htmlFor="lastName">
-            <input
-              type="text"
-              name="lastName"
-              value={lastname}
-              onChange={handleChangeLastName}
-              required
-            />
-          </label>
-          <p>Modifier mon email</p>
-          <label htmlFor="email">
-            <input
-              type="email"
-              name="email"
-              value={email}
-              onChange={handleChangeEmail}
-              required
-            />
-          </label>
-          <span>
-            <Link className="cancel" to={`/utilisateur/${user.id}`}>
-              Annuler
-            </Link>
-            <button type="submit">Valider</button>
-          </span>
-        </form>
-      </section>
-    </div>
+    <>
+      <div>
+        <Toaster position="bottom-center" />
+      </div>
+      <div className="profile-form">
+        <h2>Modifier vos informations</h2>
+        <section className="form-updater">
+          <form onSubmit={handleSubmit}>
+            <p>Modifier mon prénom</p>
+            <label htmlFor="firstName">
+              <input
+                type="text"
+                name="firstName"
+                value={firstname}
+                onChange={handleChangeFirstName}
+                required
+              />
+            </label>
+            <p>Modifier mon nom</p>
+            <label htmlFor="lastName">
+              <input
+                type="text"
+                name="lastName"
+                value={lastname}
+                onChange={handleChangeLastName}
+                required
+              />
+            </label>
+            <p>Modifier mon e-mail</p>
+            <label htmlFor="email">
+              <input
+                type="email"
+                name="email"
+                value={email}
+                onChange={handleChangeEmail}
+                required
+              />
+            </label>
+            <span>
+              <button type="submit">Valider</button>
+              <Link className="cancel" to={`/utilisateur/${user.id}`}>
+                Annuler
+              </Link>
+            </span>
+          </form>
+        </section>
+      </div>
+    </>
   );
 }

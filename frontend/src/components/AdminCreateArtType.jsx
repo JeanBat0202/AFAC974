@@ -17,7 +17,9 @@ export default function AdminCreateArtType({
     e.preventDefault();
 
     if (!type) {
-      toast.error("Veuillez remplir tous les champs obligatoires.");
+      toast.error("Veuillez remplir tous les champs obligatoires.", {
+        duration: 4000,
+      });
     } else {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/artTypes`, {
         method: "POST",
@@ -33,11 +35,15 @@ export default function AdminCreateArtType({
         .then(() => {
           getAllArtTypes();
           setType("");
-          toast.success("La technique a bien été enregistrée.");
+          toast.success("La technique a bien été enregistrée.", {
+            duration: 4000,
+          });
         })
         .catch((err) => {
           console.error(err);
-          toast.error("Une erreur est survenue, veuillez réessayer.");
+          toast.error("Une erreur est survenue, veuillez réessayer.", {
+            duration: 4000,
+          });
         });
     }
   };
@@ -61,20 +67,22 @@ export default function AdminCreateArtType({
                 onChange={handleChangeArtType}
               />
             </label>
-            <button
-              type="submit"
-              onClick={displayArtTypeForm}
-              className="create-small-data"
-            >
-              Enregistrer la technique
-            </button>
-            <button
-              type="button"
-              onClick={displayArtTypeForm}
-              className="create-small-data cancel-form"
-            >
-              Annuler
-            </button>
+            <div className="button-container-create-small-data">
+              <button
+                type="submit"
+                onClick={displayArtTypeForm}
+                className="create-small-data"
+              >
+                Enregistrer la technique
+              </button>
+              <button
+                type="button"
+                onClick={displayArtTypeForm}
+                className="create-small-data cancel-form"
+              >
+                Annuler
+              </button>
+            </div>
           </form>
         </section>
       </div>
@@ -84,5 +92,9 @@ export default function AdminCreateArtType({
 
 AdminCreateArtType.propTypes = {
   displayArtTypeForm: PropTypes.func.isRequired,
-  getAllArtTypes: PropTypes.func.isRequired,
+  getAllArtTypes: PropTypes.func,
+};
+
+AdminCreateArtType.defaultProps = {
+  getAllArtTypes: undefined,
 };

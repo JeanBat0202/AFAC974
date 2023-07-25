@@ -175,7 +175,8 @@ export default function AdminEditArt() {
       setAuthorId(authorIdToUpdate);
     } else {
       toast.error(
-        'Le champ "Auteur" est requis, veuillez sélectionner un auteur'
+        'Le champ "Auteur" est requis, veuillez sélectionner un auteur.',
+        { duration: 4000 }
       );
     }
   };
@@ -186,7 +187,9 @@ export default function AdminEditArt() {
     if (imageTypes.includes(fileSelected.type)) {
       setImageFile(e.target.files[0]);
     } else {
-      toast.error("Votre image doit être au format .jpeg, .jpg ou .png.");
+      toast.error("Votre image doit être au format .jpeg, .jpg ou .png.", {
+        duration: 4000,
+      });
     }
   };
 
@@ -209,7 +212,8 @@ export default function AdminEditArt() {
       setYear(yearToUpdate);
     } else {
       toast.error(
-        'Le champ "Année" est requis, veuillez renseigner une valeur'
+        'Le champ "Année" est requis, veuillez renseigner une valeur.',
+        { duration: 4000 }
       );
     }
   };
@@ -224,7 +228,8 @@ export default function AdminEditArt() {
       setArtTypeId(artTypeIdToUpdate);
     } else {
       toast.error(
-        'Le champ "Technique" est requis, veuillez sélectionner un type d\'œuvre'
+        'Le champ "Technique" est requis, veuillez sélectionner un type d\'œuvre.',
+        { duration: 4000 }
       );
     }
   };
@@ -235,7 +240,7 @@ export default function AdminEditArt() {
     if (!Number.isNaN(widthToUpdate)) {
       setWidth(widthToUpdate);
     } else {
-      toast.error("Veuillez vérifier votre saisie.");
+      toast.error("Veuillez vérifier votre saisie.", { duration: 4000 });
     }
   };
 
@@ -245,7 +250,7 @@ export default function AdminEditArt() {
     if (!Number.isNaN(heightToUpdate, 10)) {
       setHeight(heightToUpdate);
     } else {
-      toast.error("Veuillez vérifier votre saisie.");
+      toast.error("Veuillez vérifier votre saisie.", { duration: 4000 });
     }
   };
 
@@ -256,7 +261,8 @@ export default function AdminEditArt() {
       setCategoryId(categoryIdToUpdate);
     } else {
       toast.error(
-        'Le champ "Catégorie" est requis, veuillez sélectionner une catégorie'
+        'Le champ "Catégorie" est requis, veuillez sélectionner une catégorie.',
+        { duration: 4000 }
       );
     }
   };
@@ -272,7 +278,9 @@ export default function AdminEditArt() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!imageRef || !title || !authorId || !artTypeId || !categoryId) {
-      toast.error("Veuillez remplir tous les champs obligatoires.");
+      toast.error("Veuillez remplir tous les champs obligatoires.", {
+        duration: 4000,
+      });
     } else if (imageFile) {
       const modelData = new FormData();
       modelData.append("imageRef", imageRef);
@@ -318,7 +326,9 @@ export default function AdminEditArt() {
         })
         .catch((err) => {
           console.error(err);
-          toast.error("Une erreur est survenue, veuillez réessayer.");
+          toast.error("Une erreur est survenue, veuillez réessayer.", {
+            duration: 4000,
+          });
         });
     } else {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/arts/${id}`, {
@@ -336,8 +346,8 @@ export default function AdminEditArt() {
           month: month || null,
           year,
           artTypeId,
-          width,
-          height,
+          width: width || null,
+          height: width || null,
           categoryId,
           about: about || null,
           article: article || null,
@@ -351,7 +361,9 @@ export default function AdminEditArt() {
         })
         .catch((err) => {
           console.error(err);
-          toast.error("Une erreur est survenue, veuillez réessayer.");
+          toast.error("Une erreur est survenue, veuillez réessayer.", {
+            duration: 4000,
+          });
         });
     }
   };
@@ -401,7 +413,7 @@ export default function AdminEditArt() {
             <p>
               Auteur <strong>*</strong>
             </p>
-            <label htmlFor="authorId">
+            <label htmlFor="authorId" className="label-with-link-to-add-data">
               <select
                 name="authorId"
                 value={authorId}
@@ -410,7 +422,7 @@ export default function AdminEditArt() {
                 <option value="">Veuillez sélectionner un auteur</option>
                 {authors.map((author) => (
                   <option value={author.id} key={author.id}>
-                    {author.firstname} {author.lastname}
+                    {author.authorAlias} {author.firstname} {author.lastname}
                   </option>
                 ))}
               </select>
@@ -468,7 +480,7 @@ export default function AdminEditArt() {
             <p>
               Technique <strong>*</strong>
             </p>
-            <label htmlFor="artTypeId">
+            <label htmlFor="artTypeId" className="label-with-link-to-add-data">
               <select
                 name="artTypeId"
                 value={artTypeId}
@@ -515,7 +527,7 @@ export default function AdminEditArt() {
             <p>
               Catégorie <strong>*</strong>
             </p>
-            <label htmlFor="categoryId">
+            <label htmlFor="categoryId" className="label-with-link-to-add-data">
               <select
                 name="categoryId"
                 value={categoryId}

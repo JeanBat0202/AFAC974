@@ -5,26 +5,25 @@ import "../pages/Gallery.scss";
 
 export default function ArtDisplayAPI({ id, shortTitle, image }) {
   return (
-    <div className="parent">
-      <div>
-        <figure className="visage">
-          <PrivatePartForGallery authorizedRoles={[1]} artId={id} />
-          <div className="image-container">
-            <img
-              // src={image}
-              src={`${import.meta.env.VITE_ASSETS_IMAGES_URL}/arts/${image}`}
-              alt={shortTitle}
-            />
-            <figcaption className={!shortTitle ? "only-link" : ""}>
-              {shortTitle}
-              <Link to={`/galerie/${id}`} className="link">
-                + D'INFOS
-              </Link>
-            </figcaption>
-          </div>
-        </figure>
+    // <div className="parent">
+    // <div>
+    <figure className="visage">
+      <PrivatePartForGallery authorizedRoles={[1]} artId={id} />
+      <div className="image-container">
+        <img
+          src={`${import.meta.env.VITE_ASSETS_IMAGES_URL}/arts/${image}`}
+          alt={shortTitle}
+        />
+        <figcaption className={!shortTitle ? "only-link" : ""}>
+          {shortTitle}
+          <Link to={`/galerie/${id}`} className="link">
+            + D'INFOS
+          </Link>
+        </figcaption>
       </div>
-    </div>
+    </figure>
+    // </div>
+    // </div>
   );
 }
 

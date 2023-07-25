@@ -28,7 +28,7 @@
         padding: 2px;
         padding-top: 4px;
         border: 5px double #bc7c61;
-        font-size: 17px;
+        font-size: 23px;
         font-family: "Bebas Neue";
         color: #bc7c61;
         width: 80%;
@@ -45,7 +45,7 @@
     }
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
     flex-direction: row;
     width: 75%;
     margin: 0 auto;
@@ -60,11 +60,7 @@
       }
 
       section.link-container {
-        min-height: 17rem;
-
-        a.link-looks-like-button {
-          font-size: 24px;
-        }
+        min-height: 22rem;
       }
     }
   }

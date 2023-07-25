@@ -10,12 +10,7 @@ router.get(
   AuthController.isUserAdmin,
   authorControllers.browse
 );
-router.get(
-  "/:id",
-  AuthController.isUserConnected,
-  AuthController.isUserAdmin,
-  authorControllers.read
-);
+router.get("/:id", authorControllers.read);
 router.put(
   "/:id",
   AuthController.isUserConnected,
