@@ -5,7 +5,7 @@ class AuthController {
   static isUserConnected = (req, res, next) => {
     const token = req.cookies.accessToken;
     if (!token) {
-      return res.status(401).send("Vous n'etes pas connecter !");
+      return res.status(401).send("Vous n'êtes pas connecté !");
     }
 
     try {
@@ -76,7 +76,7 @@ class AuthController {
     if (!checkUser) {
       return res
         .status(404)
-        .send("Certaines données de votre compte n'exsiste pas !");
+        .send("Certaines données de votre compte n'existe pas !");
     }
     if (checkUser.name !== "admin") {
       return res.status(403).send("Vous ne pouvez pas faire ça !");
