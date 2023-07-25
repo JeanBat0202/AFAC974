@@ -6,7 +6,6 @@ const AuthController = require("../controllers/AuthController");
 router.post(
   "/send-mail-with-hbs",
   AuthController.isUserConnected,
-  AuthController.isUserAllowedToGet,
   emailControllers.sendEmailWithHbsTemplate
 );
 
