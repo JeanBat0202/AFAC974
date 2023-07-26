@@ -37,6 +37,10 @@ h2 {
 
   .logo-objetTemoinContainer {
     align-items: center;
+
+    img {
+      width: 100%;
+    }
   }
 
   .objetTemoin {
@@ -44,6 +48,10 @@ h2 {
     display: block;
     margin: 0 auto;
     margin-bottom: 20px;
+
+    img {
+      width: 100%;
+    }
   }
 
   .ihoi {
@@ -51,6 +59,10 @@ h2 {
     display: block;
     margin: 0 auto;
     margin-bottom: 20px;
+
+    img {
+      width: 100%;
+    }
   }
 
   hr {
@@ -147,7 +159,6 @@ h2 {
     .ihoi {
       position: absolute;
       bottom: 10rem;
-      left: 2rem;
       width: 8rem;
       display: block;
       margin: 1rem;
@@ -210,6 +221,7 @@ h2 {
     }
     .ihoi {
       position: absolute;
+      z-index: -1;
       bottom: 0;
       left: 12rem;
       width: 8rem;
