@@ -1,7 +1,7 @@
 import "./header.scss";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaBars } from "react-icons/fa";
+import { toast } from "react-hot-toast";
 import { useUserContext } from "../context/UserContext";
 import PrivateLink from "./PrivateLink";
 import headerHexagon from "../assets/hexagon-svgrepo-com.svg";
@@ -9,9 +9,17 @@ import logoAFAC from "../assets/logoAFAC.png";
 import accountIcon from "../assets/account-icon.svg";
 
 export default function Header() {
+  const [burgerClass, setBurgerClass] = useState("burger-bar unclicked");
   const [sidebar, setSideBar] = useState(false);
 
-  const showSidebar = () => setSideBar(!sidebar);
+  const showSidebar = () => {
+    if (!sidebar) {
+      setBurgerClass("burger-bar clicked");
+    } else {
+      setBurgerClass("burger-bar unclicked");
+    }
+    setSideBar(!sidebar);
+  };
 
   const [{ user }, dispatch] = useUserContext();
 
@@ -29,11 +37,11 @@ export default function Header() {
         dispatch({ type: "RESET_USER" });
       } else {
         const errorData = await response.json();
-        alert(errorData, "error");
+        toast.error(errorData, "error");
       }
     } catch (err) {
       console.error(err);
-      alert("An error occurred while logging out.", "error");
+      toast.error("An error occurred while logging out.", "error");
     }
   };
 
@@ -70,12 +78,20 @@ export default function Header() {
               </div>
             </Link>
           ) : null}
-          <FaBars
-            className="icone-burger"
-            onClick={() => {
-              showSidebar();
-            }}
-          />
+          <div className="burger-container">
+            <button
+              type="button"
+              className="burger-menu"
+              onClick={() => {
+                showSidebar();
+              }}
+              tabIndex="0"
+            >
+              <div className={burgerClass} />
+              <div className={burgerClass} />
+              <div className={burgerClass} />
+            </button>
+          </div>
         </div>
       </header>
       <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
