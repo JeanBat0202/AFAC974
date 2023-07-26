@@ -59,6 +59,11 @@
       background-color: transparent;
       border: none;
       cursor: pointer;
+
+      img {
+        height: 100%;
+        width: 100%;
+      }
     }
 
     a.icon-gallery-page {
@@ -73,6 +78,8 @@
 
     .imgWithShadow {
       box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+      height: 100%;
+      width: 100%;
     }
   }
 

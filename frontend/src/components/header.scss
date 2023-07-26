@@ -44,8 +44,22 @@
       max-height: 42px;
     }
 
+    #icon-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      .account {
+        display: none;
+
+        @media screen and (min-width: 768px) {
+          display: initial;
+        }
+      }
+    }
+
     .account {
-      margin-left: 40%;
       width: 40px;
     }
 
@@ -192,7 +206,6 @@ a {
         max-height: 109px;
       }
       .account {
-        margin-left: 60%;
         width: 80px;
       }
       .icone-burger {

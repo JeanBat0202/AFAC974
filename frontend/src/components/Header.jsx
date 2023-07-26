@@ -54,43 +54,45 @@ export default function Header() {
           <Link to="/">
             <img className="logo-AFAC" src={logoAFAC} alt="logoAFAC" />
           </Link>
-          <div className="account">
-            {!user ? (
-              <Link to="/connexion">
-                <img
-                  src={accountIcon}
-                  alt="Icône de connexion d'un utilisateur"
-                />
-              </Link>
-            ) : (
+          <div id="icon-container">
+            <div className="account">
+              {!user ? (
+                <Link to="/connexion">
+                  <img
+                    src={accountIcon}
+                    alt="Icône de connexion d'un utilisateur"
+                  />
+                </Link>
+              ) : (
+                <Link to={`/utilisateur/${user.id}`}>
+                  <img
+                    src={accountIcon}
+                    alt="Icône de connexion d'un utilisateur"
+                  />
+                </Link>
+              )}
+            </div>
+            {user ? (
               <Link to={`/utilisateur/${user.id}`}>
-                <img
-                  src={accountIcon}
-                  alt="Icône de connexion d'un utilisateur"
-                />
+                <div className="useraccountconnected">
+                  {user.firstname} {user.lastname}
+                </div>
               </Link>
-            )}
-          </div>
-          {user ? (
-            <Link to={`/utilisateur/${user.id}`}>
-              <div className="useraccountconnected">
-                {user.firstname} {user.lastname}
-              </div>
-            </Link>
-          ) : null}
-          <div className="burger-container">
-            <button
-              type="button"
-              className="burger-menu"
-              onClick={() => {
-                showSidebar();
-              }}
-              tabIndex="0"
-            >
-              <div className={burgerClass} />
-              <div className={burgerClass} />
-              <div className={burgerClass} />
-            </button>
+            ) : null}
+            <div className="burger-container">
+              <button
+                type="button"
+                className="burger-menu"
+                onClick={() => {
+                  showSidebar();
+                }}
+                tabIndex="0"
+              >
+                <div className={burgerClass} />
+                <div className={burgerClass} />
+                <div className={burgerClass} />
+              </button>
+            </div>
           </div>
         </div>
       </header>
