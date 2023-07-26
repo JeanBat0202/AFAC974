@@ -13,6 +13,7 @@ export default function ArtDisplayAPI({ id, shortTitle, image }) {
         <img
           src={`${import.meta.env.VITE_ASSETS_IMAGES_URL}/arts/${image}`}
           alt={shortTitle}
+          className="gallery-image"
         />
         <figcaption className={!shortTitle ? "only-link" : ""}>
           {shortTitle}

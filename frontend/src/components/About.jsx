@@ -15,7 +15,17 @@ export default function Header() {
           établissements scolaires, des entreprises ou des associations: 2021:
           PRE Caisse des Ecoles du Tampon, Lycée Ambroise Vollard 2022: Service
           addictologie, CHU Nord, Lycée Pierre Lagourgue, Amis de l'Université,
-          Fondation Favron.
+          Fondation Favron.{" "}
+        </p>
+        <br />
+        <p>
+          Vous êtes intéressé à adhérer à notre association ?<br />
+          <a
+            className="urlAsso"
+            href="https://afac974.s2.yapla.com/fr/espace-membres/adhesion/"
+          >
+            Cliquez ici
+          </a>
         </p>
         <br />
       </span>
