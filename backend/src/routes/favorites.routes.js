@@ -18,7 +18,6 @@ router.get(
 router.get(
   "/by-fav/:id",
   AuthController.isUserConnected,
-  AuthController.isUserAllowedToGet,
   favoriteControllers.read
 );
 router.put(
