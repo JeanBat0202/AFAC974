@@ -315,9 +315,6 @@ export default function AdminEditArt() {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/arts/${id}?withImg=true`, {
         method: "PUT",
         credentials: "include",
-        // headers: {
-        //   "Content-Type": "multipart/form-data",
-        // },
         body: modelData,
       })
         .then(() => {

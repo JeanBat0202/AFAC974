@@ -3,8 +3,8 @@ import { Toaster } from "react-hot-toast";
 import { useParams, Link } from "react-router-dom";
 import { useUserContext } from "../context/UserContext";
 import { disableRightClick, removeDisableRightClick } from "../services/utils";
-import style from "./UserProfile.module.scss";
 import FavArtAPI from "./FavArtAPI";
+import style from "./UserProfile.module.scss";
 
 export default function Profile() {
   const [userConnected, setUserConnected] = useState();

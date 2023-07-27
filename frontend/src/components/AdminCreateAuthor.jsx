@@ -102,9 +102,6 @@ export default function AdminCreateAuthor({
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/authors`, {
         method: "POST",
         credentials: "include",
-        // headers: {
-        //   "Content-Type": "multipart/form-data",
-        // },
         body: modelData,
       })
         .then(() => {

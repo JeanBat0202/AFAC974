@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
-
 import { Link } from "react-router-dom";
 import { disableRightClick, removeDisableRightClick } from "../services/utils";
 import style from "./HomeHexagone.module.scss";

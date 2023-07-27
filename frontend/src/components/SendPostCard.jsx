@@ -115,7 +115,6 @@ export default function SendPostCard() {
             </p>
             <label htmlFor="message">
               <textarea
-                // type="textarea"
                 id="message"
                 value={message}
                 onChange={handleChangeMessage}
