@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
-import "./EditUser.scss";
+import "./LogIn.scss";
 
 export default function EditUser() {
   const navigate = useNavigate();
@@ -76,57 +76,51 @@ export default function EditUser() {
   };
 
   const renderForm = (
-    <div className="form-edit-user">
-      <form onSubmit={handleSubmit}>
-        <div className="input-container-edit-user">
-          <label htmlFor="firstname">Prénom</label>
-          <input
-            value={firstname}
-            className="border3"
-            type="text"
-            name="firstname"
-            onChange={handleChangeFirstName}
-            required
-          />
-        </div>
-        <div className="input-container-edit-user">
-          <label htmlFor="lastname">Nom</label>
-          <input
-            value={lastname}
-            className="border3"
-            type="text"
-            name="lastname"
-            onChange={handleChangeLastName}
-            required
-          />
-        </div>
-        <div className="input-container-edit-user">
-          <label htmlFor="email">E-mail</label>
-          <input
-            value={email}
-            className="border3"
-            type="email"
-            name="email"
-            onChange={handleChangeEmail}
-            required
-          />
-        </div>
-        <div className="button-container-edit-user">
-          <button type="submit">Modifier</button>
-        </div>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit} className="login-form">
+      <label htmlFor="firstname">
+        Prénom
+        <input
+          value={firstname}
+          className="border"
+          type="text"
+          name="firstname"
+          onChange={handleChangeFirstName}
+          required
+        />
+      </label>
+      <label htmlFor="lastname">
+        Nom
+        <input
+          value={lastname}
+          className="border"
+          type="text"
+          name="lastname"
+          onChange={handleChangeLastName}
+          required
+        />
+      </label>
+      <label htmlFor="email">
+        E-mail
+        <input
+          value={email}
+          className="border"
+          type="email"
+          name="email"
+          onChange={handleChangeEmail}
+          required
+        />
+      </label>
+      <button type="submit">Modifier</button>
+    </form>
   );
   return (
     <>
       <div>
         <Toaster position="bottom-center" />
       </div>
-      <div className="app-edit-user">
-        <div className="login-form-edit-user">
-          <div className="title-edit-user">Modifier</div>
-          {renderForm}
-        </div>
+      <div className="form-container">
+        <h2 className="title">Modifier</h2>
+        {renderForm}
       </div>
     </>
   );

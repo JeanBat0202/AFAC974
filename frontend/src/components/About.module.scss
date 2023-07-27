@@ -14,7 +14,6 @@ h2 {
 .about {
   position: relative;
   flex: 1 1 0%;
-  // padding: 1.5%;
   padding: 5%;
   padding-top: 20px;
 
@@ -220,8 +219,6 @@ h2 {
       }
     }
     .ihoi {
-      position: absolute;
-      z-index: -1;
       bottom: 0;
       left: 12rem;
       width: 8rem;

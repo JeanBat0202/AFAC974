@@ -12,16 +12,13 @@ import SendPostCard from "./components/SendPostCard";
 import Admin from "./pages/Admin";
 import AdminCreateArt from "./pages/AdminCreateArt";
 import AdminEditArt from "./pages/AdminEditArt";
-// import AdminCreateAuthor from "./components/AdminCreateAuthor";
-// import AdminCreateArtType from "./components/AdminCreateArtType";
-// import AdminCreateCategory from "./components/AdminCreateCategory";
 import Author from "./components/Author";
 import Connection from "./pages/Connection";
 import SignUp from "./components/SignUp";
 import ProfileUpdater from "./components/ProfileUpdater";
 import AllUser from "./pages/AllUser";
-import "./App.scss";
 import EditUser from "./components/EditUser";
+import "./App.scss";
 
 function App() {
   const dispatch = useUserContext()[1];
@@ -65,18 +62,6 @@ function App() {
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin-create-art" element={<AdminCreateArt />} />
             <Route path="/admin-edit-art/:id" element={<AdminEditArt />} />
-            {/* <Route
-              path="/admin-create-author"
-              element={<AdminCreateAuthor />}
-            />
-            <Route
-              path="/admin-create-art-type"
-              element={<AdminCreateArtType />}
-            />
-            <Route
-              path="/admin-create-category"
-              element={<AdminCreateCategory />}
-            /> */}
             <Route path="/alluser" element={<AllUser />} />
             <Route path="/admin-edit-user/:id" element={<EditUser />} />
           </Route>

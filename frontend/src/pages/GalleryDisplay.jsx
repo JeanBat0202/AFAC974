@@ -5,6 +5,7 @@ import { disableRightClick, removeDisableRightClick } from "../services/utils";
 export default function GalleryDisplay() {
   const [artList, setArtList] = useState([]);
   const [currentCat, setCurrentCat] = useState("Tout");
+  const [categories, setCategories] = useState();
 
   const getArts = () => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/arts/`, {
@@ -18,8 +19,18 @@ export default function GalleryDisplay() {
       .catch((error) => console.error(error));
   };
 
+  const getAllCategories = () => {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/categories`, {
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => setCategories(data))
+      .catch((err) => console.error(err));
+  };
+
   useEffect(() => {
     getArts();
+    getAllCategories();
   }, []);
 
   useEffect(() => {
@@ -30,6 +41,10 @@ export default function GalleryDisplay() {
   const handleCatChange = (e) => {
     setCurrentCat(e.target.value);
   };
+
+  if (!artList || !categories) {
+    return <p>En cours de chargement...</p>;
+  }
 
   return (
     <div className="gallery-big-container">
@@ -42,10 +57,11 @@ export default function GalleryDisplay() {
           onChange={handleCatChange}
         >
           <option value="Tout">Tout</option>
-          <option value="Usines">Usines</option>
-          <option value="Travailleurs">Travailleurs</option>
-          <option value="Lieux">Lieux</option>
-          <option value="Animaux">Animaux</option>
+          {categories.map((category) => (
+            <option value={category.catName} key={category.id}>
+              {category.catName}
+            </option>
+          ))}
         </select>
       </div>
       <div className="container">

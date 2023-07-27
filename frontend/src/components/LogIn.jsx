@@ -3,14 +3,12 @@ import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from "../context/UserContext";
 import "./LogIn.scss";
-// import bgHexa from "../assets/hexagon-for-bottom-svgrepo-com.svg";
 
 function LogIn() {
   const dispatch = useUserContext()[1];
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [isSubmit] = useState("");
 
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -77,7 +75,6 @@ function LogIn() {
         />
       </label>
       <button type="submit">Se connecter</button>
-      {/* </div> */}
       <p className="text">
         Pas encore inscrit ?
         <Link to="/s'inscrire" className="sign-up">
@@ -88,7 +85,6 @@ function LogIn() {
   );
   return (
     <>
-      {/* <img src={bgHexa} alt="Hexagone bas de page" className="bg-hexa-bottom" /> */}
       <div>
         <Toaster position="bottom-center" />
       </div>
