@@ -31,7 +31,6 @@ export default function AdminCreateCategory({
           catName,
         }),
       })
-        // .then((res) => res.json())
         .then(() => {
           getAllCategories();
           setCatName("");
@@ -69,11 +68,7 @@ export default function AdminCreateCategory({
               />
             </label>
             <div className="button-container-create-small-data">
-              <button
-                type="submit"
-                // onClick={displayCategoryForm}
-                className="create-small-data"
-              >
+              <button type="submit" className="create-small-data">
                 Enregistrer la catégorie
               </button>
               <button

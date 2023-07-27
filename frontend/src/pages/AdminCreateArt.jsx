@@ -298,9 +298,6 @@ export default function AdminCreateArt() {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/arts`, {
         method: "POST",
         credentials: "include",
-        // headers: {
-        //   "Content-Type": "multipart/form-data",
-        // },
         body: modelData,
       })
         .then((res) => res.json())

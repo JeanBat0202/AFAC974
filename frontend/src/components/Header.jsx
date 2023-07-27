@@ -1,4 +1,3 @@
-import "./header.scss";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
@@ -7,6 +6,7 @@ import PrivateLink from "./PrivateLink";
 import headerHexagon from "../assets/hexagon-svgrepo-com.svg";
 import logoAFAC from "../assets/logoAFAC.png";
 import accountIcon from "../assets/account-icon.svg";
+import "./header.scss";
 
 export default function Header() {
   const [burgerClass, setBurgerClass] = useState("burger-bar unclicked");
