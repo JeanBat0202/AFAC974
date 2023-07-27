@@ -783,11 +783,11 @@ INSERT INTO
   `user`
 VALUES
   (
-    2,
-    'Testeuse',
-    'Web',
-    'testeuseweb@free.com',
-    '$argon2id$v=19$m=65536,t=5,p=1$8/L9bJGh3LoexE2LTKZT3g$MavzgcCa/Sfl/qpYNHkJW6KSVlyidC5A4No3ech/ams',
+    1,
+    'Admin',
+    'Demo',
+    'demo@example.com',
+    '$argon2id$v=19$m=65536,t=5,p=1$IhRhmE+1XzE+dZMhOECCJA$ZZr2b5m9rNhnYNSpkpKEJX78pamAkwfCI8h8RoDmHko',
     1
   );
 

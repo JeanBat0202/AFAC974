@@ -65,18 +65,6 @@ function App() {
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin-create-art" element={<AdminCreateArt />} />
             <Route path="/admin-edit-art/:id" element={<AdminEditArt />} />
-            {/* <Route
-              path="/admin-create-author"
-              element={<AdminCreateAuthor />}
-            />
-            <Route
-              path="/admin-create-art-type"
-              element={<AdminCreateArtType />}
-            />
-            <Route
-              path="/admin-create-category"
-              element={<AdminCreateCategory />}
-            /> */}
             <Route path="/alluser" element={<AllUser />} />
             <Route path="/admin-edit-user/:id" element={<EditUser />} />
           </Route>
